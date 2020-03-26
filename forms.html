@@ -5,7 +5,7 @@
         <title>Register With Us</title>
     </head>
     <body>
-    <form action="https://request-inspector.glitch.me/" method="GET">
+    <form action="https://request-inspector.glitch.me/" method="POST">
         <!--   Text Fields  -->
         <label for="email">Email</label>
         <input id="email" name="email" type="text" placeholder="Enter Your Email">
@@ -13,26 +13,28 @@
         <input id="pw" name="pw" type="password" placeholder="Enter Your Password">
 
         <br>
+
         <!--  Text Area  -->
         <label for="bio">User's Bio</label>
-        <textarea name="bio" id="bio" cols="30" rows="10" placeholder="Please write a short             description of yourself." ></textarea>
+        <textarea name="bio" id="bio" cols="30" rows="10" placeholder="Please write a short description of yourself." ></textarea>
 
         <br>
 
         <!--  Radio Buttons  -->
         <h4>How did you hear about us?</h4>
-        <!--      The first two answer can be selected at the same time because they ahve               different name=" "  -->
+        <!--      The first two answers can be selected at the same time because they have different name=" "  -->
         <input name="answer1" id="answer_1" type="radio" value="billboard">
         <label for="answer_1">Billboard</label>
         <input name="answer2" id="answer_2" type="radio" value="radio advertisement">
         <label for="answer_2">Radio Advertisement</label>
-        <!--    The only one answer for the last two can be selected because they share the same        name=" "  -->
+        <!--    The only one answer for the last two can be selected because they share the same name=" "  -->
         <input name="answer" id="answer_3" type="radio" value="internet advertisement">
         <label for="answer_3">Internet Advertisement</label>
         <input name="answer" id="answer_4" type="radio" value="other">
         <label for="answer_4">Other</label>
 
         <br>
+
         <!--  Dropdown Menu  -->
         <label for="dropdown">What web browser are you using?</label>
         <select name="dropdown" id="dropdown">
