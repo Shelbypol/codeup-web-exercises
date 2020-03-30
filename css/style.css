@@ -1,6 +1,91 @@
 body{
-
+    background-image: url("../img/welcome_background.jpeg");
+    background-size: cover;
+    background-color: #000;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    width: 80%;
+    margin: auto;
 }
-.fancy-header{
-    color: purple;
+
+header{
+    text-align: center;
+    background-color: #740509;
+}
+
+#line{
+    margin-bottom: 2em;
+}
+
+main h2 {
+    color: white;
+    text-decoration: underline;
+    background-color: #740509;
+    padding: .2em;
+    border-left: 2px solid white;
+    border-top: 1px solid white;
+    letter-spacing: .1em;
+}
+
+.top-header{
+    display: inline;
+}
+
+.list li{
+    padding: .2em;
+    list-style-type: none;
+    margin-left: 1em;
+}
+
+.list li:hover{
+    color: #740509;
+    background-color:white;
+}
+
+.table{
+    border-top: 3px solid #740509;
+    border-left: 6px solid white;
+    width: 100%;
+}
+
+.table th{
+    padding: 1em;
+    background-color: #f4f4f4;
+    color: black;
+}
+
+table td{
+    padding: 1em;
+}
+
+table td:hover{
+    background-color: white;
+    color: black;
+}
+
+.table-style{
+    padding: 1em;
+}
+
+table .table-row:nth-child(even){
+    background-color: #740509;
+}
+
+.link h3{
+    color: white;
+}
+
+.link h3:visited{
+    color: #740509;
+}
+
+.link h3:hover{
+    background-color: #740509;
+    color: white;
+}
+
+.link h3:active{
+    background-color: black;
+    color: white;
 }
