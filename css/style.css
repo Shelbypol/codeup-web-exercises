@@ -4,7 +4,6 @@ body{
     background-color: #000;
     color: white;
     font-family: 'Poppins', sans-serif;
-    position: relative;
     width: 80%;
     margin: auto;
 }
@@ -12,6 +11,12 @@ body{
 header{
     text-align: center;
     background-color: #740509;
+}
+
+em, strong{
+    font-size: 1.2em;
+    font-weight: bold;
+    /*color: black;*/
 }
 
 #line{
@@ -25,17 +30,17 @@ main h2 {
     padding: .2em;
     border-left: 2px solid white;
     border-top: 1px solid white;
+    border-top-left-radius: 20px;
     letter-spacing: .1em;
 }
 
-.top-header{
-    display: inline;
+.top-headers{
+    width: 10em;
 }
 
 .list li{
     padding: .2em;
     list-style-type: none;
-    margin-left: 1em;
 }
 
 .list li:hover{
@@ -43,16 +48,18 @@ main h2 {
     background-color:white;
 }
 
-.table{
+table{
     border-top: 3px solid #740509;
     border-left: 6px solid white;
     width: 100%;
+    text-align: center;
 }
 
-.table th{
-    padding: 1em;
+table th{
+    padding: .6em;
     background-color: #f4f4f4;
     color: black;
+
 }
 
 table td{
@@ -72,20 +79,27 @@ table .table-row:nth-child(even){
     background-color: #740509;
 }
 
-.link h3{
+footer{
+    margin-bottom: 2em;
+}
+
+a:link{
     color: white;
 }
 
-.link h3:visited{
+a:visited{
     color: #740509;
+    text-decoration: underline;
 }
 
-.link h3:hover{
+a:hover{
     background-color: #740509;
     color: white;
+    padding: .5em;
 }
 
-.link h3:active{
+a:active{
     background-color: black;
     color: white;
 }
+
