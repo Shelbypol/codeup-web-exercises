@@ -1,6 +1,6 @@
 * {
     --bg-info: #C3D9FC;
-    --text-success: rgb(193, 241, 215);
+    --bg-success: rgb(193, 241, 215);
     --bg-warning: rgb(252, 250, 198);
     --bg-error: rgb(255, 205, 210);
 }
@@ -21,8 +21,11 @@ body, html {
 }
 
 .message-info{
-    background-color: var(--bg-info);
     color: #2b208a;
+}
+
+.message-info{
+    background-color: var(--bg-info);
 }
 
 .message-success{
