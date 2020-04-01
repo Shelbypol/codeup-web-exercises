@@ -1,0 +1,49 @@
+body{
+    background-color: black;
+}
+
+.container {
+    background-color: white;
+    min-height: 2000px;
+    width: 600px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.box1 {
+    height: 150px;
+    width: 150px;
+    background: green;
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+.box2 {
+    height: 200px;
+    width: 200px;
+    background: blue;
+}
+
+span {
+    color: white;
+    font-size: 2em;
+    font-family: sans-serif;
+}
+
+/*.box3 {*/
+/*    background: red;*/
+/*    overflow: auto;*/
+/*}*/
+
+p {
+    clear: left;
+}
+
+
+/*.clearfix::after {*/
+/*    content: "";*/
+/*    clear: both;*/
+/*    display: table;*/
+/*}*/
+
