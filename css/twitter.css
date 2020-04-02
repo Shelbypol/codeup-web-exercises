@@ -62,7 +62,22 @@ a {
 
 .profile-form{
     float: right;
-    line-height: 80px ;
+    line-height: 80px;
+}
+
+.profile-items{
+    padding: 0;
+    list-style-type:none;
+}
+
+.profile-entry{
+    margin: .5em;
+}
+
+.profile-details{
+    width: calc(25% - 1em);
+    margin: 0 .5em 0 .5em;
+    float: left;
 }
 
 .btn {
@@ -90,12 +105,6 @@ a {
 
 .container{
     margin-top: 2em;
-}
-
-.profile-details{
-    width: calc(25% - 1em);
-    margin: 0 .5em 0 .5em;
-    float: left;
 }
 
 .timeline{
@@ -127,13 +136,4 @@ a {
 .media-body{
     float: left;
     width: calc(100% - 50px);
-}
-
-.profile-items{
-    padding: 0;
-    list-style-type:none;
-}
-
-.profile-entry{
-    margin: .5em;
 }
