@@ -1,0 +1,56 @@
+body{
+    width: 95%;
+    margin: 1em auto;
+    font-family: 'Work Sans', sans-serif;
+}
+
+*{
+     box-sizing: border-box;
+ }
+
+nav{
+    background-color: lightgrey;
+
+}
+
+ul{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+
+.nav-item{
+    padding: .5em;
+    display: flex;
+    align-items: center;
+}
+
+a{
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+}
+
+a:hover{
+    color: blue;
+}
+
+#nav-left{
+    margin-right: auto;
+}
+
+#nav-right{
+    margin-left: auto;
+}
+
+#logo{
+    font-size: 1.5em;
+    padding: .2em 0;
+    font-family: 'Montserrat', sans-serif;
+    margin-right: 3em;
+    /*position:absolute;*/
+    /*left: 22em;*/
+    /*top: -1em;*/
+}
