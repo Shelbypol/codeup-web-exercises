@@ -10,15 +10,16 @@ body{
 
 nav{
     background-color: lightgrey;
-
+    max-height: 20em;
 }
 
-ul{
+.nav-list{
     width: 100%;
     margin: 0;
     padding: 0;
     list-style: none;
     display: flex;
+    flex-wrap: wrap;
 }
 
 .nav-item{
@@ -26,6 +27,7 @@ ul{
     display: flex;
     align-items: center;
 }
+
 
 a{
     display: inline-block;
@@ -53,4 +55,70 @@ a:hover{
     /*position:absolute;*/
     /*left: 22em;*/
     /*top: -1em;*/
+}
+
+footer{
+    width: 100%;
+    height: 300px;
+    background-color: black;
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+}
+
+section{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    justify-content: center;
+}
+
+div{
+    margin: auto;
+}
+
+footer ul{
+    list-style: none;
+    display: flex;
+    margin-right: 2.5em;
+    color: #fff;
+}
+
+footer li{
+    padding: 0 .5em;
+}
+
+footer li:hover{
+    color: deepskyblue;
+}
+
+footer h6{
+    margin-left: 2em;
+    /*margin-top: em;*/
+}
+
+button{
+    padding: 1em;
+    border-radius: 20px;
+    font-weight: bold;
+    border: 2px solid deepskyblue;
+}
+
+button:hover{
+    background-color: deepskyblue;
+    color: #fff;
+    border: 1px solid white;
+}
+
+span{
+    color: deepskyblue;
+}
+
+span:hover{
+    color: #fff;
+    background-color: deepskyblue;
+    border-radius: 20px;
+    padding: 0 .5em;
 }
