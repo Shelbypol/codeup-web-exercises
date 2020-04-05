@@ -36,7 +36,7 @@ a{
 }
 
 a:hover{
-    color: blue;
+    color: deepskyblue;
 }
 
 #nav-left{
@@ -57,18 +57,71 @@ a:hover{
     /*top: -1em;*/
 }
 
-footer{
-    width: 100%;
-    height: 300px;
-    background-color: black;
-    color: #fff;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    display: flex;
+hr{
+    border-bottom: 1px solid deepskyblue;
 }
 
-section{
+/*Cards*/
+main{
+    margin: 1em 0;
+    width: 100%;
+    /*height: 1000px;*/
+    display: flex;
+    justify-content: center;
+}
+
+.card{
+    width: 400px;
+    height: 650px;
+    margin: 2em auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+card section{
+   margin: auto;
+}
+
+img{
+    width: 300px;
+    height: 300px;
+    border-radius: 50px;
+    border: 2px solid deepskyblue;
+}
+
+img:hover{
+    width: 400px;
+    height: 400px;
+}
+
+section p{
+    text-align: center;
+}
+
+.card-button{
+    background-color: deepskyblue;
+    color: white;
+    font-size: 1em;
+    border-radius: 50px;
+}
+
+.card-button:hover{
+    color: deepskyblue;
+    background: #fff;
+    border: 1px solid deepskyblue;
+}
+
+/*End Cards*/
+
+footer{
+    width: 100%;
+    background-color: black;
+    color: #fff;
+}
+
+.footer-section{
     display: flex;
     flex-direction: column;
     margin: auto;
