@@ -7,42 +7,46 @@
             body{
                 height: 100vh;
                 margin: 0;
+                padding: 0;
             }
+
             *{
                 box-sizing: border-box;
             }
 
             .container{
                 display: grid;
-                min-height: 100vh;
+                margin: 0;
+                padding: 0;
+                height: 100vh;
                 grid-template-areas:
-                    "header header header header header header"
-                    "nav main main main main ads"
-                    "nav main main main main ads"
-                    "nav main main main main ads"
-                    "nav main main main main ads"
-                    "nav main main main main ads"
-                    "nav main main main main ads"
-                    "nav main main main main ads"
-                    "nav main main main main ads"
-                    "nav footer footer footer footer footer";
+                    "header header header "
+                    "nav main ads"
+                    "nav footer footer";
                 grid-gap: .5em;
             }
 
             .head{
                 grid-area: header;
+                height: 10vh;
             }
             .side-nav{
                 grid-area: nav;
+                width: 20vw;
             }
             .main-section{
                 grid-area: main;
+                height: 80vh;
+                width: 60vw;
+
             }
             .ads{
                 grid-area: ads;
+                width: 20vw;
             }
             .foot{
                 grid-area: footer;
+                height: 10vh;
             }
 
             .all{
