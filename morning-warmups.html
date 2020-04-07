@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+    <html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>Morning Warm-ups</title>
     </head>
     <body>
 
-
     <script>
-        "use strict"
+        "use strict";
 
         // Write a JavaScript function that takes in a string input and returns true if the input is at least 8 characters in length. It should return false for all other string inputs.
         function count(str) {
@@ -71,10 +70,36 @@
             return num % 2 === 0; //simplified
         }
 
-        console.log(isEvenNumber(31)) //false
-        console.log(isEvenNumber(312)) //true
-        console.log(isEvenNumber(-1)) //false
-        console.log(isEvenNumber(-32)) //true
+        // console.log(isEvenNumber(31)); //false
+        // console.log(isEvenNumber(312)); //true
+        // console.log(isEvenNumber(-1)); //false
+        // console.log(isEvenNumber(-32)); //true
+
+        // Write a function, returnEvenOddMessage, that takes in a number input and returns the string "is even" if the number input is even and returns the string "is odd" if the number input is odd.
+        //     HINT: Is there some code you have already written that can be used to solve the problem?
+
+        // function returnEvenOddMessage(num) {
+        //     if(num % 2 === 0){
+        //        return 'is even';
+        //     } else {
+        //         return 'is odd';
+        //     }
+        // }
+
+        //OR Build on existing function
+
+        function returnEvenOddMessage(num) {
+            if(isEvenNumber(num)){
+                return 'is even';
+            } else {
+                return 'is odd';
+            }
+        }
+
+        console.log(returnEvenOddMessage(31));  //is odd
+        console.log(returnEvenOddMessage(412)); //is even
+        console.log(returnEvenOddMessage(-1)); //is odd
+        console.log(returnEvenOddMessage(4)); //is even
 
 
     </script>
