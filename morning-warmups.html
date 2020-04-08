@@ -96,10 +96,19 @@
             }
         }
 
-        console.log(returnEvenOddMessage(31));  //is odd
-        console.log(returnEvenOddMessage(412)); //is even
-        console.log(returnEvenOddMessage(-1)); //is odd
-        console.log(returnEvenOddMessage(4)); //is even
+        // console.log(returnEvenOddMessage(31));  //is odd
+        // console.log(returnEvenOddMessage(412)); //is even
+        // console.log(returnEvenOddMessage(-1)); //is odd
+        // console.log(returnEvenOddMessage(4)); //is even
+
+        // Write a javascript function that returns true or false as to whether or not a number passed into the function is a whole number.
+        function wholeNum(num){
+            return  num === Math.round(num);
+        }
+
+        console.log(wholeNum(67));
+        console.log(wholeNum(6.8));
+        console.log(wholeNum('the')); // return false
 
 
     </script>
