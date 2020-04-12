@@ -23,10 +23,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Menu</a>
                 </li>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Zip code" aria-label="Search">
-                    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search stores near you!</button>
-                </form>
+                <li>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Zip code" aria-label="Search">
+                        <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search stores near you!</button>
+                    </form>
+                </li>
+                
             </ul>
             <i class="fas fa-user fa-1x"></i>
             <button type="button" class="btn btn-light ml-1">Sign up</button>
@@ -35,13 +38,14 @@
     <!--  End Nav  -->
 
     <!--  Container  -->
-    <div class="container">
+    <main class="container">
         <!--    Jumbotron    -->
         <div class="jumbotron jumbotron-fluid d-none d-md-block">
             <div class="container p-0">
                 <h1 class="display-4 text-center">Welcome to Pizza World!</h1>
             </div>
         </div>
+
         <h2>Build your own pizza!</h2>
 
         <!--   Start Nav Size/Crust Active    -->
@@ -59,35 +63,35 @@
         <!--    End Nav Size/Crust Active     -->
 
         <!--    Start Size and Crust Card    -->
+        <form action="https://request-inspector.glitch.me/" method="POST">
         <div class="card tab-content" id="myTabContent">
+
             <div class="tab-pane fade show active" id="first" role="tabpanel" aria-labelledby="first-tab">
                 <div class="card-header bg-primary text-white">
                     Choose size and crust
                 </div>
-            <!--    Card -1    -->
                 <div class="card m-2">
                     <div class="card-header">
                         Hand Tossed
                     </div>
-
                     <div class="card-body p-0">
-                            <p class="m-3 pl-1">Garlic seasoned crust with a rich, buttery taste.</p>
+                        <p class="m-3 pl-1">Garlic seasoned crust with a rich, buttery taste.</p>
                         <ul class="list-group">
                             <li class="list-group-item">
                                 <div class="radio">
-                                    <label for="small"><input type="radio" id="small" name="small" class="m-2">Small (10")</label>
+                                    <label for="small"><input type="radio" id="small" name="size" class="m-2">Small (10")</label>
                                 </div>
                             </li>
 
                             <li class="list-group-item">
                                 <div class="radio">
-                                    <label for="medium"><input type="radio" id="medium" name="medium" class="m-2">Medium (12")</label>
+                                    <label for="medium"><input type="radio" id="medium" name="size" class="m-2">Medium (12")</label>
                                 </div>
                             </li>
                          </ul>
                     </div>
-
                 </div>
+<!--                </div>-->
             <!--    End Card -1    -->
 
             <!--    Card -2    -->
@@ -95,7 +99,7 @@
                     <div class="card-header">
                         Crispy Thin
                     </div>
-                    <div class="card-body">
+                    <div class="card-body p-0">
                         <div class="m-0">
                             <p>Thin enough for optimum crispy to crunchy ratio.</p>
                         </div>
@@ -103,22 +107,22 @@
                     <ul class="list-group">
                         <li class="list-group-item">
                             <div class="radio">
-                                <label for="mediumcrisp"><input type="radio" id="mediumcrisp" name="mediumcrisp" class="m-2">Medium (12")</label>
+                                <label for="mediumcrisp"><input type="radio" id="mediumcrisp" name="thin" class="m-2">Medium (12")</label>
                             </div>
                         </li>
 
                         <li class="list-group-item">
                             <div class="radio">
-                                <label for="large"><input type="radio" id="large" name="large" class="m-2">Large (14")</label>
+                                <label for="large"><input type="radio" id="large" name="thin" class="m-2">Large (14")</label>
                             </div>
                         </li>
                     </ul>
-                </div>
 
-                <div class="card-footer text-muted text-right">
-                    <button type="button" class="btn btn-primary">Next Step ></button>
+                    <div class="card-footer text-muted text-right">
+                        <button type="button" class="btn btn-primary">Next Step ></button>
+                    </div>
+                 </div>
                 </div>
-            </div>
             <!--    End Pizza Size and Crust Card    -->
 
             <!--    Start Choose Toppings Card    -->
@@ -126,13 +130,12 @@
                 <div class="card-header bg-primary text-white">
                     Choose Cheese and Sauce
                 </div>
-                <!--    Card -1    -->
                 <div class="card m-2">
                     <div class="card-header">
                         Cheese
                     </div>
                     <div class="card-body ">
-                        <form action="">
+<!--                        <form action="">-->
                         <div class="form-group">
                             <label for="cheese">How Much?</label>
                             <select class="form-control" id="cheese">
@@ -142,51 +145,46 @@
                                 <option>Double</option>
                             </select>
                         </div>
-                        </form>
+<!--                        </form>-->
                     </div>
-
                 </div>
-            <!--    End Card -1    -->
-
-            <!--    Card -2    -->
+            <!--    Card  2  -->
             <div class="card m-2">
                 <div class="card-header">
                     Sauce
                 </div>
                 <div class="card-body border">
-                    <form action="">
-                        <div class="form-group">
-                            <label for="sauce-type">What Type?</label>
-                            <select class="form-control" id="sauce-type">
-                                <option>Tomato sauce</option>
-                                <option>Marinara sauce</option>
-                                <option>BBQ sauce</option>
-                                <option>Alfredo sauce</option>
-                            </select>
-                        </div>
-                    </form>
+<!--                    <form action="">-->
+                    <div class="form-group">
+                        <label for="sauce-type">What Type?</label>
+                        <select class="form-control" id="sauce-type">
+                            <option>Tomato sauce</option>
+                            <option>Marinara sauce</option>
+                            <option>BBQ sauce</option>
+                            <option>Alfredo sauce</option>
+                        </select>
+                    </div>
+<!--                    </form>-->
                 </div>
                 <div class="card-body">
-                    <form action="">
-                        <div class="form-group">
-                            <label for="sauce-amount">How Much?</label>
-                            <select class="form-control" id="sauce-amount">
-                                <option>Light</option>
-                                <option>Normal</option>
-                                <option>Extra</option>
-                            </select>
-                        </div>
-                    </form>
-                </div>
-
-            </div>
-            <!--    End Card -2    -->
-            <div class="card-footer text-muted text-right">
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-primary">< Previous Step </button>
-                    <button type="button" class="btn btn-primary">Next Step ></button>
+<!--                    <form action="">-->
+                    <div class="form-group">
+                        <label for="sauce-amount">How Much?</label>
+                        <select class="form-control" id="sauce-amount">
+                            <option>Light</option>
+                            <option>Normal</option>
+                            <option>Extra</option>
+                        </select>
+                    </div>
+<!--                    </form>-->
                 </div>
             </div>
+                <div class="card-footer text-muted text-right">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-primary">< Previous Step </button>
+                        <button type="button" class="btn btn-primary">Next Step ></button>
+                    </div>
+                </div>
             </div>
             <!--    End Pizza Size and Crust Card    -->
 
@@ -195,7 +193,7 @@
                 <div class="card-header bg-primary text-white">
                     Choose Cheese and Sauce
                 </div>
-                <!--    Card -1    -->
+
                 <div class="card m-2">
                     <div class="card-header">
                         Choose Meats
@@ -258,17 +256,15 @@
                                 <i class="fas fa-shopping-cart"></i>
                             </button>
                     </div>
-                    <!--    End Pizza Size and Crust Card    -->
-                </div>
-        </div> <!--End tab content-->
-    </div>
 
+                    <!--    End Pizza Size and Crust Card    -->
+            </div>
+        </div> <!--End tab content-->
+        </form>
+    </main>
 <!--  Bootstrap jquery  -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script>
-
-    </script>
     </body>
 </html>
