@@ -120,29 +120,47 @@
         result = letter ==='a' || letter === 'e' || letter === 'i' || letter === 'o' || letter ==='u';
         return result;
     }
-
-    // var vowels = ["a","e","i","o","u"];
-    // if (vowels.indexOf(letter.toLowerCase()) >= 0) {
-    //     return;
-    // }
-
-    console.log(isVowel('a'),'a ' + 'true');
-    console.log(isVowel('b'), 'b ' + 'false');
+    // console.log(isVowel('a'),'a ' + 'true');
+    // console.log(isVowel('b'), 'b ' + 'false');
     //=======================================================================================
     // Make a function named isConsonant(letter)
     function isConsonant(letter){
-        if(letter !== isVowel(letter)){
-            return true;
-        };
+        var vowel = 'aeiou'
+         return !vowel.includes(letter);
     }
-    // console.log(isConsonant('a'), 'a ' + 'false');
-    // console.log(isConsonant('c'), 'c ' + 'true');
+    // console.log(isConsonant('u'), 'u ' + 'false');
+    // console.log(isConsonant('b'), 'b ' + 'true');
+    // console.log(isConsonant('n'), 'n ' + 'false');
+    // console.log(isConsonant('e'), 'e ' + 'true');
     //=======================================================================================
     // Make a function named isCapital(letter)
+    function isCapital(letter) {
+    return letter === letter.toUpperCase();
+    }
+    // console.log(isCapital('u'), 'u ' + 'false');
+    // console.log(isCapital('B'), 'B ' + 'true');
+    // console.log(isCapital('n'), 'n ' + 'false');
+    // console.log(isCapital('E'), 'E ' + 'true');
+
     //=======================================================================================
     // Make a function named isLowerCase(letter)
+    function isLowerCase(letter) {
+    return letter === letter.toLowerCase();
+    }
+    // console.log(isLowerCase('u'), 'u ' + 'true');
+    // console.log(isLowerCase('B'), 'B ' + 'false');
+    // console.log(isLowerCase('n'), 'n ' + 'true');
+    // console.log(isLowerCase('E'), 'E ' + 'false');
+
     //=======================================================================================
     // Make a function named hasLowerCase(string) that returns if a string has any lower cased letter
+    function hasLowerCase(str) {
+    str.indexOf()
+    }
+    console.log(hasLowerCase('this has only lower case'), 'true');
+    console.log(hasLowerCase('THIS HAS NO LOWER CASE'), 'false');
+    console.log(hasLowerCase('THIS HAS oNE LOWER CASE'), 'true');
+
     //=======================================================================================
     // Make a function named isSpace(letter) that returns if a character is a space character
     //=======================================================================================

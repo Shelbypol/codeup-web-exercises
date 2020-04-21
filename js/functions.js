@@ -9,6 +9,9 @@
  * Example
  * > sayHello("codeup") // returns "Hello, codeup!"
  */
+function sayHello(name){
+    return 'Hello, ' + name + '!';
+}
 /**
  * TODO:
  * Call the function 'sayHello' and pass your name as a string literal argument.
@@ -22,12 +25,8 @@
  * variable to the 'sayHello' function. You should see the same output in the
  * console.
  */
-function sayHello(name){
-    return 'Hello, ' + name + '!';
-}
 
-var myName = 'Shelbs';
-var helloMessage = sayHello(myName);
+var helloMessage = sayHello('shelbie');
 console.log(helloMessage);
 
 
@@ -52,12 +51,12 @@ var random = Math.floor((Math.random() * 3) + 1);
  * different result everytime you refresh the page if you are using the random
  * number)
  */
-function isTwo(random) {
-    return random === 2;
+function isTwo(num) {
+    return num === 2;
 }
-console.log(isTwo(1)); //false
-console.log(isTwo(2)); //true
-console.log(isTwo(3)); //false
+console.log(isTwo(random), random);
+console.log(isTwo(3), 3); //false
+console.log(isTwo(2), 2); //true
 
 
 /**
@@ -89,7 +88,7 @@ console.log(isTwo(3)); //false
  */
 
 function calculateTip(totalBill, tipPercentage) {
-    totalBill = prompt('What is the bill total? (numbers only please)');
+    totalBill = Number(prompt('What is the bill total? (numbers only please)'));
     var tipPrompt =  prompt('What percentage would you like to tip?');
     tipPercentage = (parseInt(tipPrompt))/100;
     alert('You should tip: $' + (totalBill * tipPercentage).toFixed(2));
