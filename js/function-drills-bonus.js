@@ -155,46 +155,162 @@
     //=======================================================================================
     // Make a function named hasLowerCase(string) that returns if a string has any lower cased letter
     function hasLowerCase(str) {
-    str.indexOf()
+        var lowerCase = (str === str.toUpperCase()) ? console.log('has uppercase letter/s') : console.log(str);
+        return;
     }
-    console.log(hasLowerCase('this has only lower case'), 'true');
-    console.log(hasLowerCase('THIS HAS NO LOWER CASE'), 'false');
-    console.log(hasLowerCase('THIS HAS oNE LOWER CASE'), 'true');
+    // hasLowerCase('this has only lower case');
+    // hasLowerCase('THIS HAS NO LOWER CASE');
+    // hasLowerCase('THIS HAS oNE LOWER CASE');
 
     //=======================================================================================
     // Make a function named isSpace(letter) that returns if a character is a space character
+    function isSpace(str) {
+        var strCopy = " ";
+        return str.includes(strCopy)
+    }
+    // console.log(isSpace('theonedfna dskfn'), true);
+    // console.log(isSpace('theonedfnadskfn'), false);
+
     //=======================================================================================
     // Make a function named isZero(number)
+    function isZero(number) {
+        return 0 === number;
+    }
+    // console.log(isZero(3), false);
+    // console.log(isZero(0), true);
+    // console.log(isZero(5), false);
+
     //=======================================================================================
     // Make a function named notZero(input) that returns true if the input is not zero
+    function notZero(input) {
+        return 0 !== input;
+    }
+    // console.log(notZero(0.3), true);
+    // console.log(notZero(0), false);
+    // console.log(notZero(5), true);
     //=======================================================================================
     // Write a function named lowerCase(string)
+    function lowerCase(str){
+        return str.toLowerCase();
+    }
+    // console.log(lowerCase('THIS IS REALLY ALL CAPS'));
+    // console.log(lowerCase('small caps'));
+
     //=======================================================================================
     // Write a function named double(n) that returns a number times two
+    function double(n) {
+        return n * 2;
+    }
+    // console.log(double(0), 0);
+    // console.log(double(3), 6);
+    // console.log(double(4), 8);
+
     //=======================================================================================
     // Write a function named triple(n) that returns a number times 3
+    function triple(n) {
+        return n * 3;
+    }
+    // console.log(triple(0), 0);
+    // console.log(triple(3), 9);
+    // console.log(triple(4), 12);
+
     //=======================================================================================
     // Write a function named quadruple(n) that returns a number times 4
+    function quadruple(n){
+        return n * 4;
+    }
+    // console.log(quadruple(0), 0);
+    // console.log(quadruple(3), 12);
+    // console.log(quadruple(4), 16);
+
     //=======================================================================================
     // Write a function named half(n) that returns 1/2 of the provided input
+    function half(n){
+        return n/2;
+    }
+    // console.log(half(0), 0);
+    // console.log(half(10), 5);
+    // console.log(half(150), 75);
+
     //=======================================================================================
     // Write a function named subtract(a, b) that returns a minus b
+    function subtract(a, b){
+        return a - b;
+    }
+    // console.log(subtract(0, 8), -8);
+    // console.log(subtract(3, 2), 1);
+    // console.log(subtract(20, 12), 8);
+
     //=======================================================================================
     // Write a function named multiply(a, b) that returns the product of a times b
+    function multiply(a, b) {
+        return a * b;
+    }
+    // console.log(multiply(0, 8), 0);
+    // console.log(multiply(3, 2), 6);
+    // console.log(multiply(3, 5), 15);
+
     //=======================================================================================
     // Write a function named divide(a, b) that returns a divided by b
-    //=======================================================================================
+    function divide(a, b) {
+        return a/b;
+    }
+    // console.log(divide(0, 8), 0);
+    // console.log(divide(6, 2), 3);
+    // console.log(divide(12, 3), 4);
+
+    //**********************
+    //*********************//=======================================================================================
     // Write a function named remainder(a, b) that returns the remainder after dividing a by b
+    function remainder(a, b) {
+        return a/b;
+    }
+    // console.log(remainder(10, 5), 2);
+    // console.log(remainder(15, 3), 5);
+    // console.log(remainder(100, 10), 10);
+
     //=======================================================================================
     // Make a function named modulo(a, b) that returns the returns the remainder after dividing a by b
+    function modelo(a, b) {
+        return a % b;
+    }
+    // console.log(modelo(10, 5), 0);
+    // console.log(modelo(15, 2), 2);
+    // console.log(modelo(100, 9), 1);
+
     //=======================================================================================
     // Write a function named cube(n) that returns n * n * n
+    function cube(n, x){
+        return Math.pow(n, x);
+    }
+    // console.log(cube(3 , 3), 27);
+    // console.log(cube(2 , 3), 8);
+    // console.log(cube(4 , 3), 64);
+
     //=======================================================================================
     // Write a function named squareRoot(n) that returns the square root of the input
+    function squareRoot(n) {
+        return Math.sqrt(n);
+    }
+    // console.log(squareRoot(100));
+    // console.log(squareRoot(64));
+    // console.log(squareRoot(4));
     //=======================================================================================
     // Write a function named cubeRoot(n) that returns the cube root of the input
+    function cubeRoot(n){
+        return Math.cbrt(n);
+    }
+    // console.log(cubeRoot(27),3);
+    // console.log(cubeRoot(8),2);
+    // console.log(cubeRoot(64), 4);
     //=======================================================================================
     // Write a function named invertSign(number) that returns a negative version of a postive number, a positve version of negative, and false for all else.
+    function invertSign(number) {
+        return Math.sign(number);
+    }
+    console.log(invertSign(-3), 3);
+    console.log(invertSign(2), 3);
+    console.log(invertSign('the'), false);
     //=======================================================================================
     // Write a function named degreesToRadians(number)
     //=======================================================================================

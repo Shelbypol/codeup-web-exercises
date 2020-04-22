@@ -151,23 +151,66 @@ function calculatedTotal(luckyNumber, totalBill){
  */
 // var confirmNum = confirm('Would you like to enter a number?');
 // var number = Number(prompt("What number?"));
+//=================================VERSON 3===================================
 
-function numGame() {
-    var confirmNum = confirm('Would you like to enter a number?');
-    var number = Number(prompt("What number?"));
+    function confirm  {
+        var confirmPrompt = confirm('Would you like to enter a number');
+        if(confirmPrompt === true) {
+            alert(isNumber());
+        } else{
+            alert('Not a Number');
+        }
+    }//isNumber function close
 
-    if ((confirmNum === true) && (isNaN(number) === false)) {
-        var notNum = (typeof (Number(confirmNum)) !== 'number') ? alert('That is not a number') : ('Looks good to me!');
-
-        var evenOdd = (number % 2 === 0) ? alert('That number is even!') : alert('That number is an ODDball!');
-
-        var hundred = number + 100;
-        alert('Your number ' + '+ 100 is: ' + hundred);
-
-        var posNeg = (number > 0) ? alert('That number is positive') : alert('That number is negative');
-
-    } else {
-        alert('So you want to leave and not participlate \n OR it\'s not a number, either way, bye.');
+    function isNumber() {
+        Number(prompt('What number?'));
+        if (!isNaN(number) === true) {
+            var evenOdd = (number % 2 === 0) ? alert('That number is even!') : alert('That number is an odd-ball!');
+            var hundred = number + 100;
+            alert('Your number ' + '+ 100 is: ' + hundred);
+            var posNeg = (number > 0) ? alert('That number is positive') : alert('That number is negative');
+        } else {
+            alert('Computer says no. Enter a number');
+        }
     }
-}
-numGame();
+confirm();
+
+
+//===============================VERSON 2=====================================
+// function numGame() {
+//     var confirmNum = confirm('Would you like to enter a number?');
+//     var number = Number(prompt("What number?"));
+//
+//     if (confirmNum === true){
+//        if (!isNaN(number) === true){
+//             var evenOdd = (number % 2 === 0) ? alert('That number is even!') : alert('That number is an odd-ball!');
+//             var hundred = number + 100;
+//             alert('Your number ' + '+ 100 is: ' + hundred);
+//             var posNeg = (number > 0) ? alert('That number is positive') : alert('That number is negative');
+//         } else {
+//             alert('Computer says no. Enter a number');
+//             alert (numGame()); //gives undefined of when loop back function
+//         }//end inside if
+//     } else {
+//         alert('Ok, bye');
+//     } // end outside if
+// } // function close
+//
+// numGame();
+
+
+//=================VERSION ONE==============================================
+// function numGame() {
+//     var confirmNum = confirm('Would you like to enter a number?') ? ;
+//     var number = Number(prompt("What number?"));
+//
+//     if ((confirmNum === true) && (!isNaN(number) === true)) {
+//         var evenOdd = (number % 2 === 0) ? alert('That number is even!') : alert('That number is an ODDball!');
+//         var hundred = number + 100;
+//         alert('Your number ' + '+ 100 is: ' + hundred);
+//         var posNeg = (number > 0) ? alert('That number is positive') : alert('That number is negative');
+//     }
+//     else {
+//         alert('So you either want to leave the number game \n OR your inptut not a valid number, either way, bye.');
+//     }
+// }
