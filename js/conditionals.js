@@ -25,14 +25,13 @@
         //         return 'Blue is the color of the sky';
         //     } else if (myColor === 'red'){
         //         return 'Strawberries are red';
-        //     } else if (myColor === 'cyan'){
-        //         return 'I don\'t know anything about cyan';
         //     } else {
-        //         return 'Well I don\'t like that color';
+        //         return 'I don\'t know anything about ' + myColor;
         //     }
         // }
 // console.log(analyzeColor('red'));
-
+// console.log(analyzeColor('blue'));
+// console.log(analyzeColor('cyan'));
 
 // Don't change the next two lines!
 // These lines create two variables for you:
@@ -47,37 +46,35 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
  * You should see a different message every time you refresh the page
  */
 //
-        // console.log(randomColor + ": " + analyzeColor(randomColor));
+//         console.log(randomColor + ": " + analyzeColor(randomColor));
 
 /**
  * TODO:
  * Refactor your above function to use a switch-case statement
  */
-        // function  analyzeColor(myColor) {
-        //     switch (myColor) {
-        //         case 'blue':
-        //              return 'Blue is the color of the sky';
-        //             break;
-        //         case 'red':
-        //             return 'Strawberries are red';
-        //             break;
-        //         case 'cyan':
-        //             return'Well I don\'t know anything about cyan';
-        //             break;
-        //         default :
-        //             return 'Never heard of it';
-        //             break;
-        //     }
-        // }
-        // console.log(randomColor + ": " + analyzeColor(randomColor));
+        function  analyzeColor(myColor) {
+            switch (myColor) {
+                case 'blue':
+                    return 'Blue is the color of the sky';
+                    // break; //return acts as a break, don't have to use it but should
+                case 'red':
+                    return 'Strawberries are red';
+                    // break;
+                default :
+                    return 'Never heard of ' + myColor;
+                    // break;
+            }
+        }
+        console.log(analyzeColor(randomColor));
 /**
  * TODO:
  * Prompt the user for a color when the page loads, and pass the input from the
  * user to your `analyzeColor` function. Alert the return value from your
  * function to show it to the user.
  */
-// var userPrompt = analyzeColor(prompt('what is your favorite color?'));
+// var userPrompt = analyzeColor(prompt('what is your favorite color?')).toLowerCase();
 // alert(userPrompt);
+
 /* ########################################################################## */
 
 /**
@@ -99,26 +96,50 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
  * Test your function by passing it various values and checking for the expected
  * return value.
  */
-function calculatedTotal(luckyNumber, totalBill){
-    var percentage;
-    if(luckyNumber === 0){
-        percentage = 0;
-    } else if (luckyNumber === 1) {
-        percentage = .10;
-    } else if (luckyNumber === 2){
-        percentage = .25;
-    } else if(luckyNumber === 3){
-        percentage = .35;
-    } else if (luckyNumber === 4){
-        percentage = .50;
-    } else if (luckyNumber === 5){
-        percentage = 1;
-    } else {
-        return 'Sorry roll again';
-    }
-    return (totalBill - (totalBill * percentage));
-}
-// console.log(calculatedTotal(0, 100));
+// function calculatedTotal(luckyNumber, totalBill){
+//     var percentage;
+//     switch(luckyNumber){
+//         case(1):
+//             percentage = .10;
+//             break;
+//         case(2):
+//             percentage = .25;
+//             break;
+//         case(3):
+//             percentage = .35;
+//             break;
+//         case(4):
+//             percentage = .50;
+//             break;
+//         case(5):
+//             percentage = 1;
+//             break;
+//         default:
+//         percentage = 0;
+//     }
+//     return (totalBill - (totalBill * percentage));
+// }
+// console.log(calculatedTotal(4, 100));
+
+//==================If/Else for above problem========================
+// function calculatedTotal(luckyNumber, totalBill){
+//     var percentage;
+//     if(luckyNumber === 0){
+//         percentage = 0;
+//     } else if (luckyNumber === 1) {
+//         percentage = .10;
+//     } else if (luckyNumber === 2){
+//         percentage = .25;
+//     } else if(luckyNumber === 3){
+//         percentage = .35;
+//     } else if (luckyNumber === 4){
+//         percentage = .50;
+//     } else{
+//         percentage = 1;
+//     }
+//     return (totalBill - (totalBill * percentage));
+// }
+// console.log(calculatedTotal(4, 100));
 /**
  * TODO:
  * Uncomment the line below to generate a random number between 0 and 6.
@@ -127,11 +148,11 @@ function calculatedTotal(luckyNumber, totalBill){
  * price before the discount was, and what their price after the discount is.
  */
 // Generate a random number between 0 and 6
-        // var luckyNumber = Math.floor(Math.random() * 6);
-        //
-        // var totalBill = Number(prompt('What is your bill total?'));
-        //
-        // alert('Your lucky number is: ' + luckyNumber + '!' + '\n Your bill was: $' + totalBill + '\n Now your bill is: $' + calculatedTotal(luckyNumber, totalBill).toFixed(2));
+//         var luckyNumber = Math.floor(Math.random() * 6);
+//
+//         var totalBill = parseFloat(prompt('What is your bill total?'));
+//
+//         alert('Your lucky number is: ' + luckyNumber + '!' + '\n Your bill was: $' + totalBill + '\n Now your bill is: $' + calculatedTotal(luckyNumber, totalBill).toFixed(2));
 
 /**
  * TODO:
@@ -153,30 +174,30 @@ function calculatedTotal(luckyNumber, totalBill){
 // var number = Number(prompt("What number?"));
 //=================================VERSON 3===================================
 
-    function confirm  {
-        var confirmPrompt = confirm('Would you like to enter a number');
-        if(confirmPrompt === true) {
-            alert(isNumber());
-        } else{
+    function confirmPrompt() {
+        if (confirm('Would you like to enter a number') === true) {
+            return isNumber();
+        } else {
             alert('Not a Number');
         }
-    }//isNumber function close
+    }
 
-    function isNumber() {
-        Number(prompt('What number?'));
-        if (!isNaN(number) === true) {
-            var evenOdd = (number % 2 === 0) ? alert('That number is even!') : alert('That number is an odd-ball!');
-            var hundred = number + 100;
+  function isNumber() {
+        var userNumber = Number(prompt('What number?'));
+        if (!isNaN(userNumber) === true) {
+            var evenOdd = (userNumber % 2 === 0) ? alert('That number is even!') : alert('That number is an odd-ball!');
+            var hundred = userNumber + 100;
             alert('Your number ' + '+ 100 is: ' + hundred);
-            var posNeg = (number > 0) ? alert('That number is positive') : alert('That number is negative');
+            var posNeg = (userNumber > 0) ? alert('That number is positive') : alert('That number is negative');
         } else {
             alert('Computer says no. Enter a number');
+            isNumber();
         }
     }
-confirm();
-
+   confirmPrompt();
 
 //===============================VERSON 2=====================================
+
 // function numGame() {
 //     var confirmNum = confirm('Would you like to enter a number?');
 //     var number = Number(prompt("What number?"));
@@ -189,7 +210,7 @@ confirm();
 //             var posNeg = (number > 0) ? alert('That number is positive') : alert('That number is negative');
 //         } else {
 //             alert('Computer says no. Enter a number');
-//             alert (numGame()); //gives undefined of when loop back function
+//             numGame();
 //         }//end inside if
 //     } else {
 //         alert('Ok, bye');
@@ -200,8 +221,9 @@ confirm();
 
 
 //=================VERSION ONE==============================================
+
 // function numGame() {
-//     var confirmNum = confirm('Would you like to enter a number?') ? ;
+//     var confirmNum = confirm('Would you like to enter a number?');
 //     var number = Number(prompt("What number?"));
 //
 //     if ((confirmNum === true) && (!isNaN(number) === true)) {
@@ -211,6 +233,7 @@ confirm();
 //         var posNeg = (number > 0) ? alert('That number is positive') : alert('That number is negative');
 //     }
 //     else {
-//         alert('So you either want to leave the number game \n OR your inptut not a valid number, either way, bye.');
+//         alert('So you either want to leave the number game \n OR your input not a valid number, either way, bye.');
 //     }
 // }
+// numGame();

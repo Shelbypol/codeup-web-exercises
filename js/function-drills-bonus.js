@@ -260,7 +260,7 @@
     // console.log(divide(12, 3), 4);
 
     //**********************
-    //*********************//=======================================================================================
+    // *********************//=============================================================
     // Write a function named remainder(a, b) that returns the remainder after dividing a by b
     function remainder(a, b) {
         return a/b;
@@ -271,7 +271,7 @@
 
     //=======================================================================================
     // Make a function named modulo(a, b) that returns the returns the remainder after dividing a by b
-    function modelo(a, b) {
+    function modulo(a, b) {
         return a % b;
     }
     // console.log(modelo(10, 5), 0);
@@ -281,11 +281,12 @@
     //=======================================================================================
     // Write a function named cube(n) that returns n * n * n
     function cube(n, x){
+        var x = 3;
         return Math.pow(n, x);
     }
-    // console.log(cube(3 , 3), 27);
-    // console.log(cube(2 , 3), 8);
-    // console.log(cube(4 , 3), 64);
+    // console.log(cube(3), 27);
+    // console.log(cube(2), 8);
+    // console.log(cube(4), 64);
 
     //=======================================================================================
     // Write a function named squareRoot(n) that returns the square root of the input
@@ -306,42 +307,230 @@
     //=======================================================================================
     // Write a function named invertSign(number) that returns a negative version of a postive number, a positve version of negative, and false for all else.
     function invertSign(number) {
-        return Math.sign(number);
+        if(Math.sign(number) === 1){
+            return -(number);
+        } else if(Math.sign(number) !== 1){
+            return (number * -1);
+        }
     }
-    console.log(invertSign(-3), 3);
-    console.log(invertSign(2), 3);
-    console.log(invertSign('the'), false);
+    // console.log(invertSign(-13));
+    // console.log(invertSign(65));
+    // console.log(invertSign('the'));
     //=======================================================================================
     // Write a function named degreesToRadians(number)
+    function degreesToRadians(degrees) {
+        return degrees * Math.PI/180
+    }
+    // console.log(degreesToRadians(13));
+    // console.log(degreesToRadians(65));
+    // console.log(degreesToRadians(360));
     //=======================================================================================
     // Write a function named radiansToDegrees(number)
+    function radiansToDegrees(radians) {
+
+        return radians * 180 /Math.PI;
+    }
+    // console.log(radiansToDegrees(.22689));
+    // console.log(radiansToDegrees(1.134));
+    // console.log(radiansToDegrees(6.2831));
     //=======================================================================================
     // Make a function named isBlank(input) that determines if a given input is spaces, newline characters, or tabs.
+    function isBlank(input) {
+        return input.includes('    ') || input.includes(' ') || input.includes('\n');
+    }
+    // console.log(isBlank('has    tab'));
+    // console.log(isBlank('has space'));
+    // console.log(isBlank('has \n tab'));
+    // console.log(isBlank('hasNoSpace'));
     //=======================================================================================
     //     Make a function named trim(string) that removes empty spaces before and after the input.
+    function trim(str) {
+        return str.trim();
+    }
+    // console.log(trim('  trimmed true  '));
+    // console.log(trim('notrimmeeded'));
+
     //=======================================================================================
     //     Make a function named areEqual(input1, input2) that returns if both inputs have the same value
+    function areEqual(input1, input2) {
+        return input1 == input2;
+    }
+    // console.log(areEqual(1, true), true);
+    // console.log(areEqual(15, '15'), true);
+    // console.log(areEqual(100, 100), true);
     //=======================================================================================
     // Make a function named areIdentical(input1, input2) that returns if both inputs are same value and data type.
+    function areIdentical(input1, input2) {
+        return input1 === input2;
+    }
+    // console.log(areEqual(1, 'two'), false);
+    // console.log(areEqual(15, '15'), true);
+    // console.log(areEqual(100, 100), true);
+
     //=======================================================================================
     //     Make a function named not(input) returns the input with a flipped boolean
+    function not(input) {
+        return !input;
+    }
+    // console.log(not(true), false);
+    // console.log(not(0), true);
+    // console.log(not('yhf'), false);
     //=======================================================================================
     // Make a function named notNot(input) that the negation of the negation of the input.
+    function noNot(input) {
+        return !!input;
+    }
+    // console.log(noNot(true), true);
+    // console.log(noNot(0), false);
+    // console.log(noNot('yhf'), true);
     //=======================================================================================
     //     Make a function named and(predicate1, predicate2) that returns the logical operation of AND
+    function and(predicate1, predicate2) {
+        return !!(predicate1 && predicate2);
+    }
+    // console.log(and(3, '3'), true);
+    // console.log(and(true, false), false);
+    // console.log(and(1, 0), false);
     //=======================================================================================
     // Make a function named or(predicate1, predicate2) that returns the logical operation of OR
+    function or(predicate1, predicate2) {
+        return !!(predicate1 && predicate2);
+    }
+    // console.log(or(3, '3'), true);
+    // console.log(or(true, false), true);
+    // console.log(or(0, 0), false);
     //=======================================================================================
     // Write a function called reverseString(string) that reverses a string
+    function reverseString(str) {
+        return str.split('').reverse().join('');
+    }
+    // console.log(reverseString('the dog'));
     //=======================================================================================
     // Make a function named absoluteValue(number) that returns the absolute value of a number.
+    function absoluteValue(number) {
+        return Math.abs(number);
+    }
+    // console.log(absoluteValue(-78));
+    // console.log(absoluteValue(5));
+    // console.log(absoluteValue(-.09));
     //=======================================================================================
     //     Make a function named rollDice(sides) that takes in an argument containing the number of sides the die should have. Generate a random number between 1 up to and including the number of sides.
+    function rollDice(sides) {
+        return Math.floor(Math.random()* sides + 1);
+    }
+    // console.log(rollDice(6));
+    // console.log(rollDice(20));
+
+    //==================================Simple Function Drills===============================
+
+    // Make a function called returnTwo() that returns the number 2 when called
+    // Test this function with console.log(returnTwo())
+    function  returnTwo() {
+        return 2;
+    }
+    // console.log(returnTwo(4));
+    // console.log(returnTwo('google'));
     //=======================================================================================
-
-
-
-
+    // Make a function called sayHowdy() which console.logs the string “Howdy!”
+    // Test this function by directly calling sayHowdy()    
+// Remember this function does not need a defined return value
+    function sayHowdy(str) {
+        console.log('Howdy');
+    }
+    // sayHowdy();
+    //=======================================================================================
+    // Make a function called returnName() that returns the string of your name
+    // Test this function with console.log(returnName())
+    function returnName(str) {
+        return str;
+    }
+    // console.log(returnName('Shelby'));
+    //=======================================================================================
+    // Make a function called addThree() which takes in a number input and returns the number plus 3.
+    // Test this function with console.log(addThree(5))
+    function addThree(num) {
+        return num + 3;
+    }
+    // console.log(addThree(3));
+    //=======================================================================================
+    // Make a function called sayString() which returns the string input passed in.
+    // Test this function with console.log(sayString('codeup'))
+    function sayString(str) {
+        return str;
+    }
+    // console.log(sayString('codeup'));
+    // ===================================CHALLENGE FUNCTION DRILLS==========================
+    // Write a function called identity(input) that takes in an argument called input and returns that input.
+    function identity(input) {
+        return input;
+    }
+    // console.log(identity('this is my identity'))
+    //=======================================================================================
+    //     Write a function called getRandomNumber(min, max) that returns a random number between min and max values sent to that function call.
+    function getRandomNumber(min, max) {
+        min -= 1;
+        max +=1;
+        return (Math.floor(Math.random() * (max - min) ) + min);
+    }
+    // console.log(getRandomNumber(5, 10))
+    // console.log(getRandomNumber(20, 30));
+    //=======================================================================================
+    // Write a function called first(input) that returns the first character in the provided string.
+    function first(input){
+        return input.charAt(0);
+    }
+    // console.log(first("the answer"), 't');
+    // console.log(first("Ants"), 'A');
+    //=======================================================================================
+    //Write a function called last(input) that returns the last character of a string
+    function last(input){
+        return input.charAt(input.length-1);
+    }
+    // console.log(last("the answer"), 'r');
+    // console.log(last("Ants"), 's');
+    //=======================================================================================
+    // Write a function called rest(input) that returns everything but the first character of a string.
+    function rest(input){
+        return input.substring(1, input.length);
+    }
+    // console.log(rest("the answer"));
+    // console.log(rest("Ants"));
+    //=======================================================================================
+    //Write a function called reverse(input) that takes a string and returns it reversed.
+    function  reverse(input) {
+        return input.split('').reverse().join('');
+    }
+    // console.log(reverse('dog o\' god'));
+    //=======================================================================================
+    // Write a function called isNumeric(input) that takes an input and returns a boolean if the input is numeric.
+    function isNumeric(input){
+        if (!isNaN(input) === true){
+            return true;
+        } else{
+            return false;
+        }
+    }
+    // console.log(isNumeric(9), true);
+    // console.log(isNumeric('the'), false);
+    //=======================================================================================
+    // Write a function called count(input) that takes in a string and returns the number of characters.
+    //=======================================================================================
+    // Write a function called add(a, b) that returns the sum of a and b
+    //=======================================================================================
+    // Write a function called subtract(a, b) that return the difference between the two inputs.
+    //=======================================================================================
+    // Write multiply(a, b) function that returns the product
+    //=======================================================================================
+    // Write a divide(numerator, denominator) function that returns a divided by b
+    //=======================================================================================
+    // Write a remainder(number, divisor) function that returns the remainder left over when dividing number by the divisor
+    //=======================================================================================
+    // Write the function square(a) that takes in a number and returns the number multiplied by itself.
+    //=======================================================================================
+    // Write a function called sumOfSquares(a, b) that uses only your add() function and your square function and not + or * operators
+    //=======================================================================================
+    // Write a function called doMath(operator, a, b) that takes 3 parameters. The first parameter is the name of the math function you want to apply. a and b are the two numbers to run that function on.
+    //=======================================================================================
 
 
 
