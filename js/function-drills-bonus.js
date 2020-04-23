@@ -514,8 +514,17 @@
     // console.log(isNumeric('the'), false);
     //=======================================================================================
     // Write a function called count(input) that takes in a string and returns the number of characters.
-    //=======================================================================================
+    function count(input) {
+        return input.toString().length;
+    }
+    // console.log(count(42112),5);
+    // console.log(count('the'),3);
+
+//=======================================================================================
     // Write a function called add(a, b) that returns the sum of a and b
+    function add(a, b) {
+        return
+    }
     //=======================================================================================
     // Write a function called subtract(a, b) that return the difference between the two inputs.
     //=======================================================================================
