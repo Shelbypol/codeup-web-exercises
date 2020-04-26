@@ -558,16 +558,12 @@
             //=======================================================================================
     // Write a function called doMath(operator, a, b) that takes 3 parameters. The first parameter is the name of the math function you want to apply. a and b are the two numbers to run that function on.
             function doMath(operator, a, b) {
-                return operator(a, b);
+                operator = function () {
+                }
             }
 
-    // console.log(doMath(sum((3, 2))));
+    console.log(doMath(sumOfSquares((3, 2))));
     //=======================================================================================
-
-
-
-
-
 
 
 
