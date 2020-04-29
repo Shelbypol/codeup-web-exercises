@@ -5,7 +5,7 @@
 function isOdd(num) {
     return num % 2 !== 0;
 }
-// // console.log(isOdd(4), false); //false
+// // console.log(isOdd(4), false); // false
 // // console.log(isOdd(67), true); //true
 //
 function randomNum(num) {
@@ -22,10 +22,8 @@ function isOddBetween(num) {
 
 //=================== Number 2 Loop ====================
 
-// var userInput;
-//
 // while (true) {
-//     userInput = parseFloat(prompt('odd and under 50, above 0 #'));
+//    var  userInput = parseFloat(prompt('odd and under 50, above 0 #'));
 //     if (isOddBetween(userInput)) {
 //         console.log('Your number to skip is: ' + userInput);
 //         break;
@@ -37,5 +35,6 @@ function isOddBetween(num) {
 //         console.log('Yikes! Skipping number: ' + userInput);
 //         continue;
 //     }
-//     console.log(i);
+//     console.log('Here is an odd number :' + i);
 // }
+
