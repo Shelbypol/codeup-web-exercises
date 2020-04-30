@@ -127,6 +127,22 @@
             console.log(shows);
         });
 
+        //How to pull certain values from an array in to a new one
+        var orginalArray = ['12', 'the', 4, 8 , 'leelah'];
+
+        function separate (arr){
+            //empty bucket to catch values
+            var numberArray = [];
+            arr.forEach(function (element) {
+                if(typeof(element) === 'number') {
+                    //element will be added to numberArray
+                    numberArray.push(element);
+                }
+            });
+            return numberArray;
+        }
+        console.log(separate(orginalArray));
+
 
 
     </script>
