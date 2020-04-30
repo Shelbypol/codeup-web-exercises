@@ -11,7 +11,6 @@
      * console.log planetsArray to check your work
      */
     planetsArray = planetsString.split('|');
-
     console.log(planetsArray);
 
     /**
@@ -25,4 +24,17 @@
      * string, and <li> tags around each planet.
      */
     console.log(planetsArray.join('\n'));
+
+    //bonus
+
+    function returnList(arr) {
+        var newList = '<ul>';
+        arr.forEach(function(element){
+            newList += '<li>' + element + '</li>';
+        });
+        newList += '</ul>';
+        return newList
+    }
+
+    document.getElementById('planets-List').innerHTML = returnList(planetsArray);
 })();
