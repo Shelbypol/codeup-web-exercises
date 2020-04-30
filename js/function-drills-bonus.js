@@ -547,8 +547,8 @@
         }
 //=======================================================================================
     // Write the function square(a) that takes in a number and returns the number multiplied by itself.
-            function square(a) {
-                return square(a);
+            function square(num) {
+                return Math.pow(num,2);
             }
 //=======================================================================================
     // Write a function called sumOfSquares(a, b) that uses only your add() function and your square function and not + or * operators
@@ -557,12 +557,60 @@
             }
             //=======================================================================================
     // Write a function called doMath(operator, a, b) that takes 3 parameters. The first parameter is the name of the math function you want to apply. a and b are the two numbers to run that function on.
-            function doMath(operator, a, b) {
-                operator = function () {
-                }
+            function doMath(callback, a, b) {
+                return callback(a, b);
             }
 
-    console.log(doMath(sumOfSquares((3, 2))));
+    console.log(doMath(sumOfSquares, 3, 2));
+
+//examples of callback below
+    // function returnName() {
+    //     return "Justin";
+    // }
+​
+    // function returnGreeting() {
+    //     return "Hello " + returnName();
+    // }
+    //
+    // function returnGreeting(callback) {
+    //     return "Hello " + callback();
+    // }
+    //
+​
+    // var someArray = [1, 2, 3];
+    //
+    // function logEachElement(element) {
+    //     console.log(element);
+    // }
+    //
+    // // using named function
+    // someArray.forEach(logEachElement);
+    //
+    // // using anonymous function
+    // someArray.forEach(function(element) {
+    //     console.log(element);
+    // });
+​
+​
+    // function add(num1, num2) {
+    //     return num1 + num2;
+    // }
+    //
+    // function concatNums(num1, num2) {
+    //     return "" + num1 + num2;
+    // }
+    //
+    // function multiply(num1, num2) {
+    //     return num1 * num2;
+    // }
+    //
+    // function doMath(callback, num1, num2) {
+    //     return callback(num1, num2);
+    // }
+​
+    // console.log(doMath(add, 2, 2));
+​
+    // console.log(doMath(concatNums, 2, 2));
     //=======================================================================================
 
 
