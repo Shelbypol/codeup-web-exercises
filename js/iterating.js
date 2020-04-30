@@ -52,12 +52,12 @@
      *  > second([1, 2, 3, 4, 5]) // returns 2
      *  > last([1, 2, 3, 4, 5]) // return 5
      */
-    var arr1 = ['who', 'i', 'love', 'i', ', maybe', 'you'];
+    var arr1 = ['i', 'love', 'who', 'could', ', be', 'you'];
     function first(){
-        console.log(arr1[1]);
+        console.log(arr1[0]);
     }
     function second(){
-        console.log(arr1[2]);
+        console.log(arr1[1]);
     }
     function last(){
         console.log(arr1[arr1.length - 1]);
