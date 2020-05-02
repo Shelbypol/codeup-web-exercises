@@ -123,10 +123,13 @@
 //     console.log(books[3].title + ' - ' + books[3].author.firstName + ' ' + books[3].author.lastName);
 //     console.log(books[4].title + ' - ' + books[4].author.firstName + ' ' + books[4].author.lastName);
 
-    for(var i = 0; i < books.length; i++){
-        console.log('Book' + books.indexOf());//What
-        console.log('Title: ' + books[i].title);
-    }
+    books.forEach(function(book){
+        console.log('Book #:' +  (parseFloat(books.indexOf(book)) + 1) );
+        console.log('Title : ' + book.title);
+        console.log('Author: ' + book.author.firstName + ' ' + book.author.lastName)
+        console.log('----')
+    });
+
     /**
      * TODO:
      * Loop through the books array and output the following information about
