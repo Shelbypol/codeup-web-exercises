@@ -124,10 +124,7 @@
 //     console.log(books[4].title + ' - ' + books[4].author.firstName + ' ' + books[4].author.lastName);
 
     books.forEach(function(book){
-        console.log('Book #:' +  (parseFloat(books.indexOf(book)) + 1) );
-        console.log('Title : ' + book.title);
-        console.log('Author: ' + book.author.firstName + ' ' + book.author.lastName)
-        console.log('----')
+        console.log('Book #:' +  (parseFloat(books.indexOf(book)) + 1) + '\nTitle : ' + book.title +'\nAuthor: ' + book.author.firstName + ' ' + book.author.lastName + '\n----');
     });
 
     /**
@@ -165,5 +162,15 @@
      *   outputs the information described above. Refactor your loop to use your
      *   `showBookInfo` function.
      */
+
+    // function createBook(title, author){
+    //     books.forEach(function (book) {
+    //         if(title === book.title && author === book.author.firstName){
+    //             console.log(book.);
+    //         }
+    //     });
+    // }
+    // createBook('Hello', 'C');
+
 
 })();
