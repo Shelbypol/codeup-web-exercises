@@ -21,14 +21,14 @@
      * Example
      * > console.log(person.sayHello()) // "Hello from Rick Sanchez!"
      */
-        var person = {
-            first: 'Shelby',
-            last: 'Polasek',
-            sayHello: function () {
-                console.log('Hello from ' + person.first + ' ' + person.last);
-            }
-        };
-        // console.log(person.sayHello());
+    var person = {
+        first: 'Shelby',
+        last: 'Polasek',
+        sayHello: function () {
+            console.log('Hello from ' + person.first + ' ' + person.last);
+        }
+    };
+    person.sayHello();
 
     /** TODO:
      * HEB has an offer for the shoppers that buy products amounting to
@@ -50,18 +50,16 @@
         {name: 'George', amount: 320}
     ];
 
-    shoppers.forEach(function(shopper){
-        if(shopper.amount > 200){
-            var originalAmount = (shopper.amount).toFixed(2);
+    shoppers.forEach(function (shopper) {
+        var originalAmount = (shopper.amount).toFixed(2);
+        var name = shopper.name;
+        if (shopper.amount > 200) {
             var discountPercent = .12;
             var discountAmount = (originalAmount - (originalAmount * discountPercent)).toFixed(2);
-            var name = shopper.name;
             console.log(name + ' your amount before discount is $' + originalAmount + '. \n' + 'Your discount is ' + discountPercent * 100 + '%' + '. \n' + 'Your final total after the discount is $' + discountAmount);
-        } else if (shopper.amount < 200){
-            var originalAmount = (shopper.amount).toFixed(2);
+        } else if (shopper.amount < 200) {
             var discountPercent = 0;
             var discountAmount = (originalAmount - (originalAmount * discountPercent)).toFixed(2);
-            var name = shopper.name;
             console.log(name + ' your amount before discount is $' + originalAmount + '. \n' + 'Your discount is ' + discountPercent * 100 + '%' + '. \n' + 'Your final total after the discount is $' + discountAmount);
         }
     });
@@ -81,39 +79,39 @@
 
     var books = [
         {
-          title: 'All My Friends Are Dead',
-          author: {
-              firstName: 'Avery',
-              lastName: 'Monsen'
-          },
+            title: 'All My Friends Are Dead',
+            author: {
+                firstName: 'Avery',
+                lastName: 'Monsen'
+            },
         },
         {
-         title: 'Burned My Hand',
-        author: {
-             firstName: 'Mitt',
-             lastName: 'Ovn'
-        }
+            title: 'Burned My Hand',
+            author: {
+                firstName: 'Mitt',
+                lastName: 'Ovn'
+            }
         },
         {
-        title: 'Did You Hear That',
-        author:{
-            firstName: 'Mr',
-            lastName: 'Huh'
-        }
+            title: 'Did You Hear That',
+            author: {
+                firstName: 'Mr',
+                lastName: 'Huh'
+            }
         },
         {
-        title: 'Hello',
-        author: {
-            firstName:'C',
-            lastName: 'Ya'
-        }
+            title: 'Hello',
+            author: {
+                firstName: 'C',
+                lastName: 'Ya'
+            }
         },
         {
-       title: 'No',
-       author:{
-           firstName: 'Ms.Computer',
-           lastName: 'Says'
-       }
+            title: 'No',
+            author: {
+                firstName: 'Ms.Computer',
+                lastName: 'Says'
+            }
         },
     ];
 
@@ -123,9 +121,18 @@
 //     console.log(books[3].title + ' - ' + books[3].author.firstName + ' ' + books[3].author.lastName);
 //     console.log(books[4].title + ' - ' + books[4].author.firstName + ' ' + books[4].author.lastName);
 
-    books.forEach(function(book){
-        console.log('Book #:' +  (parseFloat(books.indexOf(book)) + 1) + '\nTitle : ' + book.title +'\nAuthor: ' + book.author.firstName + ' ' + book.author.lastName + '\n----');
-    });
+    function loggingBooks(books) {
+        books.forEach(function (book) {
+            console.log('Book #:' + ((books.indexOf(book)) + 1) + '\nTitle : ' + book.title + '\nAuthor: ' + book.author.firstName + ' ' + book.author.lastName + '\n----');
+        });
+    }
+    // function loggingBooks(books){
+    //     for(var x = 0; x < books.length; x++){
+    //         console.log('Book #' + (x + 1) + '\n' + 'Book Title: ' + books[x].title + '\n' + 'Book Author: ' + books[x].author.firstName + ' ' + books[x].author.lastName);
+    //     }
+    // }
+
+    loggingBooks(books);
 
     /**
      * TODO:
@@ -163,14 +170,19 @@
      *   `showBookInfo` function.
      */
 
-    // function createBook(title, author){
-    //     books.forEach(function (book) {
-    //         if(title === book.title && author === book.author.firstName){
-    //             console.log(book.);
-    //         }
-    //     });
-    // }
-    // createBook('Hello', 'C');
+    function createBook(title, fName, lName, arr){
+        var newBook = {title: title,
+                author: {
+                    firstName : fName,
+                    lastName : lName
+                }
+        };
+        arr.push(newBook);
+        return arr;
+    }
+    createBook('New Book', 'C', 'Ya' , books);
+    loggingBooks(books);
+
 
 
 })();
