@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>BOM</title>
+    </head>
+    <body>
+    <h1>BOM</h1>
+    <script>
+        'use strict';
+
+        //window represents instance of browser itself
+        //hold onto global variables
+        //window can't access iife variables
+            //in iife variables are not accessible to window
+            //iife storing sensitive information
+            //iife prevents stuff from being add to global functions
+
+
+        // (function(){
+        //     var i = 1;
+        //     var pillow = 'MyPillow';
+        //     var arr = [1, 2, 3];
+        //
+        //     console.log(window);
+        // alert('hi, register for my site');
+        // window.alert('you really should register for my site...');
+
+
+    //set interval
+        //Two parameters for set interval method
+            // 1) callback function (handler)
+                //handle what happens every single time
+            // 2) the time. The amount of time in milliseconds before the code runs again
+
+        //How to clear the interval ID?
+            // 1) Set your setInterval method to a variable. This is because the return of your set interval method is an interval ID.
+            // 2) Define the stop point. do this with (clearInterval(intervalID))
+
+        // var intervalID = setInterval(function () {
+        //     var yesNo = confirm('Do you like the news about murder hornets');
+        //     if(yesNo){
+        //         alert('Nice, i like the murder hornets news too');
+        //         clearInterval(intervalID); //allows code below to run
+        //         console.log('Do you see me');
+        //     }
+        // }, 3000 );
+
+        // })();
+        //
+        // function handler(){
+        //     var yesNo = confirm('Do you like the news about murder hornets');
+        //     if(yesNo){
+        //         alert('Nice, i like the murder hornets news too');
+        //         clearInterval(intervalID);
+        // }
+        //
+        //     var intervalID = setInterval(handler, 3000);
+        //     console.log(intervalID);
+
+        // var firstTime = setInterval(function () {
+        //     if(confirm('if ok i will stop showing')){
+        //         alert('ok done showing you');
+        //         clearInterval(firstTime);
+        //     }
+        //
+        // }, 3000);
+
+
+        //set time out
+
+        //similar to setInterval, BUT only meant to happen one time
+
+        // var delay = 5000; // delay time in milliseconds
+        //
+        // var timeoutId = setTimeout(function () {
+        //     alert('Here is a delayed hello!');
+        // }, delay);
+
+        // to cancel the timeout, you can call
+        // clearTimeout(timeoutId);
+        // prior to the delay expiring
+
+
+        //location
+        // redirect browser to google.com
+        //practical application move user to certain page for log in info (sercurity)
+        // window.location = 'http://www.hilltopliquors.com';
+        //location.reload(); reload from cache
+        //location.reload(true); clear cache
+
+        //reload page
+            if(confirm('ok')) {
+                location.reload();
+            }else {
+                location.reload(true); //'deprecation' something marked for removal in the future but not removed yet
+            }
+
+            //
+
+
+    </script>
+    </body>
+</html>
