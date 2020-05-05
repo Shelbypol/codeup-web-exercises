@@ -162,6 +162,46 @@
         }
     // fizzBuzz();
 
+// Create a function that takes in a array input and returns true if one of the elements is a number that matches the number of total elements in the array.
+//     Example input: [1]
+// Example output: true
+// Example input: ['bob', 3, false]
+// Example output: true
+// Example input: [{'a': 'hello'}, 10, true]
+// Example output: false
+// Example input: [5, {'a': 'hello'}, 30, true, null]
+// Example output: true
+
+        // function arrLengthMatch(arr) {
+        //     arr.forEach(function (a) {
+        //         if (arr.length === a) {
+        //             console.log(true);
+        //         } else {
+        //             console.log(false);
+        //         }
+        //     });
+        // }
+
+        // function arrLengthMatch(arr) {
+        //     for(var i = 0; i < arr.length; i++){
+        //         if (arr[i] === arr.length){
+        //            return true;
+        //         }
+        //     }
+        //     return false;
+        // }
+
+        console.log(arrLengthMatch([1])); //true
+        console.log(arrLengthMatch(['bob', 3, false])); //true
+        console.log(arrLengthMatch([{'a': 'hello'}, 10, true])); //false
+        console.log(arrLengthMatch([5, {'a': 'hello'}, 30, true, null])); //true
+        console.log(arrLengthMatch([{'a': 'hello'}, 10, true])); //false
+
+//refactored above function
+        function arrLengthMatch(arr) {
+            return arr.includes(arr.length);
+        }
+
     </script>
     </body>
 </html>
