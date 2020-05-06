@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+
+        <script src='https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js'></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css' rel='stylesheet' />
+
+        <style>
+            #map{
+                width: 400px;
+                height: 300px;
+            }
+        </style>
+    </head>
+        <body>
+        <div id='map' ></div>
+
+        <script src="js/keys.js"></script>
+        <script>
+
+            mapboxgl.accessToken = mapboxKey;
+            var map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/streets-v9',
+                zoom: 12,
+                center: [-73.363070, 41.956200]
+            });
+//==========Marker
+            var marker = new mapboxgl.Marker();
+            marker
+                .setLngLat([-73.363070, 41.956200])
+                .addTo(map)
+                .setDraggable(true);
+//==========Marker
+            var popup = new mapboxgl.Popup();
+            popup.setHTML('<h4>ToyMakers Cafe</h4>');
+            marker.setPopup(popup)
+
+
+//==========Restaurant Array
+        var favRestaurants = [
+            {
+                toymakers: map
+
+            }];
+        console.log(favRestaurants);
+        </script>
+
+
+        </body>
+</html>

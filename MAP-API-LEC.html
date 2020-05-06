@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <title>Mapbox API LEC</title>
 
-        <script src='https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js'></script>
-        <link href='https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css' rel='stylesheet' />
+<!--        <script src='https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js'></script>-->
+<!--        <link href='https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css' rel='stylesheet' />-->
         <style>
             #map{
                 width: 400px;
@@ -26,15 +26,37 @@
         //bots that scrap git hub and search for things that look like api keys to steal
         //prevent keys from getting push up to github DO NOT PUSH UP KEYS
         //create second js file that will not get pushed to github
-        // mapboxgl.accessToken = mapboxKey;
-        // var map = new mapboxgl.Map({
-        //     container: 'map', //corresponds to html id
-        //     style: 'mapbox://styles/mapbox/satellite-v9',
-        //     zoom: 20,
-        //     center: [-68.922267, 45.9044906]
-        // });
+        mapboxgl.accessToken = mapboxKey;
+        var map = new mapboxgl.Map({
+            container: 'map', //corresponds to html id
+            style: 'mapbox://styles/mapbox/streets-v9',
+            zoom: 8,
+            center: [-68.922267, 45.9044906]
+        });
 
+        //======MARKER
+        //create
+        var marker = new mapboxgl.Marker();
+        //where it's going to sit
+        //method chain
+        marker
+            .setLngLat([-68.922267, 45.9044906])
+            .addTo(map);
 
+        marker.setDraggable(true);
+
+        //======POPUP
+
+        var popup = new mapboxgl.Popup();
+
+        popup.setHTML('<h2>End of the AT!</h2>');
+
+        marker.setPopup(popup);
+
+        //events
+        map.on('click', function () {
+            console.log('hello');
+        })
 
         // })(); //end iife
     </script>
