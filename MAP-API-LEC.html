@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <title>Mapbox API LEC</title>
 
-<!--        <script src='https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js'></script>-->
-<!--        <link href='https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css' rel='stylesheet' />-->
+        <script src='https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js'></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css' rel='stylesheet' />
         <style>
             #map{
                 width: 400px;
@@ -16,7 +16,8 @@
     <body>
 <!--  MAP API  -->
     <div id='map' ></div>
-<!--<script src='js/keys.js'></script>-->
+<script src='js/keys.js'></script>
+<script src="js/mapbox-geocode-utilities.js"></script>
     <script>
 
         //begin iife
@@ -58,10 +59,20 @@
             console.log('hello');
         })
 
+        //===========GEO-CODING
+
+geocode('600 Navarro St #350, San Antonio, Tx 78205', mapboxKey).then(function (result) {
+    console.log(result);
+    map.setCenter(result);
+    map.setZoom(18);
+});
+
+        reverseGeocode({lng: -98.4861, lat: 29.4260}, mapboxKey).then(function (results) {
+            console.log(results);
+        })
+
         // })(); //end iife
     </script>
-
-
     <script></script>
     </body>
 </html>
