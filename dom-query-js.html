@@ -33,33 +33,51 @@
     (function() {
         "use strict";
         // TODO: Uncomment next line and get the main header element by id
-        var mainHeader = document.getElementById('main-header');
-
         // TODO: Set inner html of mainHeader to "JavaScript is Cool!"
 
+        //handler ..event is optional more used with keyboard event...ex:
         function headerButtonActivate (event) {
+            var mainHeader = document.getElementById('main-header');
             mainHeader.innerHTML = 'JavaScript is Cool!';
        }
-      document.getElementById('headerBtn').addEventListener('click', headerButtonActivate);
+       //add listener to handler
+       document.getElementById('headerBtn').addEventListener('click', headerButtonActivate);
+       //document.querySelector('headerBtn').addEventListener('click', headerButtonActivate);
+
+
 
         // TODO: Uncomment the next line and get the sub header element by id
-           var subHeader = document.getElementById('sub-header');
         // TODO: Set the text color of subHeader to blue
         var subButton = function (event) {
+            var subHeader = document.getElementById('sub-header');
             subHeader.style.color = 'blue';
-        }
+        };
        document.getElementById('subBtn').addEventListener('click', subButton);
+
+//two options....function expression or anonymous expression
+
         // TODO: Uncomment the next line and get all list items
-        var listItems = document.getElementsByTagName('li');
         // TODO: Set text color on every other list item to grey
-        // for(var i = 0; i < listItems.length; i += 2){
-        //     listItems[i].style.color = 'grey';
-        // }
-        // // TODO: Set text color of li with dbid = 1 to blue
-        // document.getElementsByTagName('li')[0].style.color = 'blue';
+        // TODO: Set text color of li with dbid = 1 to blue
 
-        var listButton = function (events) {
+        // var listButton = function (events) {
+        //     var listItems = document.getElementsByTagName('li');
+        //     for (var i = 0; i < listItems.length; i++) {
+        //         if (i % 2 === 0) {
+        //             listItems[i].style.color = 'grey';
+        //         }
+        //         var dbid = listItems[i].getAttribute('data-dbid');
+        //         if (dbid === '1') { // or ==
+        //             listItems[i].style.color = 'blue';
+        //         }
+        //         console.log();
+        //     }
+        // };
+        // document.getElementById('listBtn').addEventListener('click', listButton);
 
+
+        document.getElementById('listBtn').addEventListener('click', function (){
+            var listItems = document.getElementsByTagName('li');
             for (var i = 0; i < listItems.length; i++) {
                 if (i % 2 === 0) {
                     listItems[i].style.color = 'grey';
@@ -68,19 +86,16 @@
                 if (dbid === '1') { // or ==
                     listItems[i].style.color = 'blue';
                 }
-                console.log();
             }
-        }
-        document.getElementById('listBtn').addEventListener('click', listButton);
-
+        });
 
         // TODO: Uncomment the next line and get all elements with class name sub-paragraph
-        var subParagraphs = document.getElementsByClassName('sub-paragraph');
 
         // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
         var paragraphButton = function(event) {
+            var subParagraphs = document.getElementsByClassName('sub-paragraph');
             subParagraphs[0].innerText = 'Mission Accomplished';
-        }
+        };
       document.getElementById('paraBtn').addEventListener('click', paragraphButton);
 
     })();
