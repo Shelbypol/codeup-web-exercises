@@ -37,16 +37,10 @@
 
         // TODO: Set inner html of mainHeader to "JavaScript is Cool!"
 
-        var headerButtonActivate = function(event) {
-        mainHeader.innerHTML = 'JavaScript is Cool!';
+        function headerButtonActivate (event) {
+            mainHeader.innerHTML = 'JavaScript is Cool!';
        }
-       document.getElementById('headerBtn').addEventListener('click', headerButtonActivate);
-
-        var headerButtonDeActivate = function(event){
-            headerButtonActivate.removeEventListener('click', headerButtonActivate);
-
-        }
-
+      document.getElementById('headerBtn').addEventListener('click', headerButtonActivate);
 
         // TODO: Uncomment the next line and get the sub header element by id
            var subHeader = document.getElementById('sub-header');
@@ -88,6 +82,7 @@
             subParagraphs[0].innerText = 'Mission Accomplished';
         }
       document.getElementById('paraBtn').addEventListener('click', paragraphButton);
+
     })();
 </script>
 </body>

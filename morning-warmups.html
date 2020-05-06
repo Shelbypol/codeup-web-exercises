@@ -191,16 +191,33 @@
         //     return false;
         // }
 
-        console.log(arrLengthMatch([1])); //true
-        console.log(arrLengthMatch(['bob', 3, false])); //true
-        console.log(arrLengthMatch([{'a': 'hello'}, 10, true])); //false
-        console.log(arrLengthMatch([5, {'a': 'hello'}, 30, true, null])); //true
-        console.log(arrLengthMatch([{'a': 'hello'}, 10, true])); //false
+        // console.log(arrLengthMatch([1])); //true
+        // console.log(arrLengthMatch(['bob', 3, false])); //true
+        // console.log(arrLengthMatch([{'a': 'hello'}, 10, true])); //false
+        // console.log(arrLengthMatch([5, {'a': 'hello'}, 30, true, null])); //true
+        // console.log(arrLengthMatch([{'a': 'hello'}, 10, true])); //false
 
 //refactored above function
-        function arrLengthMatch(arr) {
-            return arr.includes(arr.length);
-        }
+//         function arrLengthMatch(arr) {
+//             return arr.includes(arr.length);
+//         }
+
+        // Write a javascript function that takes in a number and returns the number raised to the power of four. If any argument is passed into the function that is not a number, return false.
+
+        function pwrOfFour(num) {
+                if(!isNaN(num) && typeof num === 'number'){
+                    return Math.pow(num, 4);
+                }else{
+                    return false;
+                }
+            }
+        console.log(pwrOfFour(4));
+        console.log(pwrOfFour('4'));
+        console.log(pwrOfFour(true));
+        console.log(pwrOfFour(NaN));
+
+
+
 
     </script>
     </body>
