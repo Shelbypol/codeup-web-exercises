@@ -1,33 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>Title</title>
 
         <script src='https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js'></script>
         <link href='https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css' rel='stylesheet' />
-
+        <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css"
+        />
         <style>
-            #map{
-                width: 400px;
-                height: 300px;
+
+            body{
+                background-image: url("img/rainfood.gif");
             }
+
+            #map{
+                width: 700px;
+                height: 500px;
+                margin: auto;
+                border: 35px solid black;
+                z-index: 1000;
+            }
+
+            button{
+                background-color: gray;
+                color: white;
+                font-size:.5em;
+                margin-left: 19%;
+            }
+
         </style>
     </head>
-        <body>
-        <div id='map' ></div>
+            <div id='map' ></div>
+            <button id="hidden">Hide Markers</button>
+
+
+
+
+
 
         <script src="js/keys.js"></script>
         <script src="js/mapbox-geocode-utilities.js"></script>
+        <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+        <!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
+        <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
         <script>
             'use strict';
-
 
             mapboxgl.accessToken = mapboxKey;
             var map = new mapboxgl.Map({
                 container: 'map',
                 style: 'mapbox://styles/mapbox/satellite-streets-v11',
-                zoom: 1.2
+                zoom: 1.5
             });
             geocode('San Antonio, TX 78209', mapboxKey).then(function (result) {
                 // console.log(result);
@@ -35,55 +59,65 @@
                 map.setZoom(10);
             });
 
-// //==============RESTAURANT ONE
-//             var marker = new mapboxgl.Marker();
-//             marker
-//                 .setLngLat([-98.499743, 29.424894])
-//                 .addTo(map)
-//                 .setDraggable(true);
-//
-//             var popup = new mapboxgl.Popup();
-//             popup.setHTML('<h4>ToyMakers Cafe</h4>');
-//             marker.setPopup(popup);
-//
-// //==============RESTAURANT TWO
-//             var marker = new mapboxgl.Marker();
-//             marker
-//                 .setLngLat([-98.487027, 29.411178])
-//                 .addTo(map)
-//                 .setDraggable(true);
-//
-//             var popup = new mapboxgl.Popup();
-//             popup.setHTML('<h4>Restaurant Two</h4>');
-//             marker.setPopup(popup);
-//
-// // ==============RESTAURANT THREE
-//             var marker = new mapboxgl.Marker();
-//             marker
-//                 .setLngLat([-98.46331, 29.472596])
-//                 .addTo(map)
-//                 .setDraggable(true);
-//
-//             var popup = new mapboxgl.Popup();
-//             popup.setHTML('<h4>Restaurant Two</h4>');
-//             marker.setPopup(popup);
+            //control nav
+            var nav = new mapboxgl.NavigationControl();
+            map.addControl(nav, 'top-left');
+
+            //use geo locate
+            map.addControl(
+                new MapboxGeocoder({
+                    accessToken: mapboxgl.accessToken,
+                    mapboxgl: mapboxgl
+                })
+            );
+
 
 //==========Restaurant Array
         var favRestaurants = [
             {
                 name: 'Restaurant One',
                 address: [-98.499743, 29.424894], //'218 Produce Row, San Antonio, TX 78207',
-                message: 'He was number one'
+                message: '<div id="content">'+
+                    '<div id="siteNotice">'+
+                    '</div>'+
+                    '<h1 id="firstHeading" class="firstHeading">Restaurant</h1>'+
+                    '<div id="bodyContent">'+
+                    '<p><b>Restuarant One</b>, also referred to as <b>Third Best</b>, has a large ' +
+                    'servings of every delicious food you can imagine '+
+                    'just how tasty it is after a long summer day in the river.</p>'+
+                    '</p>'+
+                    '</div>'+
+                    '</div>'
             },
             {
                 name: 'Restaurant Two',
                 address: [-98.487027, 29.411178], //'926 S Presa St, San Antonio, TX 78210',
-                message: 'The 2nd best'
+                message: '<div id="content">'+
+                '<div id="siteNotice">'+
+                '</div>'+
+                '<h1 id="firstHeading" class="firstHeading">Restaurant</h1>'+
+                '<div id="bodyContent">'+
+                '<p><b>Restuarant Two</b>, also referred to as <b>Third Best</b>, has a large ' +
+                'servings of every delicious food you can imagine '+
+                'just how tasty it is after a long summer day in the river.</p>'+
+                '</p>'+
+                '</div>'+
+                '</div>'
             },
             {
                 name:'Restaurant Three',
                 address: [-98.46331, 29.472596], //'5011 Broadway St, San Antonio, TX 78209',
-                message: 'Third time is a charm'
+                message: '<div id="content">'+
+                    '<div id="siteNotice">'+
+                    '</div>'+
+                    '<h1 id="firstHeading" class="firstHeading">Restaurant</h1>'+
+                    '<div id="bodyContent">'+
+                    '<p><b>Restuarant Three</b>, also referred to as <b>Third Best</b>, has a large ' +
+                    'servings of every delicious food you can imagine '+
+                    'just how tasty it is after a long summer day in the river.</p>'+
+                    '</p>'+
+                    '</div>'+
+                    '</div>'
             }];
 
             favRestaurants.forEach(function (restaurant) {
@@ -91,14 +125,83 @@
                 marker
                     .setLngLat(restaurant.address)
                     .addTo(map);
-                    // .setDraggable(true);
+                document.getElementById('hidden').addEventListener('click', function () {
+                    marker.remove();
+                });
 
                 var popup = new mapboxgl.Popup();
                 popup.setHTML(restaurant.name + '\n ' + restaurant.message);
+                popup.setMaxWidth("200px");
                 marker.setPopup(popup);
+
             });
 
 
+
+//             function animateMarker(timestamp) {
+//                 var radius = 20;
+//
+// // Update the data to a new position based on the animation timestamp. The
+// // divisor in the expression `timestamp / 1000` controls the animation speed.
+//                 marker.setLngLat([
+//                     Math.cos(timestamp / 1000) * radius,
+//                     Math.sin(timestamp / 1000) * radius
+//                 ]);
+//
+// // Ensure it's added to the map. This is safe to call if it's already added.
+//                 marker.addTo(map);
+//
+// // Request the next frame of the animation.
+//                 requestAnimationFrame(animateMarker);
+//             }
+//
+//             // Start the animation.
+//             requestAnimationFrame(animateMarker);
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // //==============RESTAURANT ONE
+            //             var marker = new mapboxgl.Marker();
+            //             marker
+            //                 .setLngLat([-98.499743, 29.424894])
+            //                 .addTo(map)
+            //                 .setDraggable(true);
+            //
+            //             var popup = new mapboxgl.Popup();
+            //             popup.setHTML('<h4>ToyMakers Cafe</h4>');
+            //             marker.setPopup(popup);
+            //
+            // //==============RESTAURANT TWO
+            //             var marker = new mapboxgl.Marker();
+            //             marker
+            //                 .setLngLat([-98.487027, 29.411178])
+            //                 .addTo(map)
+            //                 .setDraggable(true);
+            //
+            //             var popup = new mapboxgl.Popup();
+            //             popup.setHTML('<h4>Restaurant Two</h4>');
+            //             marker.setPopup(popup);
+            //
+            // // ==============RESTAURANT THREE
+            //             var marker = new mapboxgl.Marker();
+            //             marker
+            //                 .setLngLat([-98.46331, 29.472596])
+            //                 .addTo(map)
+            //                 .setDraggable(true);
+            //
+            //             var popup = new mapboxgl.Popup();
+            //             popup.setHTML('<h4>Restaurant Two</h4>');
+            //             marker.setPopup(popup);
 
 
         </script>
