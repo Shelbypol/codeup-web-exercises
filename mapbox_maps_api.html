@@ -22,57 +22,83 @@
         <script>
             'use strict';
 
-//             var marker = new mapboxgl.Marker();
-//             marker
-//                 .setLngLat([-73.363070, 41.956200])
-//                 .addTo(map)
-//                 .setDraggable(true);
-// //==========Popup
-//             var popup = new mapboxgl.Popup();
-//             popup.setHTML('<h4>ToyMakers Cafe</h4>');
-//             marker.setPopup(popup)
-
-
-//==========Restaurant Array
-        var favRestaurants = [
-            {
-                name: 'ToyMakers Cafe',
-                address: '218 Produce Row, San Antonio, TX 78207',
-                message: 'Best waffles in the US'
-            },
-            {
-                name: 'Restaurant Two',
-                address: '926 S Presa St, San Antonio, TX 78210',
-                message: 'The 2nd best'
-            },
-            {
-                name:'Restaurant Three',
-                address: '5011 Broadway St, San Antonio, TX 78209',
-                message: 'Third time is a charm'
-            }];
-        console.log(favRestaurants);
 
             mapboxgl.accessToken = mapboxKey;
             var map = new mapboxgl.Map({
                 container: 'map',
-                style: 'mapbox://styles/mapbox/streets-v9',
-                zoom: 1,
-                center: [-73.363070, 41.956200]
+                style: 'mapbox://styles/mapbox/satellite-streets-v11',
+                zoom: 1.2
             });
-
-        favRestaurants.forEach(function(){
-            geocode(favRestaurants.address, mapboxKey).then(function (result) {
+            geocode('San Antonio, TX 78209', mapboxKey).then(function (result) {
+                // console.log(result);
                 map.setCenter(result);
+                map.setZoom(10);
             });
-            var marker = new mapboxgl.Marker()
-                .addTo(map); // add the marker to the map
+
+// //==============RESTAURANT ONE
+//             var marker = new mapboxgl.Marker();
+//             marker
+//                 .setLngLat([-98.499743, 29.424894])
+//                 .addTo(map)
+//                 .setDraggable(true);
+//
+//             var popup = new mapboxgl.Popup();
+//             popup.setHTML('<h4>ToyMakers Cafe</h4>');
+//             marker.setPopup(popup);
+//
+// //==============RESTAURANT TWO
+//             var marker = new mapboxgl.Marker();
+//             marker
+//                 .setLngLat([-98.487027, 29.411178])
+//                 .addTo(map)
+//                 .setDraggable(true);
+//
+//             var popup = new mapboxgl.Popup();
+//             popup.setHTML('<h4>Restaurant Two</h4>');
+//             marker.setPopup(popup);
+//
+// // ==============RESTAURANT THREE
+//             var marker = new mapboxgl.Marker();
+//             marker
+//                 .setLngLat([-98.46331, 29.472596])
+//                 .addTo(map)
+//                 .setDraggable(true);
+//
+//             var popup = new mapboxgl.Popup();
+//             popup.setHTML('<h4>Restaurant Two</h4>');
+//             marker.setPopup(popup);
+
+//==========Restaurant Array
+        var favRestaurants = [
+            {
+                name: 'Restaurant One',
+                address: [-98.499743, 29.424894], //'218 Produce Row, San Antonio, TX 78207',
+                message: 'He was number one'
+            },
+            {
+                name: 'Restaurant Two',
+                address: [-98.487027, 29.411178], //'926 S Presa St, San Antonio, TX 78210',
+                message: 'The 2nd best'
+            },
+            {
+                name:'Restaurant Three',
+                address: [-98.46331, 29.472596], //'5011 Broadway St, San Antonio, TX 78209',
+                message: 'Third time is a charm'
+            }];
+
+            favRestaurants.forEach(function (restaurant) {
+                var marker = new mapboxgl.Marker();
+                marker
+                    .setLngLat(restaurant.address)
+                    .addTo(map);
+                    // .setDraggable(true);
+
+                var popup = new mapboxgl.Popup();
+                popup.setHTML(restaurant.name + '\n ' + restaurant.message);
+                marker.setPopup(popup);
+            });
 
 
-            var popup = new mapboxgl.Popup();
-            popup.setHTML(favRestaurants.name);
-            marker.setPopup(popup);
-
-        });
 
 
         </script>

@@ -16,7 +16,7 @@
     <body>
     <div id='map' ></div>
     <script src="js/keys.js"></script>
-<!--    <script src="js/mapbox-geocode-utilities.js"></script>-->
+    <script src="js/mapbox-geocode-utilities.js"></script>
     <script>
         // Mini - Exercise 3 (after geocoding)
         // Create an HTML file called mapbox-3.html centered on San Antonio that is re-centered over Whitefish, Montana using the coordinates from geocoding the physical address.
@@ -32,12 +32,22 @@
         geocode('Whitefish, Montana', mapboxKey).then(function (result) {
             console.log(result);
             map.setCenter(result);
-            map.setZoom(18);
+            map.setZoom(12);
         });
 
         reverseGeocode({lng: -157.8060, lat: 21.2620}, mapboxKey).then(function (results) {
             console.log(results);
-        })
+        });
+
+        var marker = new mapboxgl.Marker();
+        marker
+            .setLngLat([-73.363070, 41.956200])
+            .addTo(map)
+            .setDraggable(true);
+        //==========Popup
+        var popup = new mapboxgl.Popup();
+        popup.setHTML('<h4>ToyMakers Cafe</h4>');
+        marker.setPopup(popup)
 
     </script>
     </body>
