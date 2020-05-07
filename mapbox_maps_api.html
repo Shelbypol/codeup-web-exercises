@@ -18,34 +18,63 @@
         <div id='map' ></div>
 
         <script src="js/keys.js"></script>
+        <script src="js/mapbox-geocode-utilities.js"></script>
         <script>
+            'use strict';
 
-            mapboxgl.accessToken = mapboxKey;
-            var map = new mapboxgl.Map({
-                container: 'map',
-                style: 'mapbox://styles/mapbox/streets-v9',
-                zoom: 12,
-                center: [-73.363070, 41.956200]
-            });
-//==========Marker
-            var marker = new mapboxgl.Marker();
-            marker
-                .setLngLat([-73.363070, 41.956200])
-                .addTo(map)
-                .setDraggable(true);
-//==========Marker
-            var popup = new mapboxgl.Popup();
-            popup.setHTML('<h4>ToyMakers Cafe</h4>');
-            marker.setPopup(popup)
+//             var marker = new mapboxgl.Marker();
+//             marker
+//                 .setLngLat([-73.363070, 41.956200])
+//                 .addTo(map)
+//                 .setDraggable(true);
+// //==========Popup
+//             var popup = new mapboxgl.Popup();
+//             popup.setHTML('<h4>ToyMakers Cafe</h4>');
+//             marker.setPopup(popup)
 
 
 //==========Restaurant Array
         var favRestaurants = [
             {
-                toymakers: map
-
+                name: 'ToyMakers Cafe',
+                address: '218 Produce Row, San Antonio, TX 78207',
+                message: 'Best waffles in the US'
+            },
+            {
+                name: 'Restaurant Two',
+                address: '926 S Presa St, San Antonio, TX 78210',
+                message: 'The 2nd best'
+            },
+            {
+                name:'Restaurant Three',
+                address: '5011 Broadway St, San Antonio, TX 78209',
+                message: 'Third time is a charm'
             }];
         console.log(favRestaurants);
+
+            mapboxgl.accessToken = mapboxKey;
+            var map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/streets-v9',
+                zoom: 1,
+                center: [-73.363070, 41.956200]
+            });
+
+        favRestaurants.forEach(function(){
+            geocode(favRestaurants.address, mapboxKey).then(function (result) {
+                map.setCenter(result);
+            });
+            var marker = new mapboxgl.Marker()
+                .addTo(map); // add the marker to the map
+
+
+            var popup = new mapboxgl.Popup();
+            popup.setHTML(favRestaurants.name);
+            marker.setPopup(popup);
+
+        });
+
+
         </script>
 
 
