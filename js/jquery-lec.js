@@ -5,6 +5,8 @@
 // jQuery is the most widely used JavaScript library on the internet today.
 // jQuery Docs -->  https://api.jquery.com/
 ​
+//jQuery a javascript library that simplifies the DOM
+
 ​
 /**********************************************
  * 			Adding jQuery to HTML
