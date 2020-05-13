@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        #gameboy img {
+        #gameboyImage {
             margin-left: 400px;
             margin-top: -2em;
             width: 700px;
@@ -77,6 +77,18 @@
             border-radius: 48%;
             box-shadow: 1px 1px 1px 1px;
         }
+        #contra{
+            margin-top: -15em;
+            margin-left: 45.5em;
+            transform: rotate(26deg);
+        }
+
+        #contra img{
+            width: 200px;
+            height: 165px;
+            transform: skewX(-6deg);
+            border: 10px solid black;
+        }
 
     </style>
 </head>
@@ -84,13 +96,14 @@
 <h1>Konami Code</h1>
 <!--<main>-->
     <div id="gameboy">
-        <img src="img/gameboy-advance.png" alt="">
+        <img id="gameboyImage" src="img/gameboy-advance.png" alt="">
         <div class="button" id="buttonLeft"></div>
         <div class="button" id="buttonRight"></div>
         <div class="button" id="buttonDown"></div>
         <div class="button" id="buttonUp"></div>
         <div class="button" id="buttonA"></div>
         <div class="button" id="buttonB"></div>
+        <div id="contra"><img src="img/contra30.jpg" alt=""></div>
     </div>
 <!--</main>-->
 
