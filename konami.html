@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #gameboy img {
+            margin-left: 400px;
+            margin-top: -2em;
+            width: 700px;
+            height: 700px;
+        }
+
+        .button {
+            background-color: blue;
+        }
+
+        #buttonLeft {
+            width: 20px;
+            height: 19px;
+            transform: rotate(43deg);
+            margin: -22.7em 0 0 37.2em ;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            box-shadow: 0 2px 0 0 ;
+        }
+        #buttonUp {
+            width: 20px;
+            height: 19px;
+            transform: rotate(135deg);
+            margin-left: 39.5em;
+            margin-top: -1.2em;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            box-shadow: 0 2px 0 0 ;
+        }
+
+    </style>
+</head>
+<body>
+<h1>Konami Code</h1>
+<!--<main>-->
+    <div id="gameboy">
+        <img src="img/gameboy-advance.png" alt="">
+        <div class="button" id="buttonLeft"></div>
+        <div class="button" id="buttonRight"></div>
+        <div class="button" id="buttonDown"></div>
+        <div class="button" id="buttonUp"></div>
+        <div class="button" id="buttonA"></div>
+        <div class="button" id="buttonB"></div>
+    </div>
+<!--</main>-->
+
+<script src="js/jquery-2.2.4.js"></script>
+<script src="js/konami.js"></script>
+
+</body>
+</html>
