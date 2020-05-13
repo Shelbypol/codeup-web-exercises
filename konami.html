@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
+        body{
+            background-color: black;
+            color: white;
+        }
         #gameboy{
             visibility: hidden;
         }
@@ -15,7 +19,7 @@
             z-index: 1;
         }
         .button {
-            background-color: blue;
+            background-color: purple;
             visibility: hidden;
         }
         #buttonLeft {
@@ -85,13 +89,16 @@
             margin-top: -15em;
             margin-left: 45.5em;
             transform: rotate(26deg);
-            visibility: hidden;
+            /*visibility: hidden;*/
         }
         #contra img{
-            width: 200px;
-            height: 165px;
-            transform: skewX(-6deg);
-            border: 10px solid black;
+            width: 196px;
+            height: 166px;
+            transform: skew(-6deg);
+            border-right: 10px solid black;
+            border-left: 15px solid black;
+            border-bottom: 10px solid black;
+            border-top: 15px solid black;
         }
 
     </style>
@@ -100,7 +107,7 @@
 <h1>Konami Code</h1>
 <!--<main>-->
     <div id="gameboy">
-        <img id="gameboyImage" src="img/gameboy-advance.png" alt="">
+        <img id="gameboyImage" src="img/game-boy-transparent.png" alt="">
         <div class="button" id="buttonLeft"></div>
         <div class="button" id="buttonRight"></div>
         <div class="button" id="buttonDown"></div>
