@@ -4,25 +4,45 @@
 //     console.log(event.keyCode);
 // });
 
-// $('body').keydown(function () {
-//     $('#gameboy').css('visibility', 'visible');
-// });y
+$('h1').click(function () {
+    $('#gameboy').css('visibility', 'visible');
+    $(this).css('visibility', 'hidden');
+});
+
+function blink_text() {
+    $('h1').fadeOut(1000);
+    $('h1').fadeIn(1000);
+}
+setInterval(blink_text, 1000);
 
 //Secret Code
 var bucket = [];
 console.log(bucket);
 
-var contraKonami = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a', 'Enter' ];
+var contraKonami = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'ArrowB', 'ArrowA', 'Enter'];
 
-function contraLives(arr1, arr2){
-    for(var i = 0; i >= arr1.length; i++){
-        if(arr1[i] === arr2[i]){
-           return $('#contra').css('visibility', 'visible');
+function contraLives(arr1, arr2) {
+    if (arr1.length === arr2.length) {
+        //     for (var i = 0; i < arr1.length; i++) {
+        if (arr1[0] === arr2[0] &&
+            arr1[1] === arr2[1] &&
+            arr1[2] === arr2[2] &&
+            arr1[3] === arr2[3] &&
+            arr1[4] === arr2[4] &&
+            arr1[5] === arr2[5] &&
+            arr1[6] === arr2[6] &&
+            arr1[7] === arr2[7] &&
+            arr1[8] === arr2[8] &&
+            arr2[9] === arr2[9] &&
+            arr1[10] === arr2[10]) {
+            $('#contra').css('visibility', 'visible');
+            $('body').css('background-image', 'url("https://media.giphy.com/media/5jT0jaNDsM6Ik7X9yq/giphy.gif")')
+
+        } else {
+            return bucket = [];
         }
     }
 }
-// contraLives(contraKonami, bucket);
-
 
 //Arrow Left
 $('body').on('keydown', function (event) {
