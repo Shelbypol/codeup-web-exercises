@@ -9,13 +9,15 @@
             background-color: black;
             color: white;
             z-index: 1000;
-            /*background-image: url("https://media.giphy.com/media/5jT0jaNDsM6Ik7X9yq/giphy.gif");*/
+            margin: 0;
+            height: 100%;
+            overflow: hidden;
+            background-size: cover;
         }
         h1 {
             font-family: 'Roboto Mono', monospace;
-            margin: 2em 0 0 18em;
+            margin: 2.5em 0 0 20em;
         }
-
         #gameboy{
             visibility: hidden;
         }
@@ -27,7 +29,7 @@
             z-index: 1;
         }
         .button {
-            background-color: purple;
+            background-color: deepskyblue;
             visibility: hidden;
         }
         #buttonLeft {
@@ -36,7 +38,7 @@
             transform: rotate(43deg);
             margin: -22.7em 0 0 37.2em ;
             border-radius: 5px;
-            box-shadow: 1px 1px 1px 1px;
+            box-shadow: 1px 1px 1px deepskyblue;
             z-index: 1000;
         }
         #buttonRight {
@@ -47,7 +49,7 @@
             margin-bottom: .5em;
             margin-top: .3em;
             border-radius: 5px;
-            box-shadow: 1px 1px 1px 1px;
+            box-shadow: 1px 1px 1px deepskyblue;
         }
         #buttonUp {
             width: 18px;
@@ -56,7 +58,7 @@
             margin-left: 39.5em;
             margin-top: -2.8em;
             border-radius: 5px;
-            box-shadow: 1px 1px 1px 1px;
+            box-shadow: 1px 1px 1px deepskyblue;
         }
         #buttonDown {
             width: 20px;
@@ -65,7 +67,7 @@
             margin-left: 37.2em;
             margin-top: -1.5em;
             border-radius: 5px;
-            box-shadow: 1px 1px 1px 1px;
+            box-shadow: 1px 1px 1px deepskyblue;
         }
         #buttonA {
             width: 28px;
@@ -81,17 +83,46 @@
             height: 30px;
             transform: rotate(312deg);
             margin-left: 44em;
-            margin-top: -3em;
+            margin-top: -2.8em;
             border-radius: 48%;
             box-shadow: 1px 1px 1px 1px;
         }
-        #contra{
-            margin-top: -14.5em;
+        #sonicScreen{
+            margin-top: -14em;
+            margin-left: 46.5em;
+            transform: rotate(26deg);
+        }
+        #sonicScreen img{
+            width: 194px;
+            height: 140px;
+            transform: skew(-6deg);
+            border-right: 2px solid white;
+            border-left: 2px solid white;
+            border-bottom: 10px solid white;
+            border-top: 6px solid white;
+        }
+        #sonicWin{
+            margin-top: -10em;
             margin-left: 46.5em;
             transform: rotate(26deg);
             visibility: hidden;
         }
-        #contra img{
+        #sonicWin img{
+            width: 194px;
+            height: 140px;
+            transform: skew(-6deg);
+            border-right: 2px solid white;
+            border-left: 2px solid white;
+            border-bottom: 10px solid white;
+            border-top: 6px solid white;
+        }
+        #sonicSafe{
+            margin-top: -10em;
+            margin-left: 46.5em;
+            transform: rotate(26deg);
+            visibility: hidden;
+        }
+        #sonicSafe img{
             width: 194px;
             height: 140px;
             transform: skew(-6deg);
@@ -104,8 +135,7 @@
     </style>
 </head>
 <body>
-<h1>Ready Player One</h1>
-<!--<main>-->
+<h1>Konami</h1>
     <div id="gameboy">
         <img id="gameboyImage" src="img/game-boy-transparent.png" alt="">
         <div class="button" id="buttonLeft"></div>
@@ -114,9 +144,10 @@
         <div class="button" id="buttonUp"></div>
         <div class="button" id="buttonA"></div>
         <div class="button" id="buttonB"></div>
-        <div id="contra"><img src="img/contra30.jpg" alt=""></div>
+        <div id="sonicScreen"><img src="https://media.giphy.com/media/txcIHRNl2vcDm/giphy.gif" alt=""></div>
+        <div id="sonicWin"><img src="https://media.giphy.com/media/7vzoPamVtvP6NMRUt3/giphy.gif" alt=""></div>
+        <div id="sonicSafe"><img src="https://media.giphy.com/media/245pPHFA5XTMkRA8em/giphy.gif" alt=""></div>
     </div>
-<!--</main>-->
 
 <script src="js/jquery-2.2.4.js"></script>
 <script src="js/konami.js"></script>
