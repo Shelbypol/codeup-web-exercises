@@ -29,81 +29,101 @@ $(document).ready(function() {
      *********************************************/
 
     // TODO TOGETHER:  Using an event listener and css method, increase the font-size of 'Sorting Hat' when clicked.
+
+    $('#main-heading').click(function(){
+        // $(this).css('font-size', '4em');
+        $(this).text('<p>My Sorting Hat</p>');
+    });
+
+    // $('ul').click(function(){
+    //     $(this).html('<li>Test</li>');
+    // });
+
     //    How can font size be changed using .html()?
 
-    // $('#main-heading').click(function () {
-    //     // $(this).css('font-size', '3.5em');
-    //     $(this).html('<h6>My Sorting Hat</h6>');
-    // });
-    $('#main-heading').click(function () {
-        // $(this).css('font-size', '3.5em');
-        $(this).text('My Sorting Hat');
-    });
-
-    $('ul').click(function () {
-        $(this).append('<li>test</li>')
-    });
-    $('ul').click(function () {
-        $(this).prepend('<li>test-1</li>')
-    });
-
     // TODO TOGETHER: store the inner text of #main-heading in a variable
-    var mainHeading = $('#main-heading').html();
-    // alert(mainHeading);
+    var mainHeading = $('#main-heading').text();
+    alert(mainHeading);
 
     // TODO: Using a css method, change the banner background-color to black
     //  Hint: make sure you use the right selector
-    $('.banner').css('background', 'black');
+
+    $('.banner').css('background-color', '#000');
+
 
     // TODO TOGETHER: When the 'Houses' button is clicked, add the class 'house' to anything with a class of 'house-name'
-
-    //click on button with this id
-    $('#highlight-houses').click(function () {
-        //target all elements with class of .house-name
-        //add class 'house' to its html
-        $('.house-name').addClass('house');
-
-        //remove class
-        // $('.house').removeClass('house-name');
-
-        //on and off
-        $('.house').toggleClass('house-name');
-
+    // Click on button with this id
+    $('#highlight-houses').click(function(){
+        // target all elements with class of .house-name
+        // add class 'house' to its html
+        // $('.house-name').addClass('house font-size');
+        // $('.house-name').removeClass('house');
+        $('.house-name').toggleClass('house');
     });
-
 
     // TODO: Comment out the code above. Add the class of 'house' to all the 'house-names'
     //  Write the event listener to remove the class instead
-    //above
 
     // TODO TOGETHER: Refactor your addClass and removeClass methods to toggle the 'house' class instead
-    //turn house on and off
 
-    $('#lock-g').click(function () {
+    $('#lock-g').click(function(){
         $('#gryffindor-house').toggleClass('gryffindor');
-        if('#gryffindor-house').hasClass('gryffindor'){
-            //this refering to lock-g
-            $(this).text('Unlock');
+        if($('#gryffindor-house').hasClass('gryffindor')){
+            // this refers to the element that triggers the event listener
+            $(this).text('unlock');
         }else{
-            $(this).text('Lock In')
+            $(this).text('lock in');
         }
     });
     /**********************************************
      * 			       Traversing
      *********************************************/
 
+    $('#gryffindor').children();
+
+    console.log($('#josh').next());;
+
     // TODO TOGETHER: console log each list element's text
+
+    var numbers = [1,2,3,4,5];
+    numbers.forEach(function(number){
+        console.log(number);
+    });
+
+    console.log($('li').first().html());
+
+    $('li').each(function(index){
+        if(index === 3){
+            console.log($(this).html())
+        }
+    });
 
     // TODO TOGETHER: select all list elements and console log the first match
 
+    console.log($('li').first().html());
+
     // TODO TOGETHER: select all list elements and console log the last match
+
+    console.log($('li').last().html());
+
 
     // TODO TOGETHER: When I click on a list element, highlight its parent
 
+    // This highlights the parent <ul> for any list element that is clicked
+    $('li').click(function(){
+        // method chaining
+        $(this).parent().css('background-color', 'yellow');
+    });
+
     // TODO TOGETHER: When I click into a <ul>, console log last child in that group
+    $('ul').click(function(){
+        console.log($(this).children().last().html());
+    });
 
-    // TODO TOGETHER: When I click on any list element, console log the next element
+    // TODO TOGETHER: When I click on Ravenclaw heading, change bg color of list to blue
 
-
-
+    $('#r-heading').click(function () {
+        // $(this).next().css('background-color','blue');
+        $(this).next().addClass('ravenclaw');
+    });
 });
