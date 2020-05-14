@@ -1,9 +1,5 @@
 "use strict";
 
-// $(document).keyup(function (event) {
-//     console.log(event.keyCode);
-// });
-
 $('h1').click(function () {
     $('#gameboy').css('visibility', 'visible');
     $(this).css('visibility', 'hidden');
@@ -44,6 +40,7 @@ function contraLives(arr1, arr2) {
                 // $('.button').css('visibility', 'visible');
             }, 8000);
         }
+        bucket = [];
     }
 }
 
