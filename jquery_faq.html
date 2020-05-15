@@ -48,24 +48,24 @@
 </dl>
 <button id="styler">Want to read some stuff?</button>
 
-<h3 id="heading1">National Parks</h3>
-<ul class="ulStart" id="state-parks1">
+<h3 class="heading-list" id="heading1">National Parks</h3>
+<ul class="heading-list ulStart" id="state-parks1">
     <li>Arches</li>
     <li>Badlands</li>
     <li>Carlsbad Caverns</li>
     <li>Denali</li>
     <li>Everglades</li>
 </ul>
-<h3 id="heading2">State Parks of Texas</h3>
-<ul class="ulStart" id="state-parks2">
+<h3 class="heading-list" id="heading2">State Parks of Texas</h3>
+<ul class="heading-list ulStart" id="state-parks2">
     <li>Abilene</li>
     <li>Big Bend</li>
     <li>Choke Canyon</li>
     <li>Davis Mountains</li>
     <li>Enchanted Rock</li>
 </ul>
-<h3 id="heading3">State Parks of Texas</h3>
-<ul class="ulStart" id="state-parks3">
+<h3 class="heading-list" id="heading3">State Parks of Texas</h3>
+<ul class="heading-list ulStart" id="state-parks3">
     <li>Abilene</li>
     <li>Big Bend</li>
     <li>Choke Canyon</li>
@@ -113,42 +113,15 @@
         });
     });
 
-    $('#heading1').click(function () {
-        $(this).next().children().css({
-            'font-weight': 'bold',
-            'color': 'red'
-        });
-    });
-
-    $('#heading2').click(function () {
-        $(this).next().children().css({
-            'font-weight': 'bold',
-            'color': 'red'
-        });
-    });
-
-    $('#heading3').click(function () {
-        $(this).next().children().css({
-            'font-weight': 'bold',
-            'color': 'red'
-        });
+    $('h3').click(function () {
+        $(this).next().children().css('color','red')
     });
 
     $('li').click(function () {
-        $('#state-parks1').children().first().css({
-            'font-weight': 'bold',
-            'color': 'blue'
-        });
-        $('#state-parks2').children().first().css({
-            'font-weight': 'bold',
-            'color': 'blue'
-        });
-        $('#state-parks3').children().first().css({
-            'font-weight': 'bold',
-            'color': 'blue'
-        });
+        $(this).parent().children().first().css('color', 'blue');
     });
 
+    //Bonus
     $('#pic1').click(function () {
         $(this).css('background-image', 'url("img/taco.png")');
     });

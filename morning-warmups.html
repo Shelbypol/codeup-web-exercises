@@ -211,14 +211,35 @@
                     return false;
                 }
             }
-        console.log(pwrOfFour(4));
-        console.log(pwrOfFour('4'));
-        console.log(pwrOfFour(true));
-        console.log(pwrOfFour(NaN));
+        // console.log(pwrOfFour(4));
+        // console.log(pwrOfFour('4'));
+        // console.log(pwrOfFour(true));
+        // console.log(pwrOfFour(NaN));
+
+        // Write a JavaScript function that takes in a string and returns the number of words in the string. If the function is ever passed an argument that is not a string, return the number 0.
+
+        // function numOfWords(str){
+        //     var splits = str.split;
+        //     var count = 0;
+        //     for(var i = 0 ; i <= splits.length; i++)
+        //        if(typeof splits[i] === 'string' ){
+        //            count++;
+        //        }else{
+        //            return false;
+        //        }
+        //     return count;
+        //     }
 
 
-
-
+        //davids solution
+        function numOfWords(str) {
+            if(typeof str === 'string'){
+                return str.split(' ').length;
+            }else{
+                return 0;
+            }
+        }
+        console.log(numOfWords('hello shelby'));
 
 
     </script>
