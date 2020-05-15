@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+
         .invisible {
             visibility: hidden;
         }
@@ -43,10 +48,35 @@
 
     <dt>Beast of Bodmin</dt>
     <dd>A large feline inhabiting Bodmin Moor.</dd>
-
 </dl>
 <button id="styler">Want to read some stuff?</button>
 
+<h3 id="heading1">National Parks</h3>
+<ul class="ulStart" id="state-parks1">
+    <li>Arches</li>
+    <li>Badlands</li>
+    <li>Carlsbad Caverns</li>
+    <li>Denali</li>
+    <li>Everglades</li>
+</ul>
+<h3 id="heading2">State Parks of Texas</h3>
+<ul class="ulStart" id="state-parks2">
+    <li>Abilene</li>
+    <li>Big Bend</li>
+    <li>Choke Canyon</li>
+    <li>Davis Mountains</li>
+    <li>Enchanted Rock</li>
+</ul>
+<h3 id="heading3">State Parks of Texas</h3>
+<ul class="ulStart" id="state-parks3">
+    <li>Abilene</li>
+    <li>Big Bend</li>
+    <li>Choke Canyon</li>
+    <li>Davis Mountains</li>
+    <li>Enchanted Rock</li>
+</ul>
+
+<button id="color-li">Color last li</button>
 
 <script src="js/jquery-2.2.4.js"></script>
 <script>
@@ -59,11 +89,55 @@
                 'color': 'white'
             });
         });
-            $('dd').addClass('invisible');
-            $('#styler').click(function () {
-                $('dd').toggleClass('invisible');
-            });
+        $('dd').addClass('invisible');
+        $('#styler').click(function () {
+            $('dd').toggleClass('invisible');
         });
+    });
+
+    $('#color-li').click(function () {
+        $('ul').each(function () {
+            $(this).children().last().css('background-color', 'yellow');
+        });
+    });
+
+    $('#heading1').click(function () {
+        $(this).next().children().css({
+            'font-weight': 'bold',
+            'color': 'red'
+        });
+    });
+
+    $('#heading2').click(function () {
+        $(this).next().children().css({
+            'font-weight': 'bold',
+            'color': 'red'
+        });
+    });
+
+    $('#heading3').click(function () {
+        $(this).next().children().css({
+            'font-weight': 'bold',
+            'color': 'red'
+        });
+    });
+
+    $('li').click(function () {
+        $('#state-parks1').children().first().css({
+                'font-weight': 'bold',
+                'color': 'blue'
+            });
+        $('#state-parks2').children().first().css({
+            'font-weight': 'bold',
+            'color': 'blue'
+        });
+        $('#state-parks3').children().first().css({
+            'font-weight': 'bold',
+            'color': 'blue'
+        });
+    });
+
+
 
 
 
