@@ -12,31 +12,28 @@
         .invisible {
             visibility: hidden;
         }
+
+        #center {
+            margin: 4em auto;
+        }
+
+        .center{
+            margin-top: 10px;
+        }
+
+        .frame img{
+            width: 50px;
+            height: 100px;
+            float:left;
+        }
+
+
     </style>
 </head>
 <body>
-
 <p>Cryptids of Cornwall:</p>
 
 <dl>
-    <dt>Beast of Bodmin</dt>
-    <dd>A large feline inhabiting Bodmin Moor.</dd>
-
-    <dt>Morgawr</dt>
-    <dd>A sea serpent.</dd>
-
-    <dt>Owlman</dt>
-    <dd>A giant owl-like creature.</dd>
-
-    <dt>Beast of Bodmin</dt>
-    <dd>A large feline inhabiting Bodmin Moor.</dd>
-
-    <dt>Morgawr</dt>
-    <dd>A sea serpent.</dd>
-
-    <dt>Owlman</dt>
-    <dd>A giant owl-like creature.</dd>
-
     <dt>Beast of Bodmin</dt>
     <dd>A large feline inhabiting Bodmin Moor.</dd>
 
@@ -77,6 +74,21 @@
 </ul>
 
 <button id="color-li">Color last li</button>
+
+<div class="center">
+        <div class='frame'>
+            <img id="pic1" src="img/sortinghat.png" alt="">
+        </div>
+
+        <div class='frame'>
+            <img id="pic2" src="img/taco.jpg" alt="">
+        </div>
+
+        <div class='frame'>
+            <img id="pic3" src="img/gameboy-advance.png" alt="">
+        </div>
+</div>
+
 
 <script src="js/jquery-2.2.4.js"></script>
 <script>
@@ -124,9 +136,9 @@
 
     $('li').click(function () {
         $('#state-parks1').children().first().css({
-                'font-weight': 'bold',
-                'color': 'blue'
-            });
+            'font-weight': 'bold',
+            'color': 'blue'
+        });
         $('#state-parks2').children().first().css({
             'font-weight': 'bold',
             'color': 'blue'
@@ -137,10 +149,17 @@
         });
     });
 
-
-
-
+    $('#pic1').click(function () {
+        $(this).css('background-image', 'url("img/taco.png")');
+    });
+    $('#pic2').click(function () {
+        $(this).css('background-image', 'url("img/taco.png")');
+    });
+    $('#pic3').click(function () {
+        $(this).css('background-image', 'url("img/gameboy-advance.png")');
+    });
 
 </script>
+
 </body>
 </html>
