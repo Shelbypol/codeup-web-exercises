@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+</head>
+<body>
+<div id="posts"></div>
+
+
+<script src="js/jquery-2.2.4.js"></script>
+<script>
+    'ues strict';
+
+    $.get('data/blog.json').done(function (info) {
+
+        function blogDisplay() {
+            for (var i = 0; i < info.length; i++) {
+                var title = info[i].title;
+                var content = info[i].content;
+                var category = info[i].categories;
+                var date = info[i].date;
+                $("#posts").append(
+                    title +  '<br>' +
+                    content + '<br>' +
+                    category + '<br>' +
+                    date);
+            }
+        }
+        blogDisplay();
+
+    });
+
+</script>
+
+
+</body>
+</html>
