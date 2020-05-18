@@ -49,20 +49,26 @@
         // });
 
         //quote
-        $.get('http://quotes.stormconsultancy.co.uk/quotes.json').done(function (info) {
-            console.log(info);
+        $.get('http://quotes.stormconsultancy.co.uk/popular.json').done(function (info) {
+            function quoteDisplay() {
 
-            function randomQuote() {
-                $('#quote').click(function () {
+                $("#quote").click(function () {
                     for (var i = 0; i < info.length; i++) {
-                        // var quote = info.quote[i];
-                        // $('#display').append(info);
-                        console.log(info[i]);
+                        var quote = info[i].quote;
+                        var author = info[i].author;
+                        if(Math.floor(Math.random() * (info.length) ) === i) {
+                            $('#display').append(
+                                '"' + quote + '"' + '<br>' + '<br>' +
+                                '~' + author + '~' + '<br>' + '<br>');
+                        }
                     }
                 });
             }
-            randomQuote();
-        });
+
+            quoteDisplay();
+
+
+        });//end quote ajax request
 
 
     });
