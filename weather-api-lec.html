@@ -3,18 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Weather API Lec</title>
-    <link rel="stylesheet" href="js/keys.js">
 </head>
 <body>
 
 
 <script src="js/jquery-2.2.4.js"></script>
-<!--need keys for mapbox and open weather map-->
+<script src="js/keys.js"></script>
 <script>
     'use strict';
     $(document).ready(function () {
-        //javascript object notation JSON
-        //mapbox api combined with weather
+
+        var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall';
+        var weatherOptions = {
+            lat: 29.4241,
+            lon: -98.4936,
+            appid: OPEN_WEATHER_APPID,
+            exclude: 'minutely, current, hourly',
+            units: 'imperial',
+
+        };
+
+        //readeable date form
+        function parseDate(timestamp){
+            return new Date(timestamp * 1000).toLocaleDateString();
+        }
+
+        //new Date(# * 1000).toString() //find out what date it is
+        //send request to open weather map One call API
+        $.get(weatherUrl, weatherOptions).done(function(data) {
+            console.log(data.daily[0].humidity); //humidity
+            console.log(data.daily[0].temp.max); //max temp
+            //parameters of key values pairs
+
+            console.log(parseDate(data.daily[0].dt));
+        });
+
 
 
     });
