@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax Bonus</title>
+    <style>
+        .wrapper {
+            margin: auto;
+            display: grid;
+            width: 80vw;
+            height: 80vh;
+            grid-template-areas: 'joke display quote';
+        }
+
+        #joke {
+            grid-area: joke;
+        }
+
+        #display {
+            grid-area: display;
+            padding-left: 50px;
+            padding-right: 50px;
+            margin: auto;
+        }
+
+        #quote {
+            grid-area: quote;
+        }
+    </style>
+</head>
+<body>
+
+<main class="wrapper">
+    <button id="joke">joke</button>
+    <div id="display"></div>
+    <button id="quote">quote</button>
+</main>
+
+
+<script src="js/jquery-2.2.4.js"></script>
+<script>
+    'use strict';
+    $(document).ready(function () {
+
+        // //joke
+        // $.ajax('http://api.icndb.com/jokes/random').done(function (info) {
+        //     console.log('success');
+        //     console.log(info);
+        // });
+
+        //quote
+        $.get('http://quotes.stormconsultancy.co.uk/quotes.json').done(function (info) {
+            console.log(info);
+
+            function randomQuote() {
+                $('#quote').click(function () {
+                    for (var i = 0; i < info.length; i++) {
+                        // var quote = info.quote[i];
+                        // $('#display').append(info);
+                        console.log(info[i]);
+                    }
+                });
+            }
+            randomQuote();
+        });
+
+
+    });
+</script>
+</body>
+</html>
