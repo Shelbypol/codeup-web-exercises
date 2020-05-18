@@ -3,15 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/weather_map.css">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css' rel='stylesheet' />
+
 </head>
 <body>
+<div id="wrapper" class="m-2">
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <a class="navbar-brand text-white" href="#">WeatherApp</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+<!--            <li class="nav-item active">-->
+<!--                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="#"></a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="#">Pricing</a>-->
+<!--            </li>-->
+        </ul>
+        <span class="navbar-text text-white">
+      Navbar text with an inline element
+    </span>
+    </div>
+</nav>
+
+<!--Place-->
+<form class="form-inline">
+    <div class="form-group mb-2 mt-3">
+        <label for="staticEmail2" class="sr-only">Place</label>
+        <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="Place">
+    </div>
+    <div class="form-group mx-sm-3 mb-2">
+        <label for="inputPassword2" class="sr-only">Search Map</label>
+        <input type="text" class="form-control" id="inputPassword2" placeholder="Search Map">
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Find</button>
+</form>
+
+<div class="row justify-content-center">
+<!--Card One-->
+<div class="card col-2.4" style="width: 15rem;">
+    <div class="card-header">
+        Featured
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Dapibus ac facilisis in</li>
+        <li class="list-group-item">Vestibulum at eros</li>
+    </ul>
+</div>
+
+<!--Card Two-->
+<div class="card col-2.4" style="width: 15rem;">
+    <div class="card-header">
+        Featured
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Dapibus ac facilisis in</li>
+        <li class="list-group-item">Vestibulum at eros</li>
+    </ul>
+</div>
+
+<!--Card Three-->
+<div class="card col-2.4" style="width: 18rem;">
+    <div class="card-header">
+        Featured
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Dapibus ac facilisis in</li>
+        <li class="list-group-item">Vestibulum at eros</li>
+    </ul>
+</div>
+
+<!--Card Four-->
+<div class="card col-2.4" style="width: 15rem;">
+    <div class="card-header">
+        Featured
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Dapibus ac facilisis in</li>
+        <li class="list-group-item">Vestibulum at eros</li>
+    </ul>
+</div>
+
+<!--Card Five-->
+<div class="card col-2.4" style="width: 15rem;">
+    <div class="card-header">
+        Featured
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Cras justo odio</li>
+        <li class="list-group-item">Dapibus ac facilisis in</li>
+        <li class="list-group-item">Vestibulum at eros</li>
+    </ul>
+</div>
+</div> <!--end row-->
+
+<div class="row">
+    <div id='map' class='col-12 justify-content-center' ></div>
+</div> <!--end wrapper div-->
+
+
 
 <script src="js/jquery-2.2.4.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 <script src="js/keys.js"></script>
+<script src="js/mapbox-geocode-utilities.js"></script>
 <script>
     'use strict';
     $(document).ready(function () {
 
+        //weather
         var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall';
         var weatherOptions = {
             lat: 29.4241,
@@ -19,7 +132,6 @@
             appid: OPEN_WEATHER_APPID,
             exclude: 'minutely, current, hourly',
             units: 'imperial',
-
         };
 
         //readeable date form
@@ -30,6 +142,7 @@
         //new Date(# * 1000).toString() //find out what date it is
         //send request to open weather map One call API
         $.get(weatherUrl, weatherOptions).done(function(data) {
+            console.log(data);
             console.log(data.daily[0].humidity); //humidity
             console.log(data.daily[0].temp.max); //max temp
             //parameters of key values pairs
@@ -37,7 +150,49 @@
             console.log(parseDate(data.daily[0].dt));
         });
 
+        mapboxgl.accessToken = MAPBOX_KEY;
+        var map = new mapboxgl.Map({
+            container: 'map', //corresponds to html id
+            style: 'mapbox://styles/mapbox/streets-v9',
+            zoom: 8,
+            center: [-68.922267, 45.9044906]
+        });
 
+        //======MARKER
+        //create
+        var marker = new mapboxgl.Marker();
+        //where it's going to sit
+        //method chain
+        marker
+            .setLngLat([-68.922267, 45.9044906])
+            .addTo(map);
+
+        marker.setDraggable(true);
+
+        //======POPUP
+
+        var popup = new mapboxgl.Popup();
+
+        popup.setHTML('<h2>End of the AT!</h2>');
+
+        marker.setPopup(popup);
+
+        //events
+        map.on('click', function () {
+            console.log('hello');
+        });
+
+        //===========GEO-CODING
+
+        geocode('600 Navarro St #350, San Antonio, Tx 78205', MAPBOX_KEY).then(function (result) {
+            console.log(result);
+            map.setCenter(result);
+            map.setZoom(18);
+        });
+
+        reverseGeocode({lng: -98.4861, lat: 29.4260}, MAPBOX_KEY).then(function (results) {
+            console.log(results);
+        })
 
     });
 
