@@ -37,14 +37,14 @@
     <!--Place-->
     <form class="form-inline">
         <div class="form-group mb-2 mt-3">
-            <label for="staticEmail2" class="sr-only">Place</label>
-            <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="Place">
+            <label for="searchTitle" class="sr-only">Place</label>
+            <input type="text" readonly class="form-control-plaintext" id="searchTitle" value="Place">
         </div>
-        <div class="form-group mx-sm-3 mb-2">
-            <label for="inputPassword2" class="sr-only">Search Map</label>
-            <input type="text" class="form-control" id="inputPassword2" placeholder="Search Map">
+        <div class="form-group mx-sm-1 mb-2">
+            <label for="userSearch" class="sr-only">Search Map</label>
+            <input type="text" class="form-control" id="userSearch" placeholder="Search Map">
         </div>
-        <button type="submit" class="btn btn-primary mb-2">Find</button>
+        <button type="submit" id='searchBtn' class="btn btn-primary mb-2">Find</button>
     </form>
 
     <div class="row justify-content-center">
@@ -110,7 +110,7 @@
     </div> <!--end row-->
 
     <div class="row">
-        <div id='map' class='col-10 mx-auto'></div>
+        <div id='map' class='col-10 justify-content-center m-2 p-0'></div>
     </div>
 
 </div><!--end wrapper div-->
@@ -128,7 +128,7 @@
     'use strict';
     $(document).ready(function () {
 
-        //weather
+        //Weather API
         var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall';
         var weatherOptions = {
             lat: 29.4241,
@@ -138,13 +138,51 @@
             units: 'imperial',
         };
 
+
+        //Grab User Search
+        $('#searchBtn').click(function (e) {
+            e.preventDefault();
+            var userInput = $('#userSearch').val();
+
+            //Forward Geocode
+            geocode(userInput, MAPBOX_KEY).then(function (result) {
+                var newMarkerCoords = result;
+                // console.log(result);
+                map.setCenter(result);
+                map.setZoom(10);
+
+                //Marker
+                var marker = new mapboxgl.Marker();
+                marker
+                    // .setLngLat([-68.922267, 45.9044906])
+                    .setLngLat(result)
+                    .addTo(map);
+                marker.setDraggable(true);
+
+                //Weather Update on User Search
+                //Weather API
+                // var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall';
+                var weatherOptions = {
+                    lat: result[1],
+                    lon: result[0],
+                    // appid: OPEN_WEATHER_APPID,
+                    // exclude: 'minutely, current, hourly',
+                    // units: 'imperial',
+                };
+                console.log(result);
+            });//end goecode
+
+        }); //End Search Btn Click
+
+
         //Date String Format Function
         function parseDate(timestamp) {
             return new Date(timestamp * 1000).toLocaleDateString();
         }
+
         //send request to open weather map One call API
         $.get(weatherUrl, weatherOptions).done(function (data) {
-            console.log(data);
+            // console.log(data);
 
             //Date
             $('.date0').append((parseDate(data.daily[0].dt)));
@@ -188,52 +226,52 @@
             $('.pressure3').append('Pressure: ' + (data.daily[3].pressure));
             $('.pressure4').append('Pressure: ' + (data.daily[4].pressure));
 
+        }); //End request to open weather map One call API
 
-        });
 
+
+
+        //MapBox API
         mapboxgl.accessToken = MAPBOX_KEY;
         var map = new mapboxgl.Map({
             container: 'map', //corresponds to html id
             style: 'mapbox://styles/mapbox/streets-v9',
-            zoom: 8,
+            zoom: 10,
             center: [-68.922267, 45.9044906]
         });
 
         //======MARKER
         //create
-        var marker = new mapboxgl.Marker();
-        //where it's going to sit
-        //method chain
-        marker
-            .setLngLat([-68.922267, 45.9044906])
-            .addTo(map);
+        // var marker = new mapboxgl.Marker();
+        // //where it's going to sit
+        // //method chain
+        // marker
+        //     .setLngLat([-68.922267, 45.9044906])
+        //     .addTo(map);
+        //
+        // marker.setDraggable(true);
 
-        marker.setDraggable(true);
-
-        //======POPUP
-
-        var popup = new mapboxgl.Popup();
-
-        popup.setHTML('<h2>End of the AT!</h2>');
-
-        marker.setPopup(popup);
-
-        //events
-        map.on('click', function () {
-            console.log('hello');
-        });
+        // //======POPUP
+        // var popup = new mapboxgl.Popup();
+        // popup.setHTML('<h2>End of the AT!</h2>');
+        // marker.setPopup(popup);
+        //
+        // //events
+        // map.on('click', function () {
+        //     console.log('hello');
+        // });
 
         //===========GEO-CODING
 
-        geocode('600 Navarro St #350, San Antonio, Tx 78205', MAPBOX_KEY).then(function (result) {
-            console.log(result);
-            map.setCenter(result);
-            map.setZoom(18);
-        });
+        // geocode('600 Navarro St #350, San Antonio, Tx 78205', MAPBOX_KEY).then(function (result) {
+        //     console.log(result);
+        //     map.setCenter(result);
+        //     map.setZoom(18);
+        // });
 
-        reverseGeocode({lng: -98.4861, lat: 29.4260}, MAPBOX_KEY).then(function (results) {
-            console.log(results);
-        })
+        // reverseGeocode({lng: -98.4861, lat: 29.4260}, MAPBOX_KEY).then(function (results) {
+        //     console.log(results);
+        // })
 
     });
 
