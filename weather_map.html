@@ -36,15 +36,11 @@
 
     <!--Place-->
     <form class="form-inline">
-        <div class="form-group mb-2 mt-3">
-            <label for="searchTitle" class="sr-only">Place</label>
-            <input type="text" readonly class="form-control-plaintext" id="searchTitle" value="Place">
-        </div>
-        <div class="form-group mx-sm-1 mb-2">
+        <div class="form-group mx-sm-2 mt-3 mb-2">
             <label for="userSearch" class="sr-only">Search Map</label>
             <input type="text" class="form-control" id="userSearch" placeholder="Search Map">
         </div>
-        <button type="submit" id='searchBtn' class="btn btn-primary mb-2">Get Weather</button>
+        <button type="submit" id='searchBtn' class="btn btn-primary mb-2 mt-3">Get Weather</button>
     </form>
 
     <div class="row justify-content-center">
@@ -128,15 +124,34 @@
     'use strict';
     $(document).ready(function () {
 
+        // var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall';
+        // var weatherOptions = {
+        //     lat: 29.4241,
+        //     lon: -98.4936,
+        //     appid: OPEN_WEATHER_APPID,
+        //     exclude: 'minutely, current, hourly',
+        //     units: 'imperial',
+        // };
+        // //Marker
+        // var marker = new mapboxgl.Marker();
+        // marker
+        //     .setLngLat(-98.4836, 29.4241)
+        //     .addTo(map)
+        //     .setDraggable(true);
+
         //Grab User Search
         $('#searchBtn').click(function (e) {
             e.preventDefault();
             var userInput = $('#userSearch').val();
 
+            //Weather API
+            // function weather() {
             //Forward Geocode
             geocode(userInput, MAPBOX_KEY).then(function (result) {
                 map.setCenter(result);
                 map.setZoom(10);
+                var lat = result[1];
+                var lon = result[0];
 
                 //Marker
                 var marker = new mapboxgl.Marker();
@@ -145,17 +160,70 @@
                     .addTo(map)
                     .setDraggable(true);
 
-            });//end goecode
 
+                //Date String Format Function
+                function parseDate(timestamp) {
+                    return new Date(timestamp * 1000).toLocaleDateString();
+                }
+
+                var weatherUrl = 'dd8bc8ad4512c428dd56e2b72143268b';
+                var weatherOptions = {
+                    lat: lat,
+                    lon: lon,
+                    appid: OPEN_WEATHER_APPID_SEARCH,
+                    exclude: 'minutely, current, hourly',
+                    units: 'imperial',
+                };
+
+                //send request to open weather map One call API
+                $.get(weatherUrl, weatherOptions).done(function (data) {
+                    // Date
+                    $('.date0').append((parseDate(data.daily[0].dt)));
+                    $('.date1').append((parseDate(data.daily[1].dt)));
+                    $('.date2').append((parseDate(data.daily[2].dt)));
+                    $('.date3').append((parseDate(data.daily[3].dt)));
+                    $('.date4').append((parseDate(data.daily[4].dt)));
+
+                    //Max Temp
+                    $('.temp0').empty().append('max temp: ' + (data.daily[0].temp.max) + ' F');
+                    $('.temp1').append('max temp: ' + (data.daily[1].temp.max) + ' F');
+                    $('.temp2').append('max temp: ' + (data.daily[2].temp.max) + ' F');
+                    $('.temp3').append('max temp: ' + (data.daily[3].temp.max) + ' F');
+                    $('.temp4').append('max temp: ' + (data.daily[4].temp.max) + ' F');
+
+                    //Description
+                    $('.description0').append((data.daily[0].weather[0].description));
+                    $('.description1').append((data.daily[1].weather[0].description));
+                    $('.description2').append((data.daily[2].weather[0].description));
+                    $('.description3').append((data.daily[3].weather[0].description));
+                    $('.description4').append((data.daily[4].weather[0].description));
+
+                    //Humidity
+                    $('.humidity0').append('Humidity: ' + (data.daily[0].humidity));
+                    $('.humidity1').append('Humidity: ' + (data.daily[1].humidity));
+                    $('.humidity2').append('Humidity: ' + (data.daily[2].humidity));
+                    $('.humidity3').append('Humidity: ' + (data.daily[3].humidity));
+                    $('.humidity4').append('Humidity: ' + (data.daily[4].humidity));
+
+                    //Wind Speed
+                    $('.wind0').append('Wind Speed: ' + (data.daily[0].wind_speed) + ' mph');
+                    $('.wind1').append('Wind Speed: ' + (data.daily[1].wind_speed) + ' mph');
+                    $('.wind2').append('Wind Speed: ' + (data.daily[2].wind_speed) + ' mph');
+                    $('.wind3').append('Wind Speed: ' + (data.daily[3].wind_speed) + ' mph');
+                    $('.wind4').append('Wind Speed: ' + (data.daily[4].wind_speed) + ' mph');
+
+                    //Pressure
+                    $('.pressure0').append('Pressure: ' + (data.daily[0].pressure));
+                    $('.pressure1').append('Pressure: ' + (data.daily[1].pressure));
+                    $('.pressure2').append('Pressure: ' + (data.daily[2].pressure));
+                    $('.pressure3').append('Pressure: ' + (data.daily[3].pressure));
+                    $('.pressure4').append('Pressure: ' + (data.daily[4].pressure));
+                }); //End request to open weather map One call API
+            }); //End Geocode function
+            // } //End weather function
+            // weather();
         }); //End Search Btn Click
 
-
-        //Date String Format Function
-        function parseDate(timestamp) {
-            return new Date(timestamp * 1000).toLocaleDateString();
-        }
-
-        //Weather API
         var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall';
         var weatherOptions = {
             lat: 29.4241,
@@ -164,52 +232,59 @@
             exclude: 'minutely, current, hourly',
             units: 'imperial',
         };
+
+        //Date String Format Function
+        function parseDate(timestamp) {
+            return new Date(timestamp * 1000).toLocaleDateString();
+        }
+
         //send request to open weather map One call API
         $.get(weatherUrl, weatherOptions).done(function (data) {
             // console.log(data);
+            function card() {
+                // Date
+                $('.date0').append((parseDate(data.daily[0].dt)));
+                $('.date1').append((parseDate(data.daily[1].dt)));
+                $('.date2').append((parseDate(data.daily[2].dt)));
+                $('.date3').append((parseDate(data.daily[3].dt)));
+                $('.date4').append((parseDate(data.daily[4].dt)));
 
-            // Date
-            $('.date0').append((parseDate(data.daily[0].dt)));
-            $('.date1').append((parseDate(data.daily[1].dt)));
-            $('.date2').append((parseDate(data.daily[2].dt)));
-            $('.date3').append((parseDate(data.daily[3].dt)));
-            $('.date4').append((parseDate(data.daily[4].dt)));
+                //Max Temp
+                $('.temp0').append('max temp: ' + (data.daily[0].temp.max) + ' F');
+                $('.temp1').append('max temp: ' + (data.daily[1].temp.max) + ' F');
+                $('.temp2').append('max temp: ' + (data.daily[2].temp.max) + ' F');
+                $('.temp3').append('max temp: ' + (data.daily[3].temp.max) + ' F');
+                $('.temp4').append('max temp: ' + (data.daily[4].temp.max) + ' F');
 
-            //Max Temp
-            $('.temp0').append('max temp: ' + (data.daily[0].temp.max) + ' F');
-            $('.temp1').append('max temp: ' + (data.daily[1].temp.max) + ' F');
-            $('.temp2').append('max temp: ' + (data.daily[2].temp.max) + ' F');
-            $('.temp3').append('max temp: ' + (data.daily[3].temp.max) + ' F');
-            $('.temp4').append('max temp: ' + (data.daily[4].temp.max) + ' F');
+                //Description
+                $('.description0').append((data.daily[0].weather[0].description));
+                $('.description1').append((data.daily[1].weather[0].description));
+                $('.description2').append((data.daily[2].weather[0].description));
+                $('.description3').append((data.daily[3].weather[0].description));
+                $('.description4').append((data.daily[4].weather[0].description));
 
-            //Description
-            $('.description0').append((data.daily[0].weather[0].description));
-            $('.description1').append((data.daily[1].weather[0].description));
-            $('.description2').append((data.daily[2].weather[0].description));
-            $('.description3').append((data.daily[3].weather[0].description));
-            $('.description4').append((data.daily[4].weather[0].description));
+                //Humidity
+                $('.humidity0').append('Humidity: ' + (data.daily[0].humidity));
+                $('.humidity1').append('Humidity: ' + (data.daily[1].humidity));
+                $('.humidity2').append('Humidity: ' + (data.daily[2].humidity));
+                $('.humidity3').append('Humidity: ' + (data.daily[3].humidity));
+                $('.humidity4').append('Humidity: ' + (data.daily[4].humidity));
 
-            //Humidity
-            $('.humidity0').append('Humidity: ' + (data.daily[0].humidity));
-            $('.humidity1').append('Humidity: ' + (data.daily[1].humidity));
-            $('.humidity2').append('Humidity: ' + (data.daily[2].humidity));
-            $('.humidity3').append('Humidity: ' + (data.daily[3].humidity));
-            $('.humidity4').append('Humidity: ' + (data.daily[4].humidity));
+                //Wind Speed
+                $('.wind0').append('Wind Speed: ' + (data.daily[0].wind_speed) + ' mph');
+                $('.wind1').append('Wind Speed: ' + (data.daily[1].wind_speed) + ' mph');
+                $('.wind2').append('Wind Speed: ' + (data.daily[2].wind_speed) + ' mph');
+                $('.wind3').append('Wind Speed: ' + (data.daily[3].wind_speed) + ' mph');
+                $('.wind4').append('Wind Speed: ' + (data.daily[4].wind_speed) + ' mph');
 
-            //Wind Speed
-            $('.wind0').append('Wind Speed: ' + (data.daily[0].wind_speed) + ' mph');
-            $('.wind1').append('Wind Speed: ' + (data.daily[1].wind_speed) + ' mph');
-            $('.wind2').append('Wind Speed: ' + (data.daily[2].wind_speed) + ' mph');
-            $('.wind3').append('Wind Speed: ' + (data.daily[3].wind_speed) + ' mph');
-            $('.wind4').append('Wind Speed: ' + (data.daily[4].wind_speed) + ' mph');
-
-            //Pressure
-            $('.pressure0').append('Pressure: ' + (data.daily[0].pressure));
-            $('.pressure1').append('Pressure: ' + (data.daily[1].pressure));
-            $('.pressure2').append('Pressure: ' + (data.daily[2].pressure));
-            $('.pressure3').append('Pressure: ' + (data.daily[3].pressure));
-            $('.pressure4').append('Pressure: ' + (data.daily[4].pressure));
-
+                //Pressure
+                $('.pressure0').append('Pressure: ' + (data.daily[0].pressure));
+                $('.pressure1').append('Pressure: ' + (data.daily[1].pressure));
+                $('.pressure2').append('Pressure: ' + (data.daily[2].pressure));
+                $('.pressure3').append('Pressure: ' + (data.daily[3].pressure));
+                $('.pressure4').append('Pressure: ' + (data.daily[4].pressure));
+            }//end card
+            card();
         }); //End request to open weather map One call API
 
 
@@ -223,14 +298,14 @@
         });
 
         // ======MARKER
-
-        var marker = new mapboxgl.Marker();
-        //where it's going to sit
-        //method chain
-        marker
-            .setLngLat([-98.4936, 29.4241])
-            .addTo(map)
-            .setDraggable(true);
+        //
+        // var marker = new mapboxgl.Marker();
+        // //where it's going to sit
+        // //method chain
+        // marker
+        //     .setLngLat([-98.4936, 29.4241])
+        //     .addTo(map)
+        //     .setDraggable(true);
 
         // //======POPUP
         // var popup = new mapboxgl.Popup();
