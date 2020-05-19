@@ -44,7 +44,7 @@
             <label for="userSearch" class="sr-only">Search Map</label>
             <input type="text" class="form-control" id="userSearch" placeholder="Search Map">
         </div>
-        <button type="submit" id='searchBtn' class="btn btn-primary mb-2">Find</button>
+        <button type="submit" id='searchBtn' class="btn btn-primary mb-2">Get Weather</button>
     </form>
 
     <div class="row justify-content-center">
@@ -110,7 +110,7 @@
     </div> <!--end row-->
 
     <div class="row">
-        <div id='map' class='col-10 justify-content-center m-2 p-0'></div>
+        <div id='map' class='col-12 center'></div>
     </div>
 
 </div><!--end wrapper div-->
@@ -128,17 +128,6 @@
     'use strict';
     $(document).ready(function () {
 
-        //Weather API
-        var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall';
-        var weatherOptions = {
-            lat: 29.4241,
-            lon: -98.4936,
-            appid: OPEN_WEATHER_APPID,
-            exclude: 'minutely, current, hourly',
-            units: 'imperial',
-        };
-
-
         //Grab User Search
         $('#searchBtn').click(function (e) {
             e.preventDefault();
@@ -146,30 +135,16 @@
 
             //Forward Geocode
             geocode(userInput, MAPBOX_KEY).then(function (result) {
-                var newMarkerCoords = result;
-                // console.log(result);
                 map.setCenter(result);
                 map.setZoom(10);
 
                 //Marker
                 var marker = new mapboxgl.Marker();
                 marker
-                    // .setLngLat([-68.922267, 45.9044906])
                     .setLngLat(result)
-                    .addTo(map);
-                marker.setDraggable(true);
+                    .addTo(map)
+                    .setDraggable(true);
 
-                //Weather Update on User Search
-                //Weather API
-                // var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall';
-                var weatherOptions = {
-                    lat: result[1],
-                    lon: result[0],
-                    // appid: OPEN_WEATHER_APPID,
-                    // exclude: 'minutely, current, hourly',
-                    // units: 'imperial',
-                };
-                console.log(result);
             });//end goecode
 
         }); //End Search Btn Click
@@ -180,11 +155,20 @@
             return new Date(timestamp * 1000).toLocaleDateString();
         }
 
+        //Weather API
+        var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall';
+        var weatherOptions = {
+            lat: 29.4241,
+            lon: -98.4936,
+            appid: OPEN_WEATHER_APPID,
+            exclude: 'minutely, current, hourly',
+            units: 'imperial',
+        };
         //send request to open weather map One call API
         $.get(weatherUrl, weatherOptions).done(function (data) {
             // console.log(data);
 
-            //Date
+            // Date
             $('.date0').append((parseDate(data.daily[0].dt)));
             $('.date1').append((parseDate(data.daily[1].dt)));
             $('.date2').append((parseDate(data.daily[2].dt)));
@@ -229,27 +213,24 @@
         }); //End request to open weather map One call API
 
 
-
-
         //MapBox API
         mapboxgl.accessToken = MAPBOX_KEY;
         var map = new mapboxgl.Map({
             container: 'map', //corresponds to html id
             style: 'mapbox://styles/mapbox/streets-v9',
             zoom: 10,
-            center: [-68.922267, 45.9044906]
+            center: [-98.4936, 29.4241]
         });
 
-        //======MARKER
-        //create
-        // var marker = new mapboxgl.Marker();
-        // //where it's going to sit
-        // //method chain
-        // marker
-        //     .setLngLat([-68.922267, 45.9044906])
-        //     .addTo(map);
-        //
-        // marker.setDraggable(true);
+        // ======MARKER
+
+        var marker = new mapboxgl.Marker();
+        //where it's going to sit
+        //method chain
+        marker
+            .setLngLat([-98.4936, 29.4241])
+            .addTo(map)
+            .setDraggable(true);
 
         // //======POPUP
         // var popup = new mapboxgl.Popup();
