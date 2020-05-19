@@ -3,121 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="css/weather_map.css">
     <script src='https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css' rel='stylesheet' />
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css' rel='stylesheet'/>
 
 </head>
 <body>
 <div id="wrapper" class="m-2">
-<nav class="navbar navbar-expand-lg navbar-light bg-primary">
-    <a class="navbar-brand text-white" href="#">WeatherApp</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto">
-<!--            <li class="nav-item active">-->
-<!--                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
-<!--            </li>-->
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link" href="#"></a>-->
-<!--            </li>-->
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link" href="#">Pricing</a>-->
-<!--            </li>-->
-        </ul>
-        <span class="navbar-text text-white">
-      Navbar text with an inline element
-    </span>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <a class="navbar-brand text-white" href="#">WeatherApp</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <!--            <li class="nav-item active">-->
+                <!--                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
+                <!--            </li>-->
+                <!--            <li class="nav-item">-->
+                <!--                <a class="nav-link" href="#"></a>-->
+                <!--            </li>-->
+                <!--            <li class="nav-item">-->
+                <!--                <a class="nav-link" href="#">Pricing</a>-->
+                <!--            </li>-->
+            </ul>
+            <span class="navbar-text text-white city-name"></span>
+        </div>
+    </nav>
+
+    <!--Place-->
+    <form class="form-inline">
+        <div class="form-group mb-2 mt-3">
+            <label for="staticEmail2" class="sr-only">Place</label>
+            <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="Place">
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="inputPassword2" class="sr-only">Search Map</label>
+            <input type="text" class="form-control" id="inputPassword2" placeholder="Search Map">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Find</button>
+    </form>
+
+    <div class="row justify-content-center">
+        <!--Card One-->
+        <div class="card col-2.4" style="width: 15rem;">
+            <div class="date0 card-header text-center"></div>
+            <ul class="list-group list-group-flush">
+                <li class="temp0 list-group-item"></li>
+                <li class="description0 list-group-item"></li>
+                <li class="humidity0 list-group-item"></li>
+                <li class="wind0 list-group-item"></li>
+                <li class="pressure0 list-group-item"></li>
+            </ul>
+        </div>
+
+        <!--Card Two-->
+        <div class="card col-2.4" style="width: 15rem;">
+            <div class="date1 card-header text-center"></div>
+            <ul class="list-group list-group-flush">
+                <li class="temp1 list-group-item"></li>
+                <li class="description1 list-group-item"></li>
+                <li class="humidity1 list-group-item"></li>
+                <li class="wind1 list-group-item"></li>
+                <li class="pressure1 list-group-item"></li>
+            </ul>
+        </div>
+
+        <!--Card Three-->
+        <div class="card col-2.4" style="width: 15rem;">
+            <div class="date2 card-header text-center"></div>
+            <ul class="list-group list-group-flush">
+                <li class="temp2 list-group-item"></li>
+                <li class="description2 list-group-item"></li>
+                <li class="humidity2 list-group-item"></li>
+                <li class="wind2 list-group-item"></li>
+                <li class="pressure2 list-group-item"></li>
+            </ul>
+        </div>
+
+        <!--Card Four-->
+        <div class="card col-2.4" style="width: 15rem;">
+            <div class="date3 card-header text-center"></div>
+            <ul class="list-group list-group-flush">
+                <li class="temp3 list-group-item"></li>
+                <li class="description3 list-group-item"></li>
+                <li class="humidity3 list-group-item"></li>
+                <li class="wind3 list-group-item"></li>
+                <li class="pressure3 list-group-item"></li>
+            </ul>
+        </div>
+
+        <!--Card Five-->
+        <div class="card col-2.4" style="width: 15rem;">
+            <div class="date4 card-header text-center"></div>
+            <ul class="list-group list-group-flush">
+                <li class="temp4 list-group-item">
+                <li class="description4 list-group-item"></li>
+                <li class="humidity4 list-group-item"></li>
+                <li class="wind4 list-group-item"></li>
+                <li class="pressure4 list-group-item"></li>
+            </ul>
+        </div>
+    </div> <!--end row-->
+
+    <div class="row">
+        <div id='map' class='col-10 mx-auto'></div>
     </div>
-</nav>
 
-<!--Place-->
-<form class="form-inline">
-    <div class="form-group mb-2 mt-3">
-        <label for="staticEmail2" class="sr-only">Place</label>
-        <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="Place">
-    </div>
-    <div class="form-group mx-sm-3 mb-2">
-        <label for="inputPassword2" class="sr-only">Search Map</label>
-        <input type="text" class="form-control" id="inputPassword2" placeholder="Search Map">
-    </div>
-    <button type="submit" class="btn btn-primary mb-2">Find</button>
-</form>
-
-<div class="row justify-content-center">
-<!--Card One-->
-<div class="card col-2.4" style="width: 15rem;">
-    <div class="card-header">
-        Featured
-    </div>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-    </ul>
-</div>
-
-<!--Card Two-->
-<div class="card col-2.4" style="width: 15rem;">
-    <div class="card-header">
-        Featured
-    </div>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-    </ul>
-</div>
-
-<!--Card Three-->
-<div class="card col-2.4" style="width: 18rem;">
-    <div class="card-header">
-        Featured
-    </div>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-    </ul>
-</div>
-
-<!--Card Four-->
-<div class="card col-2.4" style="width: 15rem;">
-    <div class="card-header">
-        Featured
-    </div>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-    </ul>
-</div>
-
-<!--Card Five-->
-<div class="card col-2.4" style="width: 15rem;">
-    <div class="card-header">
-        Featured
-    </div>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-    </ul>
-</div>
-</div> <!--end row-->
-
-<div class="row">
-    <div id='map' class='col-12 justify-content-center' ></div>
-</div> <!--end wrapper div-->
-
-
+</div><!--end wrapper div-->
 
 <script src="js/jquery-2.2.4.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
 <script src="js/keys.js"></script>
 <script src="js/mapbox-geocode-utilities.js"></script>
 <script>
@@ -134,20 +138,57 @@
             units: 'imperial',
         };
 
-        //readeable date form
-        function parseDate(timestamp){
+        //Date String Format Function
+        function parseDate(timestamp) {
             return new Date(timestamp * 1000).toLocaleDateString();
         }
-
-        //new Date(# * 1000).toString() //find out what date it is
         //send request to open weather map One call API
-        $.get(weatherUrl, weatherOptions).done(function(data) {
+        $.get(weatherUrl, weatherOptions).done(function (data) {
             console.log(data);
-            console.log(data.daily[0].humidity); //humidity
-            console.log(data.daily[0].temp.max); //max temp
-            //parameters of key values pairs
 
-            console.log(parseDate(data.daily[0].dt));
+            //Date
+            $('.date0').append((parseDate(data.daily[0].dt)));
+            $('.date1').append((parseDate(data.daily[1].dt)));
+            $('.date2').append((parseDate(data.daily[2].dt)));
+            $('.date3').append((parseDate(data.daily[3].dt)));
+            $('.date4').append((parseDate(data.daily[4].dt)));
+
+            //Max Temp
+            $('.temp0').append('max temp: ' + (data.daily[0].temp.max) + ' F');
+            $('.temp1').append('max temp: ' + (data.daily[1].temp.max) + ' F');
+            $('.temp2').append('max temp: ' + (data.daily[2].temp.max) + ' F');
+            $('.temp3').append('max temp: ' + (data.daily[3].temp.max) + ' F');
+            $('.temp4').append('max temp: ' + (data.daily[4].temp.max) + ' F');
+
+            //Description
+            $('.description0').append((data.daily[0].weather[0].description));
+            $('.description1').append((data.daily[1].weather[0].description));
+            $('.description2').append((data.daily[2].weather[0].description));
+            $('.description3').append((data.daily[3].weather[0].description));
+            $('.description4').append((data.daily[4].weather[0].description));
+
+            //Humidity
+            $('.humidity0').append('Humidity: ' + (data.daily[0].humidity));
+            $('.humidity1').append('Humidity: ' + (data.daily[1].humidity));
+            $('.humidity2').append('Humidity: ' + (data.daily[2].humidity));
+            $('.humidity3').append('Humidity: ' + (data.daily[3].humidity));
+            $('.humidity4').append('Humidity: ' + (data.daily[4].humidity));
+
+            //Wind Speed
+            $('.wind0').append('Wind Speed: ' + (data.daily[0].wind_speed) + ' mph');
+            $('.wind1').append('Wind Speed: ' + (data.daily[1].wind_speed) + ' mph');
+            $('.wind2').append('Wind Speed: ' + (data.daily[2].wind_speed) + ' mph');
+            $('.wind3').append('Wind Speed: ' + (data.daily[3].wind_speed) + ' mph');
+            $('.wind4').append('Wind Speed: ' + (data.daily[4].wind_speed) + ' mph');
+
+            //Pressure
+            $('.pressure0').append('Pressure: ' + (data.daily[0].pressure));
+            $('.pressure1').append('Pressure: ' + (data.daily[1].pressure));
+            $('.pressure2').append('Pressure: ' + (data.daily[2].pressure));
+            $('.pressure3').append('Pressure: ' + (data.daily[3].pressure));
+            $('.pressure4').append('Pressure: ' + (data.daily[4].pressure));
+
+
         });
 
         mapboxgl.accessToken = MAPBOX_KEY;
