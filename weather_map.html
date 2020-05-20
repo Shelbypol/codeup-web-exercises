@@ -112,7 +112,6 @@
 
         reverseGeocode(marker.getLngLat(), MAPBOX_KEY).then(function (results) {
             $('#city').html('Location: ' + results.features[3].place_name);
-            console.log(results);
         });
 
 //====================================Search Bar=======================================================
