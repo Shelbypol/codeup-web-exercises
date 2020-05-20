@@ -22,7 +22,7 @@
             <ul class="navbar-nav mr-auto">
 
             </ul>
-            <span class="navbar-text text-white city-name">City</span>
+            <span class="navbar-text text-white" id="city">City</span>
         </div>
     </nav>
 
@@ -57,6 +57,7 @@
     $(document).ready(function () {
 
 //========================================Page Load=================================================================
+
         var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall';
         var weatherOptions = {
             lat: 29.4241,
@@ -94,26 +95,38 @@
         });
 
         //Marker
+
         var marker = new mapboxgl.Marker();
         marker
             .setLngLat([-98.4936, 29.4241])
             .addTo(map)
             .setDraggable(true);
 
+        // geocode(marker.getLngLat(), MAPBOX_KEY).then(function (result) {
+        //     marker
+        //         .setLngLat(result)
+        //         .addTo(map)
+        //         .setDraggable(true);
+        //     map.setCenter(result);
+        //     map.setZoom(10);
+        //
+        // }); //End Geocode function
+
+        reverseGeocode(marker.getLngLat(), MAPBOX_KEY).then(function (results) {
+            // for(var i = 1; i <= 1; i++) {
+            $('#city').html('Location: ' + results.features[3].place_name);
+            // }
+            console.log(results);
+        });
+
 
 //====================================Search Bar=======================================================
         //Grab User Search
-        $('#searchBtn').click(function(e) {
+        $('#searchBtn').click(function (e) {
             e.preventDefault();
             var userInput = $('#userSearch').val();
 
-            marker.on('dragened', function(){
-                marker.setLngLat([marker.getLngLat().lng, marker.getLngLat().lat]);
-            });
-            //Weather API
-            geocode(userInput , MAPBOX_KEY).then(function (result) {
-                //Marker
-                // var marker = new mapboxgl.Marker();
+            geocode(userInput, MAPBOX_KEY).then(function (result) {
                 marker
                     .setLngLat(result)
                     .addTo(map)
@@ -123,10 +136,53 @@
 
             }); //End Geocode function
 
+            reverseGeocode(marker.getLngLat(), MAPBOX_KEY).then(function (results) {
+                // for(var i = 1; i <= 1; i++) {
+                $('#city').html('Location: ' + results.features[3].place_name);
+                // }
+                console.log(results);
+            });
+
             var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall';
             var weatherOptions = {
                 lat: marker.getLngLat().lat,
                 lon: marker.getLngLat().lng,
+                appid: OPEN_WEATHER_APPID,
+                exclude: 'minutely, current, hourly',
+                units: 'imperial'
+            };
+
+
+            $.get(weatherUrl, weatherOptions).done(function (data) {
+                var weatherUpdate = '';
+                for (var i = 0; i <= 5; i++) {
+                    weatherUpdate += (
+                        '<div class="card">' +
+                        '<div class="card-header text-center">' + new Date(data.daily[i].dt * 1000).toLocaleDateString() + '</div>' +
+                        '<ul class="list-group list-group-flush">' +
+                        '<li class="list-group-item">' + 'max temp: ' + data.daily[i].temp.max + ' F' + '</li>' +
+                        '<li class="list-group-item">' + data.daily[i].weather[0].description + '</li>' +
+                        '<li class="list-group-item">' + 'Humidity: ' + data.daily[i].humidity + '</li>' +
+                        '<li class="list-group-item ">' + 'Wind Speed: ' + data.daily[i].wind_speed + ' mph' + '</li>' +
+                        '<li class="list-group-item" >' + 'Pressure: ' + data.daily[i].pressure + '</li>' +
+                        '</ul>' +
+                        '</div>'
+                    )
+                } //end for loop
+                $('.weatherCard').html(weatherUpdate);
+            }); //End request to open weather map One call API
+        }); //End Search Btn Click
+
+//=======================================Marker Move Update=====================================================
+        function onDragEnd() {
+            var lng = marker.getLngLat().lng;
+            var lat = marker.getLngLat().lat;
+
+
+            var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall';
+            var weatherOptions = {
+                lat: lat,
+                lon: lng,
                 appid: OPEN_WEATHER_APPID,
                 exclude: 'minutely, current, hourly',
                 units: 'imperial'
@@ -150,50 +206,11 @@
                 } //end for loop
                 $('.weatherCard').html(weatherUpdate);
             }); //End request to open weather map One call API
-        }); //End Search Btn Click
-
-//=======================================Marker Move Update=====================================================
-    marker.on('dragened', function(){
-       marker.setLngLat([marker.getLngLat().lng, marker.getLngLat().lat]);
-    });
+        }
+        marker.on('dragend', onDragEnd);
 
 
-
-
-
-        // ======MARKER
-        //
-        // var marker = new mapboxgl.Marker();
-        // //where it's going to sit
-        // //method chain
-        // marker
-        //     .setLngLat([-98.4936, 29.4241])
-        //     .addTo(map)
-        //     .setDraggable(true);
-
-        // //======POPUP
-        // var popup = new mapboxgl.Popup();
-        // popup.setHTML('<h2>End of the AT!</h2>');
-        // marker.setPopup(popup);
-        //
-        // //events
-        // map.on('click', function () {
-        //     console.log('hello');
-        // });
-
-        //===========GEO-CODING
-
-        // geocode('600 Navarro St #350, San Antonio, Tx 78205', MAPBOX_KEY).then(function (result) {
-        //     console.log(result);
-        //     map.setCenter(result);
-        //     map.setZoom(18);
-        // });
-
-        // reverseGeocode({lng: -98.4861, lat: 29.4260}, MAPBOX_KEY).then(function (results) {
-        //     console.log(results);
-        // })
-
-    });
+    });// end document ready
 
 </script>
 </body>

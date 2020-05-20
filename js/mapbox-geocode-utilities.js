@@ -50,4 +50,18 @@ function reverseGeocode(coordinates, token) {
         // .then(function(data) {
         //     return data.features[0].place_name;
         // });
+
+
+
+    //===========GEO-CODING
+
+    // geocode('600 Navarro St #350, San Antonio, Tx 78205', MAPBOX_KEY).then(function (result) {
+    //     console.log(result);
+    //     map.setCenter(result);
+    //     map.setZoom(18);
+    // });
+
+    // reverseGeocode({lng: -98.4861, lat: 29.4260}, MAPBOX_KEY).then(function (results) {
+    //     console.log(results);
+    // })
 }
