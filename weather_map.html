@@ -3,12 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/weather_map.css">
     <script src='https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css' rel='stylesheet'/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+        body{
+            background-color: black;
+        }
+        #map{
+            width: 100%;
+            height: 350px;
+            margin: auto;
+            border: 5px solid white;
+        }
+        .card {display:inline-block;}
 
+        .weatherCard {
+            display: inline-flex;
+        }
+    </style>
 </head>
 <body>
 <div id="wrapper" class="m-2">
@@ -26,7 +40,6 @@
         </div>
     </nav>
 
-    <!--Place-->
     <form class="form-inline">
         <div class="form-group mx-sm-2 mt-3 mb-2">
             <label for="userSearch" class="sr-only">Search Map</label>
@@ -35,13 +48,12 @@
         <button type="submit" id='searchBtn' class="btn btn-primary mb-2 mt-3">Get Weather</button>
     </form>
 
-    <div class="weatherCard d-flex justify-content-center"></div>
-
-    <div class="d-flex justify-content-center">
+    <div class="weatherCard d-flex justify-content-center mt-3"></div>
+    <div class="d-flex justify-content-center mt-3">
         <div id='map'></div>
     </div>
 
-</div><!--end wrapper div-->
+</div>
 
 <script src="js/jquery-2.2.4.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
@@ -55,7 +67,6 @@
 <script>
     'use strict';
     $(document).ready(function () {
-
 //========================================Page Load=================================================================
 
         var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall';
@@ -74,18 +85,17 @@
                     '<div class="card">' +
                     '<div class="card-header text-center">' + new Date(data.daily[i].dt * 1000).toLocaleDateString() + '</div>' +
                     '<ul class="list-group list-group-flush">' +
-                    '<li class="list-group-item">' + 'max temp: ' + data.daily[i].temp.max + ' F' + '</li>' +
-                    '<li class="list-group-item">' + data.daily[i].weather[0].description + '</li>' +
+                    '<li class="list-group-item text-center">' + data.daily[i].temp.min + '<span>&#8457;</span>' + ' / ' + data.daily[i].temp.max + '<span>&#8457;</span>' + '</li>' +
+                    '<li class="list-group-item text-center">' + data.daily[i].weather[0].description + '<br>' + '<img src="http://openweathermap.org/img/w/' + data.daily[i].weather[0].icon + '.png">' + '</li>' +
                     '<li class="list-group-item">' + 'Humidity: ' + data.daily[i].humidity + '</li>' +
                     '<li class="list-group-item ">' + 'Wind Speed: ' + data.daily[i].wind_speed + ' mph' + '</li>' +
                     '<li class="list-group-item" >' + 'Pressure: ' + data.daily[i].pressure + '</li>' +
                     '</ul>' +
                     '</div>')
-            } //end for loop
+            }
             $('.weatherCard').html(weatherUpdate);
-        }); //End request to open weather map One call API
+        });
 
-        //MapBox API
         mapboxgl.accessToken = MAPBOX_KEY;
         var map = new mapboxgl.Map({
             container: 'map', //corresponds to html id
@@ -94,7 +104,6 @@
             center: [-98.4936, 29.4241]
         });
 
-        //Marker
         var marker = new mapboxgl.Marker();
         marker
             .setLngLat([-98.4936, 29.4241])
@@ -103,11 +112,10 @@
 
         reverseGeocode(marker.getLngLat(), MAPBOX_KEY).then(function (results) {
             $('#city').html('Location: ' + results.features[3].place_name);
+            console.log(results);
         });
 
-
 //====================================Search Bar=======================================================
-        //Grab User Search
         $('#searchBtn').click(function (e) {
             e.preventDefault();
             var userInput = $('#userSearch').val();
@@ -140,17 +148,17 @@
                         '<div class="card">' +
                         '<div class="card-header text-center">' + new Date(data.daily[i].dt * 1000).toLocaleDateString() + '</div>' +
                         '<ul class="list-group list-group-flush">' +
-                        '<li class="list-group-item">' + 'max temp: ' + data.daily[i].temp.max + ' F' + '</li>' +
-                        '<li class="list-group-item">' + data.daily[i].weather[0].description + '</li>' +
+                        '<li class="list-group-item text-center">' + data.daily[i].temp.min + '<span>&#8457;</span>' + ' / ' + data.daily[i].temp.max + '<span>&#8457;</span>' + '</li>' +
+                        '<li class="list-group-item text-center">' + data.daily[i].weather[0].description + '<br>' + '<img src="http://openweathermap.org/img/wn/' + data.daily[i].weather[0].icon + '.png">' + '</li>' +
                         '<li class="list-group-item">' + 'Humidity: ' + data.daily[i].humidity + '</li>' +
                         '<li class="list-group-item ">' + 'Wind Speed: ' + data.daily[i].wind_speed + ' mph' + '</li>' +
                         '<li class="list-group-item" >' + 'Pressure: ' + data.daily[i].pressure + '</li>' +
                         '</ul>' +
                         '</div>'
                     )
-                } //end for loop
+                }
                 $('.weatherCard').html(weatherUpdate);
-            }); //End request to open weather map One call API
+            });
         }); //End Search Btn Click
 
 //=======================================Marker Move Update=====================================================
@@ -177,23 +185,24 @@
                         '<div class="card">' +
                         '<div class="card-header text-center">' + new Date(data.daily[i].dt * 1000).toLocaleDateString() + '</div>' +
                         '<ul class="list-group list-group-flush">' +
-                        '<li class="list-group-item">' + 'max temp: ' + data.daily[i].temp.max + ' F' + '</li>' +
-                        '<li class="list-group-item">' + data.daily[i].weather[0].description + '</li>' +
+                        '<li class="list-group-item text-center">' + data.daily[i].temp.min + '<span>&#8457;</span>' + ' / ' + data.daily[i].temp.max + '<span>&#8457;</span>' + '</li>' +
+                        '<li class="list-group-item text-center">' + data.daily[i].weather[0].description + '<br>' + '<img src="http://openweathermap.org/img/wn/' + data.daily[i].weather[0].icon + '.png">' + '</li>' +
                         '<li class="list-group-item">' + 'Humidity: ' + data.daily[i].humidity + '</li>' +
                         '<li class="list-group-item ">' + 'Wind Speed: ' + data.daily[i].wind_speed + ' mph' + '</li>' +
                         '<li class="list-group-item" >' + 'Pressure: ' + data.daily[i].pressure + '</li>' +
                         '</ul>' +
                         '</div>'
                     )
-                } //end for loop
+                }
                 $('.weatherCard').html(weatherUpdate);
-            }); //End request to open weather map One call API
-        }
+            });
+        } //End Dragend Function
 
         marker.on('dragend', onDragEnd);
 
 
-    });// end document ready
+    });
+
 
 </script>
 </body>
