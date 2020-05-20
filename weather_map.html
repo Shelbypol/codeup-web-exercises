@@ -82,7 +82,7 @@
             var weatherUpdate = '';
             for (var i = 0; i <= 5; i++) {
                 weatherUpdate += (
-                    '<div class="card">' +
+                    '<div class="card m-2">' +
                     '<div class="card-header text-center">' + new Date(data.daily[i].dt * 1000).toLocaleDateString() + '</div>' +
                     '<ul class="list-group list-group-flush">' +
                     '<li class="list-group-item text-center">' + data.daily[i].temp.min + '<span>&#8457;</span>' + ' / ' + data.daily[i].temp.max + '<span>&#8457;</span>' + '</li>' +
