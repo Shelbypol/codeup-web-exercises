@@ -107,6 +107,9 @@
             e.preventDefault();
             var userInput = $('#userSearch').val();
 
+            marker.on('dragened', function(){
+                marker.setLngLat([marker.getLngLat().lng, marker.getLngLat().lat]);
+            });
             //Weather API
             geocode(userInput , MAPBOX_KEY).then(function (result) {
                 //Marker
@@ -150,6 +153,12 @@
         }); //End Search Btn Click
 
 //=======================================Marker Move Update=====================================================
+    marker.on('dragened', function(){
+       marker.setLngLat([marker.getLngLat().lng, marker.getLngLat().lat]);
+    });
+
+
+
 
 
         // ======MARKER
