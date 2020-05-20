@@ -20,17 +20,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
-                <!--            <li class="nav-item active">-->
-                <!--                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
-                <!--            </li>-->
-                <!--            <li class="nav-item">-->
-                <!--                <a class="nav-link" href="#"></a>-->
-                <!--            </li>-->
-                <!--            <li class="nav-item">-->
-                <!--                <a class="nav-link" href="#">Pricing</a>-->
-                <!--            </li>-->
+
             </ul>
-            <span class="navbar-text text-white city-name"></span>
+            <span class="navbar-text text-white city-name">City</span>
         </div>
     </nav>
 
@@ -43,70 +35,10 @@
         <button type="submit" id='searchBtn' class="btn btn-primary mb-2 mt-3">Get Weather</button>
     </form>
 
-    <div class="row justify-content-center">
-        <!--Card One-->
-        <div class="card col-2.4" style="width: 15rem;">
-            <div class="date0 card-header text-center"></div>
-            <ul class="list-group list-group-flush">
-                <li class="temp0 list-group-item"></li>
-                <li class="description0 list-group-item"></li>
-                <li class="humidity0 list-group-item"></li>
-                <li class="wind0 list-group-item"></li>
-                <li class="pressure0 list-group-item"></li>
-            </ul>
-        </div>
+    <div class="weatherCard d-flex justify-content-center"></div>
 
-        <!--Card Two-->
-        <div class="card col-2.4" style="width: 15rem;">
-            <div class="date1 card-header text-center"></div>
-            <ul class="list-group list-group-flush">
-                <li class="temp1 list-group-item"></li>
-                <li class="description1 list-group-item"></li>
-                <li class="humidity1 list-group-item"></li>
-                <li class="wind1 list-group-item"></li>
-                <li class="pressure1 list-group-item"></li>
-            </ul>
-        </div>
-
-        <!--Card Three-->
-        <div class="card col-2.4" style="width: 15rem;">
-            <div class="date2 card-header text-center"></div>
-            <ul class="list-group list-group-flush">
-                <li class="temp2 list-group-item"></li>
-                <li class="description2 list-group-item"></li>
-                <li class="humidity2 list-group-item"></li>
-                <li class="wind2 list-group-item"></li>
-                <li class="pressure2 list-group-item"></li>
-            </ul>
-        </div>
-
-        <!--Card Four-->
-        <div class="card col-2.4" style="width: 15rem;">
-            <div class="date3 card-header text-center"></div>
-            <ul class="list-group list-group-flush">
-                <li class="temp3 list-group-item"></li>
-                <li class="description3 list-group-item"></li>
-                <li class="humidity3 list-group-item"></li>
-                <li class="wind3 list-group-item"></li>
-                <li class="pressure3 list-group-item"></li>
-            </ul>
-        </div>
-
-        <!--Card Five-->
-        <div class="card col-2.4" style="width: 15rem;">
-            <div class="date4 card-header text-center"></div>
-            <ul class="list-group list-group-flush">
-                <li class="temp4 list-group-item">
-                <li class="description4 list-group-item"></li>
-                <li class="humidity4 list-group-item"></li>
-                <li class="wind4 list-group-item"></li>
-                <li class="pressure4 list-group-item"></li>
-            </ul>
-        </div>
-    </div> <!--end row-->
-
-    <div class="row">
-        <div id='map' class='col-12 center'></div>
+    <div class="d-flex justify-content-center">
+        <div id='map'></div>
     </div>
 
 </div><!--end wrapper div-->
@@ -124,29 +56,59 @@
     'use strict';
     $(document).ready(function () {
 
-        // var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall';
-        // var weatherOptions = {
-        //     lat: 29.4241,
-        //     lon: -98.4936,
-        //     appid: OPEN_WEATHER_APPID,
-        //     exclude: 'minutely, current, hourly',
-        //     units: 'imperial',
-        // };
-        // //Marker
-        // var marker = new mapboxgl.Marker();
-        // marker
-        //     .setLngLat(-98.4836, 29.4241)
-        //     .addTo(map)
-        //     .setDraggable(true);
+//========================================Page Load=================================================================
+        var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall';
+        var weatherOptions = {
+            lat: 29.4241,
+            lon: -98.4936,
+            appid: OPEN_WEATHER_APPID,
+            exclude: 'minutely, current, hourly',
+            units: 'imperial',
+        };
 
+        $.get(weatherUrl, weatherOptions).done(function (data) {
+
+            var weatherUpdate = '';
+            for (var i = 0; i <= 5; i++) {
+                weatherUpdate += (
+                    '<div class="card">' +
+                    '<div class="card-header text-center">' + new Date(data.daily[i].dt * 1000).toLocaleDateString() + '</div>' +
+                    '<ul class="list-group list-group-flush">' +
+                    '<li class="list-group-item">' + 'max temp: ' + data.daily[i].temp.max + ' F' + '</li>' +
+                    '<li class="list-group-item">' + data.daily[i].weather[0].description + '</li>' +
+                    '<li class="list-group-item">' + 'Humidity: ' + data.daily[i].humidity + '</li>' +
+                    '<li class="list-group-item ">' + 'Wind Speed: ' + data.daily[i].wind_speed + ' mph' + '</li>' +
+                    '<li class="list-group-item" >' + 'Pressure: ' + data.daily[i].pressure + '</li>' +
+                    '</ul>' +
+                    '</div>')
+            } //end for loop
+            $('.weatherCard').html(weatherUpdate);
+        }); //End request to open weather map One call API
+
+        //MapBox API
+        mapboxgl.accessToken = MAPBOX_KEY;
+        var map = new mapboxgl.Map({
+            container: 'map', //corresponds to html id
+            style: 'mapbox://styles/mapbox/streets-v9',
+            zoom: 10,
+            center: [-98.4936, 29.4241]
+        });
+
+        //Marker
+        var marker = new mapboxgl.Marker();
+        marker
+            .setLngLat([-98.4936, 29.4241])
+            .addTo(map)
+            .setDraggable(true);
+
+
+//====================================Search Bar=======================================================
         //Grab User Search
         $('#searchBtn').click(function (e) {
             e.preventDefault();
             var userInput = $('#userSearch').val();
 
             //Weather API
-            // function weather() {
-            //Forward Geocode
             geocode(userInput, MAPBOX_KEY).then(function (result) {
                 map.setCenter(result);
                 map.setZoom(10);
@@ -160,16 +122,10 @@
                     .addTo(map)
                     .setDraggable(true);
 
-
-                //Date String Format Function
-                function parseDate(timestamp) {
-                    return new Date(timestamp * 1000).toLocaleDateString();
-                }
-
                 var weatherUrl = 'dd8bc8ad4512c428dd56e2b72143268b';
                 var weatherOptions = {
-                    lat: lat,
-                    lon: lon,
+                    lat: marker.setLngLat.lat(),
+                    lon: marker.setLngLat.lng,
                     appid: OPEN_WEATHER_APPID_SEARCH,
                     exclude: 'minutely, current, hourly',
                     units: 'imperial',
@@ -177,125 +133,42 @@
 
                 //send request to open weather map One call API
                 $.get(weatherUrl, weatherOptions).done(function (data) {
-                    // Date
-                    $('.date0').append((parseDate(data.daily[0].dt)));
-                    $('.date1').append((parseDate(data.daily[1].dt)));
-                    $('.date2').append((parseDate(data.daily[2].dt)));
-                    $('.date3').append((parseDate(data.daily[3].dt)));
-                    $('.date4').append((parseDate(data.daily[4].dt)));
+                    var weatherUpdate = '';
+                    for (var i = 0; i <= 5; i++) {
+                        weatherUpdate += (
+                            '<div class="card">' +
+                            '<div class="card-header text-center">' + new Date(data.daily[i].dt * 1000).toLocaleDateString() + '</div>' +
+                            '<ul class="list-group list-group-flush">' +
+                            '<li class="list-group-item">' + 'max temp: ' + data.daily[i].temp.max + ' F' + '</li>' +
+                            '<li class="list-group-item">' + data.daily[i].weather[0].description + '</li>' +
+                            '<li class="list-group-item">' + 'Humidity: ' + data.daily[i].humidity + '</li>' +
+                            '<li class="list-group-item ">' + 'Wind Speed: ' + data.daily[i].wind_speed + ' mph' + '</li>' +
+                            '<li class="list-group-item" >' + 'Pressure: ' + data.daily[i].pressure + '</li>' +
+                            '</ul>' +
+                            '</div>')
+                    } //end for loop
+                    $('.weatherCard').html(weatherUpdate);
 
-                    //Max Temp
-                    $('.temp0').empty().append('max temp: ' + (data.daily[0].temp.max) + ' F');
-                    $('.temp1').append('max temp: ' + (data.daily[1].temp.max) + ' F');
-                    $('.temp2').append('max temp: ' + (data.daily[2].temp.max) + ' F');
-                    $('.temp3').append('max temp: ' + (data.daily[3].temp.max) + ' F');
-                    $('.temp4').append('max temp: ' + (data.daily[4].temp.max) + ' F');
-
-                    //Description
-                    $('.description0').append((data.daily[0].weather[0].description));
-                    $('.description1').append((data.daily[1].weather[0].description));
-                    $('.description2').append((data.daily[2].weather[0].description));
-                    $('.description3').append((data.daily[3].weather[0].description));
-                    $('.description4').append((data.daily[4].weather[0].description));
-
-                    //Humidity
-                    $('.humidity0').append('Humidity: ' + (data.daily[0].humidity));
-                    $('.humidity1').append('Humidity: ' + (data.daily[1].humidity));
-                    $('.humidity2').append('Humidity: ' + (data.daily[2].humidity));
-                    $('.humidity3').append('Humidity: ' + (data.daily[3].humidity));
-                    $('.humidity4').append('Humidity: ' + (data.daily[4].humidity));
-
-                    //Wind Speed
-                    $('.wind0').append('Wind Speed: ' + (data.daily[0].wind_speed) + ' mph');
-                    $('.wind1').append('Wind Speed: ' + (data.daily[1].wind_speed) + ' mph');
-                    $('.wind2').append('Wind Speed: ' + (data.daily[2].wind_speed) + ' mph');
-                    $('.wind3').append('Wind Speed: ' + (data.daily[3].wind_speed) + ' mph');
-                    $('.wind4').append('Wind Speed: ' + (data.daily[4].wind_speed) + ' mph');
-
-                    //Pressure
-                    $('.pressure0').append('Pressure: ' + (data.daily[0].pressure));
-                    $('.pressure1').append('Pressure: ' + (data.daily[1].pressure));
-                    $('.pressure2').append('Pressure: ' + (data.daily[2].pressure));
-                    $('.pressure3').append('Pressure: ' + (data.daily[3].pressure));
-                    $('.pressure4').append('Pressure: ' + (data.daily[4].pressure));
                 }); //End request to open weather map One call API
             }); //End Geocode function
-            // } //End weather function
-            // weather();
         }); //End Search Btn Click
 
-        var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall';
-        var weatherOptions = {
-            lat: 29.4241,
-            lon: -98.4936,
-            appid: OPEN_WEATHER_APPID,
-            exclude: 'minutely, current, hourly',
-            units: 'imperial',
-        };
-
-        //Date String Format Function
-        function parseDate(timestamp) {
-            return new Date(timestamp * 1000).toLocaleDateString();
-        }
-
-        //send request to open weather map One call API
-        $.get(weatherUrl, weatherOptions).done(function (data) {
-            // console.log(data);
-            function card() {
-                // Date
-                $('.date0').append((parseDate(data.daily[0].dt)));
-                $('.date1').append((parseDate(data.daily[1].dt)));
-                $('.date2').append((parseDate(data.daily[2].dt)));
-                $('.date3').append((parseDate(data.daily[3].dt)));
-                $('.date4').append((parseDate(data.daily[4].dt)));
-
-                //Max Temp
-                $('.temp0').append('max temp: ' + (data.daily[0].temp.max) + ' F');
-                $('.temp1').append('max temp: ' + (data.daily[1].temp.max) + ' F');
-                $('.temp2').append('max temp: ' + (data.daily[2].temp.max) + ' F');
-                $('.temp3').append('max temp: ' + (data.daily[3].temp.max) + ' F');
-                $('.temp4').append('max temp: ' + (data.daily[4].temp.max) + ' F');
-
-                //Description
-                $('.description0').append((data.daily[0].weather[0].description));
-                $('.description1').append((data.daily[1].weather[0].description));
-                $('.description2').append((data.daily[2].weather[0].description));
-                $('.description3').append((data.daily[3].weather[0].description));
-                $('.description4').append((data.daily[4].weather[0].description));
-
-                //Humidity
-                $('.humidity0').append('Humidity: ' + (data.daily[0].humidity));
-                $('.humidity1').append('Humidity: ' + (data.daily[1].humidity));
-                $('.humidity2').append('Humidity: ' + (data.daily[2].humidity));
-                $('.humidity3').append('Humidity: ' + (data.daily[3].humidity));
-                $('.humidity4').append('Humidity: ' + (data.daily[4].humidity));
-
-                //Wind Speed
-                $('.wind0').append('Wind Speed: ' + (data.daily[0].wind_speed) + ' mph');
-                $('.wind1').append('Wind Speed: ' + (data.daily[1].wind_speed) + ' mph');
-                $('.wind2').append('Wind Speed: ' + (data.daily[2].wind_speed) + ' mph');
-                $('.wind3').append('Wind Speed: ' + (data.daily[3].wind_speed) + ' mph');
-                $('.wind4').append('Wind Speed: ' + (data.daily[4].wind_speed) + ' mph');
-
-                //Pressure
-                $('.pressure0').append('Pressure: ' + (data.daily[0].pressure));
-                $('.pressure1').append('Pressure: ' + (data.daily[1].pressure));
-                $('.pressure2').append('Pressure: ' + (data.daily[2].pressure));
-                $('.pressure3').append('Pressure: ' + (data.daily[3].pressure));
-                $('.pressure4').append('Pressure: ' + (data.daily[4].pressure));
-            }//end card
-            card();
-        }); //End request to open weather map One call API
+//=======================================Marker Move Update=====================================================
 
 
-        //MapBox API
-        mapboxgl.accessToken = MAPBOX_KEY;
-        var map = new mapboxgl.Map({
-            container: 'map', //corresponds to html id
-            style: 'mapbox://styles/mapbox/streets-v9',
-            zoom: 10,
-            center: [-98.4936, 29.4241]
-        });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // ======MARKER
         //

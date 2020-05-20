@@ -14,6 +14,56 @@
         </style>
     </head>
     <body>
+
+
+
+    $('.date0').append((parseDate(data.daily[0].dt)));
+    $('.date1').append((parseDate(data.daily[1].dt)));
+    $('.date2').append((parseDate(data.daily[2].dt)));
+    $('.date3').append((parseDate(data.daily[3].dt)));
+    $('.date4').append((parseDate(data.daily[4].dt)));
+
+    //Max Temp
+    $('.temp0').empty().append('max temp: ' + (data.daily[0].temp.max) + ' F');
+    $('.temp1').append('max temp: ' + (data.daily[1].temp.max) + ' F');
+    $('.temp2').append('max temp: ' + (data.daily[2].temp.max) + ' F');
+    $('.temp3').append('max temp: ' + (data.daily[3].temp.max) + ' F');
+    $('.temp4').append('max temp: ' + (data.daily[4].temp.max) + ' F');
+
+    //Description
+    $('.description0').append((data.daily[0].weather[0].description));
+    $('.description1').append((data.daily[1].weather[0].description));
+    $('.description2').append((data.daily[2].weather[0].description));
+    $('.description3').append((data.daily[3].weather[0].description));
+    $('.description4').append((data.daily[4].weather[0].description));
+
+    //Humidity
+    $('.humidity0').append('Humidity: ' + (data.daily[0].humidity));
+    $('.humidity1').append('Humidity: ' + (data.daily[1].humidity));
+    $('.humidity2').append('Humidity: ' + (data.daily[2].humidity));
+    $('.humidity3').append('Humidity: ' + (data.daily[3].humidity));
+    $('.humidity4').append('Humidity: ' + (data.daily[4].humidity));
+
+    //Wind Speed
+    $('.wind0').append('Wind Speed: ' + (data.daily[0].wind_speed) + ' mph');
+    $('.wind1').append('Wind Speed: ' + (data.daily[1].wind_speed) + ' mph');
+    $('.wind2').append('Wind Speed: ' + (data.daily[2].wind_speed) + ' mph');
+    $('.wind3').append('Wind Speed: ' + (data.daily[3].wind_speed) + ' mph');
+    $('.wind4').append('Wind Speed: ' + (data.daily[4].wind_speed) + ' mph');
+
+    //Pressure
+    $('.pressure0').append('Pressure: ' + (data.daily[0].pressure));
+    $('.pressure1').append('Pressure: ' + (data.daily[1].pressure));
+    $('.pressure2').append('Pressure: ' + (data.daily[2].pressure));
+    $('.pressure3').append('Pressure: ' + (data.daily[3].pressure));
+    $('.pressure4').append('Pressure: ' + (data.daily[4].pressure));
+
+
+
+
+
+
+
 <!--  MAP API  -->
     <div id='map' ></div>
 <script src='js/keys.js'></script>
