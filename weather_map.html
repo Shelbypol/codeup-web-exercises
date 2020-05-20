@@ -95,28 +95,14 @@
         });
 
         //Marker
-
         var marker = new mapboxgl.Marker();
         marker
             .setLngLat([-98.4936, 29.4241])
             .addTo(map)
             .setDraggable(true);
 
-        // geocode(marker.getLngLat(), MAPBOX_KEY).then(function (result) {
-        //     marker
-        //         .setLngLat(result)
-        //         .addTo(map)
-        //         .setDraggable(true);
-        //     map.setCenter(result);
-        //     map.setZoom(10);
-        //
-        // }); //End Geocode function
-
         reverseGeocode(marker.getLngLat(), MAPBOX_KEY).then(function (results) {
-            // for(var i = 1; i <= 1; i++) {
             $('#city').html('Location: ' + results.features[3].place_name);
-            // }
-            console.log(results);
         });
 
 
@@ -133,14 +119,6 @@
                     .setDraggable(true);
                 map.setCenter(result);
                 map.setZoom(10);
-
-            }); //End Geocode function
-
-            reverseGeocode(marker.getLngLat(), MAPBOX_KEY).then(function (results) {
-                // for(var i = 1; i <= 1; i++) {
-                $('#city').html('Location: ' + results.features[3].place_name);
-                // }
-                console.log(results);
             });
 
             var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall';
@@ -152,8 +130,10 @@
                 units: 'imperial'
             };
 
-
             $.get(weatherUrl, weatherOptions).done(function (data) {
+                reverseGeocode(marker.getLngLat(), MAPBOX_KEY).then(function (results) {
+                    $('#city').html('Location: ' + results.features[3].place_name);
+                });
                 var weatherUpdate = '';
                 for (var i = 0; i <= 5; i++) {
                     weatherUpdate += (
@@ -178,7 +158,6 @@
             var lng = marker.getLngLat().lng;
             var lat = marker.getLngLat().lat;
 
-
             var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall';
             var weatherOptions = {
                 lat: lat,
@@ -189,6 +168,9 @@
             };
 
             $.get(weatherUrl, weatherOptions).done(function (data) {
+                reverseGeocode(marker.getLngLat(), MAPBOX_KEY).then(function (results) {
+                    $('#city').html('Location: ' + results.features[3].place_name);
+                });
                 var weatherUpdate = '';
                 for (var i = 0; i <= 5; i++) {
                     weatherUpdate += (
@@ -207,6 +189,7 @@
                 $('.weatherCard').html(weatherUpdate);
             }); //End request to open weather map One call API
         }
+
         marker.on('dragend', onDragEnd);
 
 
