@@ -36,7 +36,30 @@ const users = [
     }
 ];
 
-var lang3 = users.filter(n => n.languages.length >= 3);
+let lang3 = users.filter(n => n.languages.length >= 3);
 console.log(lang3);
+
+let emailAddress =  users.map(n => n.email);
+console.log(emailAddress);
+
+let experiance = users.reduce((years, user) => {
+       return years + user.yearsOfExperience;
+    }, 0);
+console.log(experiance/users.length);
+
+// let longestEmail = users.reduce((longest, person) => (longest > person.email.length) ? longest : person.email, 0);
+// console.log(longestEmail);
+
+let longestEmail = users.reduce((longEmail, user) =>
+    (longEmail.email.length > user.email.length) ? longEmail : user, {email : ''});
+
+console.log(longestEmail);
+//longestEmail.email
+
+
+
+// cheesesHTML = cheeses.filter((cheese) => cheese.length <= 12).map((cheese) => `<li>${cheese}</li>`).reduce((finalHTML, li) => finalHTML + li, "<ul>") + "</ul>";
+
+// let bestSalesPerson = salesPeople.reduce((bestSalesPerson, person) => (bestSalesPerson.units > person.units) ? bestSalesPerson : person, {units: 0});
 
 
