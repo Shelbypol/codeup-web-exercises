@@ -52,10 +52,12 @@ console.log(experiance/users.length);
 
 let longestEmail = users.reduce((longEmail, user) =>
     (longEmail.email.length > user.email.length) ? longEmail : user, {email : ''});
-
-console.log(longestEmail);
+console.log(longestEmail.email);
 //longestEmail.email
 
+let instructors = users.reduce((instructorNames, instructor) =>
+    `${instructorNames} ${instructor.name}`, 'Your instructors are:');
+console.log(instructors);
 
 
 // cheesesHTML = cheeses.filter((cheese) => cheese.length <= 12).map((cheese) => `<li>${cheese}</li>`).reduce((finalHTML, li) => finalHTML + li, "<ul>") + "</ul>";
