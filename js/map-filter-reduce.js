@@ -1,3 +1,5 @@
+'use strict';
+
 const users = [
     {
         id: 1,
@@ -35,36 +37,123 @@ const users = [
         yearsOfExperience: 9
     }
 ];
-
-let lang3 = users.filter(n => n.languages.length >= 3);
+//Problem 1
+let lang3 = users.filter(user => user.languages.length >= 3);
 console.log(lang3);
+//Instructor Solution
 
-let emailAddress =  users.map(n => n.email);
+
+//Problem 2
+let emailAddress =  users.map(user => user.email);
 console.log(emailAddress);
+//Instructor Solution
 
+
+//Problem 3
 let experiance = users.reduce((years, user) => {
        return years + user.yearsOfExperience;
     }, 0);
 console.log(experiance/users.length);
+// //Instructor Solution
+const totalExp = users.reduce((total, user) => {
+    return (total + user.yearsOfExperience);
+}, 0);
+const averageExp = totalExp/users.length;
+console.log(averageExp);
 
-// let longestEmail = users.reduce((longest, person) => (longest > person.email.length) ? longest : person.email, 0);
-// console.log(longestEmail);
-
+//Problem 4
 let longestEmail = users.reduce((longEmail, user) =>
-    (longEmail.email.length > user.email.length) ? longEmail : user, {email : ''});
-console.log(longestEmail.email);
-//longestEmail.email
+    (longEmail.length > user.email.length) ? longEmail : user.email, '');
+console.log(longestEmail);
+//Instructor Solution
 
-let instructors = users.reduce((instructorNames, instructor) =>
-    `${instructorNames} ${instructor.name}`, 'Your instructors are:');
+
+//Problem 5
+// let instructors = users.reduce((instructorNames, instructor) =>
+//     `${instructorNames} ${instructor.name}` , 'Your instructors are:');
+// console.log(instructors);
+//add substrings to get correct capitalization
+//Instructor Solution
+let instructors = users.reduce((instructorNames, instructor, index) => {
+    if (index < users.length - 1) {
+        return `${instructorNames} ${instructor.name},`
+    } else {
+        return `${instructorNames} ${instructor.name}.`
+    }
+    }, 'Your instructors are: ' );
 console.log(instructors);
 
-let uniqueLang = users.reduce((langStr, user) => {
-     user.languages
-    , [] });
-console.log(uniqueLang);
-// cheesesHTML = cheeses.filter((cheese) => cheese.length <= 12).map((cheese) => `<li>${cheese}</li>`).reduce((finalHTML, li) => finalHTML + li, "<ul>") + "</ul>";
 
-// let bestSalesPerson = salesPeople.reduce((bestSalesPerson, person) => (bestSalesPerson.units > person.units) ? bestSalesPerson : person, {units: 0});
+let uniqueLangs = users.reduce((langList, user) => {
+    for (let lang of user.languages){
+        if(!langList.includes(lang)){
+            langList.push(lang);
+        }
+    }
+    return langList;
+}, []);
+console.log(uniqueLangs);
+
+//or
+let arr = users.reduce((langs, user) => {
+    for (let lang of user.languages) {
+        langs.push(lang);
+    }
+let set = new Set(arr);
+
+let uniqueLangsQuick = Array.from(set)
+    // new Set(users.reduce((langs, user) => {
+    // for (let lang of user.languages) {
+    //     langs.push(lang);
+    // }
+}, [] )));
+
+
+// let languageList = users.map(user => user.languages).map(language => language.split(',')).join(',').join(',').split(',').sort().reduce((langList, lang)=> {
+//     const length = langList.length;
+//     if(length === 0 || langList[length - 1] !== lang  ){
+//         langList.push(lang);
+//     }
+//     return langList;
+// }, []);
+
+// console.log(languageList);
+//Bonus
+// const uniqueLang = arr => arr.reduce((langStr, user) =>
+//     (langStr + user.languages), '').split(',');
+//
+// // console.log(typeof (uniqueLang(users)));
+// console.log(uniqueLang(users));
+
+// let arrayLang = (uniqueLang(users).split(','));
+// console.log(arrayLang);
+//
+// let arrayLang1 = (uniqueLang(users).split(','));
+//
+// for(let i = 0; i < arrayLang.length; i ++){
+//     for(let i = 0; i < arrayLang1.length; i ++)
+//         if(arrayLang[i] === arrayLang1[i]){
+//             console.log(arrayLang.slice(i, 1));
+//        // console.log(uniqueLang(users));
+//     }
+//
+// }
+
+
+
+// let langp = users.filter(n => n.languages.length >= 3);
+// console.log(lang3);
+
+// let answer =  arrayLang.forEach(function (lang) {
+  //       if (lang) {
+  //           arrayLang.slice(lang, 1);
+  //           // return uniqueLang(users);
+  //       }
+  //   });
+// console.log(answer);
+
+
+// (langStr + user.languages + ','), []);
+
 
 
