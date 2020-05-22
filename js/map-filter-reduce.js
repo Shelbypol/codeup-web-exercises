@@ -95,18 +95,18 @@ let uniqueLangs = users.reduce((langList, user) => {
 console.log(uniqueLangs);
 
 //or
-let arr = users.reduce((langs, user) => {
-    for (let lang of user.languages) {
-        langs.push(lang);
-    }
-let set = new Set(arr);
+// let arr = users.reduce((langs, user) => {
+//     for (let lang of user.languages) {
+//         langs.push(lang);
+//     };
+// let set = new Set(arr);
 
-let uniqueLangsQuick = Array.from(set)
-    // new Set(users.reduce((langs, user) => {
-    // for (let lang of user.languages) {
-    //     langs.push(lang);
-    // }
-}, [] )));
+// let uniqueLangsQuick = Array.from(set)
+// //     // new Set(users.reduce((langs, user) => {
+// //     // for (let lang of user.languages) {
+// //     //     langs.push(lang);
+// //     // }
+// // }, [] )));
 
 
 // let languageList = users.map(user => user.languages).map(language => language.split(',')).join(',').join(',').split(',').sort().reduce((langList, lang)=> {
