@@ -59,7 +59,10 @@ let instructors = users.reduce((instructorNames, instructor) =>
     `${instructorNames} ${instructor.name}`, 'Your instructors are:');
 console.log(instructors);
 
-
+let uniqueLang = users.reduce((langStr, user) => {
+     user.languages
+    , [] });
+console.log(uniqueLang);
 // cheesesHTML = cheeses.filter((cheese) => cheese.length <= 12).map((cheese) => `<li>${cheese}</li>`).reduce((finalHTML, li) => finalHTML + li, "<ul>") + "</ul>";
 
 // let bestSalesPerson = salesPeople.reduce((bestSalesPerson, person) => (bestSalesPerson.units > person.units) ? bestSalesPerson : person, {units: 0});
