@@ -164,7 +164,7 @@
 
             $.get(weatherUrl, weatherOptions).done(function (data) {
                 reverseGeocode(marker.getLngLat(), MAPBOX_KEY).then(function (results) {
-                    $('#city').html('Location: ' + results.features[3].place_name);
+                    $('#city').html('Location: ' + results.features[1].place_name);
                 });
                 var weatherUpdate = '';
                 for (var i = 0; i <= 5; i++) {
@@ -182,8 +182,6 @@
                 }
                 $('.weatherCard').html(weatherUpdate);
             });
-            // weatherRender();
-
         } //End Dragend Function
         marker.on('dragend', onDragEnd);
 
