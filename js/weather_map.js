@@ -11,8 +11,16 @@ $(document).ready(function () {
      */
 
     //declare function for weather object
-    //grab token key
+    function weatherMapInfo(){
+
+
+
     //set saCoords lat and lon
+        var saCoordinate = {lat: 29.4241, lon: -98.4936}
+
+    }
+
+    //grab token key
 
     //create map
     //map container variable
