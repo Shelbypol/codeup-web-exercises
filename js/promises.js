@@ -3,34 +3,43 @@
 function githubUserName(username) {
     let githubToken = fetch(`https://api.github.com/users/${username}/events/public`, {headers: {'Authorization': `token ${GITHUB_API}`}});
 
+    const bucket = [];
     githubToken.then(response => response.json())
-        // .then(event => console.log(new Date(event[0].created_at).toDateString()))
+
         .then(event => {
-            for (var i = 0; i <= 30; i++) {
-             return (event[i].type === 'PushEvent')
-            }
+            event.forEach(function (i) {
+                return bucket.push(i.type);
+            });
         })
-        .then(pushEvents => {
-            pushEvents.filter(function (t) {
-                if (t === 'PushEvent') {
-                    console.log('you did it')
-                }
-            })
+        .then(newAry => {
+             newAry = bucket.filter(function (n) {
+                n === "PushEvent";
+                console.log(newAry);
+            });
         })
-            // .then(type => type.filter(n => n === 'PushEvent'))
 
-            // .then(event =>(event.filter(function (i) {
-            //     console.log(event[i].type. === 'PushEvent');
-            // })))
 
-            // .then (new Date([0].created_at).toDateString())
-        .
-            catch(error => console.log(error));
-        }
 
-    githubUserName('Shelbypol');
+        // .then(getDate => console.log(new Date(event[0].created_at).toDateString()))
 
-// filter
+
+        // })
+
+        .catch(error => console.log(error));
+}
+
+githubUserName('Shelbypol');
+
+// .then(event => {
+//     let bucket = [];
+//     event.forEach(function (i) {
+//         bucket.push(i.type);
+//     });
+//     let newAry = bucket.filter(function (n) {
+//         n === "PushEvent";
+//         console.log(newAry);
+//     });
+// })
 
 
 // most recent PushEvent 
