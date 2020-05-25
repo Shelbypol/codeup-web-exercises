@@ -3,29 +3,31 @@
 function githubUserName(username) {
     let githubToken = fetch(`https://api.github.com/users/${username}/events/public`, {headers: {'Authorization': `token ${GITHUB_API}`}});
 
-    const bucket = [];
+    // const bucket = [];
     githubToken.then(response => response.json())
+        .then(events => console.log(new Date(events.filter(user => user.type === "PushEvent")[0].created_at).toDateString()))
 
-        .then(event => {
-            event.forEach(function (i) {
-                return bucket.push(i.type);
-            });
-        })
-        .then(newAry => {
-             newAry = bucket.filter(function (n) {
-                n === "PushEvent";
-                console.log(newAry);
-            });
-        })
-
-
-
-        // .then(getDate => console.log(new Date(event[0].created_at).toDateString()))
-
-
+        // .then(event => {
+        //     event.filter(function (n) {
+        //         console.log((n.type === 'PushEvent'));
+        //     })
         // })
+                // .then(newAry => {
+                //      newAry = bucket.filter(function (n) {
+                //         n === "PushEvent";
+                //         console.log(newAry);
+                //     });
+                // })
 
-        .catch(error => console.log(error));
+
+
+                // .then(getDate => console.log(new Date(event[0].created_at).toDateString()))
+
+
+                // })
+
+                .catch(error => console.log(error));
+
 }
 
 githubUserName('Shelbypol');
@@ -47,6 +49,9 @@ githubUserName('Shelbypol');
 //     .filter() ? 
 //     new Date() 
 //     .toDateString()
+
+
+
 
 //Problem 2
 function wait(num) {
