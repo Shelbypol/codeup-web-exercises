@@ -1,4 +1,4 @@
-$(document).ready(function () {
+(function () {
     'use strict';
 
     /**
@@ -15,8 +15,7 @@ $(document).ready(function () {
     function weatherMapInfo(mapboxgl) {
 
         //set saCoords lat and lon
-        const saCoordinate = {lat: 29.4241, lon: -98.4936}
-
+        const saCoordinate = {lat: 29.4241, lon: -98.4936};
 
         //grab token key
         mapboxgl.accessToken = MAPBOX_KEY;
@@ -27,7 +26,7 @@ $(document).ready(function () {
             //street view of map
             style: 'mapbox://styles/mapbox/streets-v9',
             //add san antonio coords
-            center: [saCoordinate],
+            center: saCoordinate,
             // zoom
             zoom: 10
         });
@@ -37,12 +36,12 @@ $(document).ready(function () {
         //allow marker to drag
         marker.setDraggable(true);
         //set coords for marker to start
-        marker.setLngLat({saCoordinate});
+        marker.setLngLat(saCoordinate);
         //add marker to map
         marker.addTo(map);
 
         //connect to weather api set variable
-        const weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall';
+        const weatherAPI = 'https://api.openweathermap.org/data/2.5/onecall';
         //variable for weather api settings
         const weatherOptions = {
             //set to weather key api
@@ -54,7 +53,7 @@ $(document).ready(function () {
         };
 
         //return info just set
-        return {saCoordinate, map, marker, weatherUrl, weatherOptions};
+        return {saCoordinate, map, marker, weatherAPI, weatherOptions};
 
         //end weather function object
     }
@@ -70,17 +69,17 @@ $(document).ready(function () {
     function weatherCard(data) {
         return (
             '<div class="card m-2">' +
-            '<div class="card-header text-center">' + new Date(data.daily[i].dt * 1000).toLocaleDateString() + '</div>' +
+            '<div class="card-header text-center">' + new Date(data.dt * 1000).toLocaleDateString() + '</div>' +
             '<ul class="list-group list-group-flush">' +
-            '<li class="list-group-item text-center">' + data.daily[i].temp.min + '<span>&#8457;</span>' + ' / ' + data.daily[i].temp.max + '<span>&#8457;</span>' + '</li>' +
-            '<li class="list-group-item text-center">' + data.daily[i].weather[0].description + '<br>' + '<img src="http://openweathermap.org/img/w/' + data.daily[i].weather[0].icon + '.png">' + '</li>' +
-            '<li class="list-group-item">' + 'Humidity: ' + data.daily[i].humidity + '</li>' +
-            '<li class="list-group-item ">' + 'Wind Speed: ' + data.daily[i].wind_speed + ' mph' + '</li>' +
-            '<li class="list-group-item" >' + 'Pressure: ' + data.daily[i].pressure + '</li>' +
+            '<li class="list-group-item text-center">' + data.temp.min + '<span>&#8457;</span>' + ' / ' + data.temp.max + '<span>&#8457;</span>' + '</li>' +
+            '<li class="list-group-item text-center">' + data.weather[0].description + '<br>' + '<img src="http://openweathermap.org/img/w/' + data.weather[0].icon + '.png">' + '</li>' +
+            '<li class="list-group-item">' + 'Humidity: ' + data.humidity + '</li>' +
+            '<li class="list-group-item ">' + 'Wind Speed: ' + data.wind_speed + ' mph' + '</li>' +
+            '<li class="list-group-item" >' + 'Pressure: ' + data.pressure + '</li>' +
             '</ul>' +
             '</div>'
         );
-    //end weather card input function
+        //end weather card input function
     }
 
 //============================================================================================
@@ -89,16 +88,16 @@ $(document).ready(function () {
      * @param response
      */
     //function to display the 5 cards
-    function displayCards(response) {
+    function createCards(response) {
         //variable to hold data response and slice it to only the first 5 outputs
-        const holdResponse = response.slice(0, 5);
+        const holdResponse = response.daily.slice(0, 5);
         // select html element and apply the current value to the accumulator which is the number the forecast is on
-        document.querySelector('weatherCard').innerHTML = holdResponse.reduce((accumulator, currentValue) => {
+        document.querySelector('.weatherCard').innerHTML = holdResponse.reduce((accumulator, currentValue) => {
             //currentValue is being added to weather panel to create a new panel to hold current day info
             accumulator += weatherCard(currentValue);
             //return accumulator
             return accumulator;
-        // set accumulator to start with empty string
+            // set accumulator to start with empty string
         }, '')
         //end function
     }
@@ -108,15 +107,25 @@ $(document).ready(function () {
      * This function makes the request to the weather api
      * @param weatherUrl
      * @param weatherOptions
-     * @param coords
+     * @param coordinates
      */
     //setting up get request function
-    //getting coords
-    //setting specific url with updated weatherOptions
-    //set up promise
-    //if true return weather panels
-    //console.log error if request failed
-    //end function
+    function getRequest({weatherAPI, weatherOptions}, coordinates) {
+        //getting coords
+        weatherOptions.lat = coordinates.lat;
+        weatherOptions.lon = coordinates.lon;
+        //setting specific url with updated weatherOptions
+        const weatherUrl = `${weatherAPI}?${new URLSearchParams(weatherOptions)}`;
+
+        //set up promise
+        fetch(weatherUrl)
+            //if true return weather panels
+            .then(response => response.json())
+            .then(createCards)
+            //console.log error if request failed
+            .catch(console.log);
+        //end function
+    }
 
     //============================================================================================
     /**
@@ -124,37 +133,54 @@ $(document).ready(function () {
      * @param app
      */
     //create a listener function
+    function listener(app) {
 
-    //create variable to hold marker and map info from the first function
+        //create variable to hold marker and map info from the first function
+        const {marker, map} = app;
 
-    //select the button
-    //search user input
+        //select the button
+        const button = document.querySelector('#searchBtn');
+        //search user input
+        const userSearch = document.querySelector('#userSearch');
 
-    //set marker drag function
-    //create variable to hold the current marker lat and lang position
-    //create variable to hold object one for lat one for long
-    //user marker position to center map
-    //use get weather function utilizing first function info and variable of marker position
-    //end function
+        //set marker drag function
+        marker.on('dragend', function () {
+            //create variable to hold the current marker lat and lang position
+            const markerPosition = app.marker.getLngLat();
+            //create variable to hold object one for lat one for long
+            const position = {lat: markerPosition.lat, lon: markerPosition.lng};
+            //user marker position to center map
+            map.setCenter(markerPosition);
+            //use get weather function utilizing first function info and variable of marker position
+            getRequest(weatherMapInfo(position));
+            //end function
+        });
 
-    //add listener to search button variable
-    //on click put search info into geocode
-    //center map with results
-    //marker put on search results
-    //user get weather function with lat and lon results
-    //end geocode
+        //add listener to search button variable
+        userSearch.addEventListener('click', (results) => {
+            //on click put search info into geocode
+          geocode(userSearch.value, MAPBOX_KEY).then(function(results) {
+            //center map with results
+              map.setCenter(results);
+            //marker put on search results
+              marker.setLngLat(results);
+            //user get weather function with lat and lon results
+            getRequest(app, {lat: results[1], lon: results[2]});
+            //end geocode
+             });
+            //end search btn function
+        });
+        //end listener function
+    }
 
-    //end search btn function
-
-    //end listener function
-
-    // create the app object to use
-    //make the parameter that listender take in equal to the first function
+    //make the parameter that listener take in equal to the first function
+    const app = weatherMapInfo(mapboxgl);
 
     // populate the weather for the initial page load
-    // initial app load set to add and
+    // initial app load set to app and coords
+    getRequest(app, app.saCoordinate);
 
     //call last function
+    listener(app);
 
-
-}); //end document ready
+}());
