@@ -67,7 +67,7 @@
 <script src="js/keys.js"></script>
 <script src="js/mapbox-geocode-utilities.js"></script>
 <script src="js/jquery-2.2.4.js"></script>
-<script src="js/weather_map.js"></script>
+<!--<script src="js/weather_map.js"></script>-->
 
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
@@ -76,146 +76,140 @@
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
 
-<!--<script>-->
-<!--    $(document).ready(function () {-->
-<!--    'use strict';-->
-<!--//========================================Page Load=================================================================-->
+<script>
+    $(document).ready(function () {
+        'use strict';
+//========================================Page Load=================================================================
 
-<!--        var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall';-->
-<!--        var weatherOptions = {-->
-<!--            lat: 29.4241,-->
-<!--            lon: -98.4936,-->
-<!--            appid: OPEN_WEATHER_APPID,-->
-<!--            exclude: 'minutely, current, hourly',-->
-<!--            units: 'imperial'-->
-<!--        };-->
+        var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall';
+        var weatherOptions = {
+            lat: 29.4241,
+            lon: -98.4936,
+            appid: OPEN_WEATHER_APPID,
+            exclude: 'minutely, current, hourly',
+            units: 'imperial'
+        };
 
-<!--        // function weatherRender() {-->
-<!--            $.get(weatherUrl, weatherOptions).done(function (data) {-->
-<!--                reverseGeocode(marker.getLngLat(), MAPBOX_KEY).then(function (results) {-->
-<!--                    $('#city').html('Location : ' + results.features[1].place_name);-->
-<!--                });-->
+        // function weatherRender() {
+        $.get(weatherUrl, weatherOptions).done(function (data) {
+            reverseGeocode(marker.getLngLat(), MAPBOX_KEY).then(function (results) {
+                $('#city').html('Location : ' + results.features[1].place_name);
+            });
 
-<!--                var weatherUpdate = '';-->
-<!--                for (var i = 0; i <= 5; i++) {-->
-<!--                    weatherUpdate += (-->
-<!--                        '<div class="card m-2">' +-->
-<!--                        '<div class="card-header text-center">' + new Date(data.daily[i].dt * 1000).toLocaleDateString() + '</div>' +-->
-<!--                        '<ul class="list-group list-group-flush">' +-->
-<!--                        '<li class="list-group-item text-center">' + data.daily[i].temp.min + '<span>&#8457;</span>' + ' / ' + data.daily[i].temp.max + '<span>&#8457;</span>' + '</li>' +-->
-<!--                        '<li class="list-group-item text-center">' + data.daily[i].weather[0].description + '<br>' + '<img src="http://openweathermap.org/img/w/' + data.daily[i].weather[0].icon + '.png">' + '</li>' +-->
-<!--                        '<li class="list-group-item">' + 'Humidity: ' + data.daily[i].humidity + '</li>' +-->
-<!--                        '<li class="list-group-item ">' + 'Wind Speed: ' + data.daily[i].wind_speed + ' mph' + '</li>' +-->
-<!--                        '<li class="list-group-item" >' + 'Pressure: ' + data.daily[i].pressure + '</li>' +-->
-<!--                        '</ul>' +-->
-<!--                        '</div>')-->
-<!--                }-->
-<!--                $('.weatherCard').html(weatherUpdate);-->
-<!--            });-->
-<!--        // }-->
+            var weatherUpdate = '';
+            for (var i = 0; i <= 5; i++) {
+                weatherUpdate += (
+                    '<div class="card m-2">' +
+                    '<div class="card-header text-center">' + new Date(data.daily[i].dt * 1000).toLocaleDateString() + '</div>' +
+                    '<ul class="list-group list-group-flush">' +
+                    '<li class="list-group-item text-center">' + data.daily[i].temp.min + '<span>&#8457;</span>' + ' / ' + data.daily[i].temp.max + '<span>&#8457;</span>' + '</li>' +
+                    '<li class="list-group-item text-center">' + data.daily[i].weather[0].description + '<br>' + '<img src="http://openweathermap.org/img/w/' + data.daily[i].weather[0].icon + '.png">' + '</li>' +
+                    '<li class="list-group-item">' + 'Humidity: ' + data.daily[i].humidity + '</li>' +
+                    '<li class="list-group-item ">' + 'Wind Speed: ' + data.daily[i].wind_speed + ' mph' + '</li>' +
+                    '<li class="list-group-item" >' + 'Pressure: ' + data.daily[i].pressure + '</li>' +
+                    '</ul>' +
+                    '</div>')
+            }
+            $('.weatherCard').html(weatherUpdate);
+        });
+        // }
 
-<!--        // weatherRender();-->
+        // weatherRender();
 
-<!--        //Mapbox Token-->
-<!--        mapboxgl.accessToken = MAPBOX_KEY;-->
-<!--        var map = new mapboxgl.Map({-->
-<!--            container: 'map', //corresponds to html id-->
-<!--            style: 'mapbox://styles/mapbox/streets-v9',-->
-<!--            zoom: 10,-->
-<!--            center: [-98.4936, 29.4241]-->
-<!--        });-->
+        //Mapbox Token
+        mapboxgl.accessToken = MAPBOX_KEY;
+        var map = new mapboxgl.Map({
+            container: 'map', //corresponds to html id
+            style: 'mapbox://styles/mapbox/streets-v9',
+            zoom: 10,
+            center: [-98.4936, 29.4241]
+        });
 
-<!--        var marker = new mapboxgl.Marker();-->
-<!--        marker-->
-<!--            .setLngLat([-98.4936, 29.4241])-->
-<!--            .addTo(map)-->
-<!--            .setDraggable(true);-->
-
-
-<!--//====================================Search Bar=======================================================-->
-<!--        $('#searchBtn').click(function (e) {-->
-<!--            e.preventDefault();-->
-<!--            var userInput = $('#userSearch').val();-->
-
-<!--            var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall';-->
-<!--            var weatherOptions = {-->
-<!--                lat: marker.getLngLat().lat,-->
-<!--                lon: marker.getLngLat().lng,-->
-<!--                appid: OPEN_WEATHER_APPID,-->
-<!--                exclude: 'minutely, current, hourly',-->
-<!--                units: 'imperial'-->
-<!--            };-->
-
-<!--            // $.get(weatherUrl, weatherOptions).done(function (data) {-->
-<!--            //     reverseGeocode(marker.getLngLat(), MAPBOX_KEY).then(function (results) {-->
-<!--            //         $('#city').html('Location : ' + results.features[1].place_name);-->
-<!--            //     });-->
-<!--            // });-->
-<!--            //     weatherRender();-->
-
-<!--            $.get(weatherUrl, weatherOptions).done(function (data) {-->
-<!--                reverseGeocode(marker.getLngLat(), MAPBOX_KEY).then(function (results) {-->
-<!--                    $('#city').html('Location : ' + results.features[1].place_name);-->
-<!--                });-->
-
-<!--                var weatherUpdate = '';-->
-<!--                for (var i = 0; i <= 5; i++) {-->
-<!--                    weatherUpdate += (-->
-<!--                        '<div class="card m-2">' +-->
-<!--                        '<div class="card-header text-center">' + new Date(data.daily[i].dt * 1000).toLocaleDateString() + '</div>' +-->
-<!--                        '<ul class="list-group list-group-flush">' +-->
-<!--                        '<li class="list-group-item text-center">' + data.daily[i].temp.min + '<span>&#8457;</span>' + ' / ' + data.daily[i].temp.max + '<span>&#8457;</span>' + '</li>' +-->
-<!--                        '<li class="list-group-item text-center">' + data.daily[i].weather[0].description + '<br>' + '<img src="http://openweathermap.org/img/w/' + data.daily[i].weather[0].icon + '.png">' + '</li>' +-->
-<!--                        '<li class="list-group-item">' + 'Humidity: ' + data.daily[i].humidity + '</li>' +-->
-<!--                        '<li class="list-group-item ">' + 'Wind Speed: ' + data.daily[i].wind_speed + ' mph' + '</li>' +-->
-<!--                        '<li class="list-group-item" >' + 'Pressure: ' + data.daily[i].pressure + '</li>' +-->
-<!--                        '</ul>' +-->
-<!--                        '</div>')-->
-<!--                }-->
-<!--                $('.weatherCard').html(weatherUpdate);-->
-<!--            });-->
+        var marker = new mapboxgl.Marker();
+        marker
+            .setLngLat([-98.4936, 29.4241])
+            .addTo(map)
+            .setDraggable(true);
 
 
-<!--        }); //End Search Btn Click-->
+//====================================Search Bar=======================================================
+        $('#searchBtn').click(function (e) {
+            e.preventDefault();
+            var userInput = $('#userSearch').val();
 
-<!--//=======================================Marker Move Update=====================================================-->
-<!--        function onDragEnd() {-->
-<!--            var lng = marker.getLngLat().lng;-->
-<!--            var lat = marker.getLngLat().lat;-->
+            geocode(userInput, MAPBOX_KEY).then(function (results) {
+                marker.setLngLat(results);
+                $.get(weatherUrl, weatherOptions).done(function (data) {
+                    reverseGeocode(marker.getLngLat(), MAPBOX_KEY).then(function (results) {
+                        $('#city').html('Location : ' + results.features[1].place_name);
+                    });
+                });
+            });
+                var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall';
+                var weatherOptions = {
+                    lat: marker.getLngLat().lat,
+                    lon: marker.getLngLat().lng,
+                    appid: OPEN_WEATHER_APPID,
+                    exclude: 'minutely, current, hourly',
+                    units: 'imperial'
+                };
 
-<!--            var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall';-->
-<!--            var weatherOptions = {-->
-<!--                lat: lat,-->
-<!--                lon: lng,-->
-<!--                appid: OPEN_WEATHER_APPID,-->
-<!--                exclude: 'minutely, current, hourly',-->
-<!--                units: 'imperial'-->
-<!--            };-->
+                var weatherUpdate = '';
+                for (var i = 0; i <= 5; i++) {
+                    weatherUpdate += (
+                        '<div class="card m-2">' +
+                        '<div class="card-header text-center">' + new Date(data.daily[i].dt * 1000).toLocaleDateString() + '</div>' +
+                        '<ul class="list-group list-group-flush">' +
+                        '<li class="list-group-item text-center">' + data.daily[i].temp.min + '<span>&#8457;</span>' + ' / ' + data.daily[i].temp.max + '<span>&#8457;</span>' + '</li>' +
+                        '<li class="list-group-item text-center">' + data.daily[i].weather[0].description + '<br>' + '<img src="http://openweathermap.org/img/w/' + data.daily[i].weather[0].icon + '.png">' + '</li>' +
+                        '<li class="list-group-item">' + 'Humidity: ' + data.daily[i].humidity + '</li>' +
+                        '<li class="list-group-item ">' + 'Wind Speed: ' + data.daily[i].wind_speed + ' mph' + '</li>' +
+                        '<li class="list-group-item" >' + 'Pressure: ' + data.daily[i].pressure + '</li>' +
+                        '</ul>' +
+                        '</div>')
+                }
+                $('.weatherCard').html(weatherUpdate);
 
-<!--            $.get(weatherUrl, weatherOptions).done(function (data) {-->
-<!--                reverseGeocode(marker.getLngLat(), MAPBOX_KEY).then(function (results) {-->
-<!--                    $('#city').html('Location: ' + results.features[1].place_name);-->
-<!--                });-->
-<!--                var weatherUpdate = '';-->
-<!--                for (var i = 0; i <= 5; i++) {-->
-<!--                    weatherUpdate += (-->
-<!--                        '<div class="card m-2">' +-->
-<!--                        '<div class="card-header text-center">' + new Date(data.daily[i].dt * 1000).toLocaleDateString() + '</div>' +-->
-<!--                        '<ul class="list-group list-group-flush">' +-->
-<!--                        '<li class="list-group-item text-center">' + data.daily[i].temp.min + '<span>&#8457;</span>' + ' / ' + data.daily[i].temp.max + '<span>&#8457;</span>' + '</li>' +-->
-<!--                        '<li class="list-group-item text-center">' + data.daily[i].weather[0].description + '<br>' + '<img src="http://openweathermap.org/img/w/' + data.daily[i].weather[0].icon + '.png">' + '</li>' +-->
-<!--                        '<li class="list-group-item">' + 'Humidity: ' + data.daily[i].humidity + '</li>' +-->
-<!--                        '<li class="list-group-item ">' + 'Wind Speed: ' + data.daily[i].wind_speed + ' mph' + '</li>' +-->
-<!--                        '<li class="list-group-item" >' + 'Pressure: ' + data.daily[i].pressure + '</li>' +-->
-<!--                        '</ul>' +-->
-<!--                        '</div>')-->
-<!--                }-->
-<!--                $('.weatherCard').html(weatherUpdate);-->
-<!--            });-->
-<!--        } //End Dragend Function-->
-<!--        marker.on('dragend', onDragEnd);-->
-<!--    });-->
+        }); //End Search Btn Click
 
-<!--</script>-->
+//=======================================Marker Move Update=====================================================
+        function onDragEnd() {
+            var lng = marker.getLngLat().lng;
+            var lat = marker.getLngLat().lat;
+
+            var weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall';
+            var weatherOptions = {
+                lat: lat,
+                lon: lng,
+                appid: OPEN_WEATHER_APPID,
+                exclude: 'minutely, current, hourly',
+                units: 'imperial'
+            };
+
+            $.get(weatherUrl, weatherOptions).done(function (data) {
+                reverseGeocode(marker.getLngLat(), MAPBOX_KEY).then(function (results) {
+                    $('#city').html('Location: ' + results.features[1].place_name);
+                });
+                var weatherUpdate = '';
+                for (var i = 0; i <= 5; i++) {
+                    weatherUpdate += (
+                        '<div class="card m-2">' +
+                        '<div class="card-header text-center">' + new Date(data.daily[i].dt * 1000).toLocaleDateString() + '</div>' +
+                        '<ul class="list-group list-group-flush">' +
+                        '<li class="list-group-item text-center">' + data.daily[i].temp.min + '<span>&#8457;</span>' + ' / ' + data.daily[i].temp.max + '<span>&#8457;</span>' + '</li>' +
+                        '<li class="list-group-item text-center">' + data.daily[i].weather[0].description + '<br>' + '<img src="http://openweathermap.org/img/w/' + data.daily[i].weather[0].icon + '.png">' + '</li>' +
+                        '<li class="list-group-item">' + 'Humidity: ' + data.daily[i].humidity + '</li>' +
+                        '<li class="list-group-item ">' + 'Wind Speed: ' + data.daily[i].wind_speed + ' mph' + '</li>' +
+                        '<li class="list-group-item" >' + 'Pressure: ' + data.daily[i].pressure + '</li>' +
+                        '</ul>' +
+                        '</div>')
+                }
+                $('.weatherCard').html(weatherUpdate);
+            });
+        } //End Dragend Function
+        marker.on('dragend', onDragEnd);
+    });
+
+</script>
 </body>
 </html>
