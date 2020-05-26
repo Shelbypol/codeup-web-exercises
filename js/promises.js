@@ -1,7 +1,7 @@
 // console.log(githubToken);
 
 function githubUserName(username) {
-    let githubToken = fetch(`https://api.github.com/users/${username}/events/public`, {headers: {'Authorization': `token ${GITHUB_API}`}});
+    let githubToken = fetch(`https://api.github.com/users/${username}/events`, {headers: {'Authorization': `token ${GITHUB_API}`}});
 
     githubToken.then(response => response.json())
         .then(events => (events.filter(user => user.type === "PushEvent")))
@@ -9,7 +9,7 @@ function githubUserName(username) {
         .catch(error => console.log(error));
 }
 
-githubUserName('Shelbypol');
+githubUserName('Shelbypol'); //put console.log here in the last .then
 
 
 //Problem 2
@@ -18,11 +18,11 @@ function wait(num) {
         setTimeout(() => {
             resolve();
             reject();
-        }, num);
+        }, num * 1000);
     });
 }
 
-wait(1000).then(() => console.log('You\'ll see this after 1 second'));
-wait(3000).then(() => console.log('You\'ll see this after 3 seconds'));
+wait(1).then(() => console.log('You\'ll see this after 1 second'));
+wait(3).then(() => console.log('You\'ll see this after 3 seconds'));
 
 
