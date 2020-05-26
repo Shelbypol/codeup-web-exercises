@@ -19,6 +19,7 @@
 
         //grab token key
         mapboxgl.accessToken = MAPBOX_KEY;
+
         //create map
         const map = new mapboxgl.Map({
             //map container variable, corresponds to html id
